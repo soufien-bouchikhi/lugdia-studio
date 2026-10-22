@@ -1,0 +1,22 @@
+{
+  "name": "lugdia-studio",
+  "displayName": "Lugdia Studio",
+  "version": "0.1.0",
+  "description": "L’agence Lugdia dans Claude Code : règles communes, démarrage d’un projet client à partir du brief, MCP de design (21st.dev) et de contrôle (Playwright, Chrome DevTools, Context7).",
+  "author": {
+    "name": "Lugdia",
+    "email": "contact@lugdia.fr",
+    "url": "https://lugdia.fr"
+  },
+  "homepage": "https://lugdia.fr",
+  "keywords": ["agence", "site", "design", "animation", "recette", "lugdia"],
+  "dependencies": ["taste-skill", "impeccable", "gsap-skills"],
+  "userConfig": {
+    "cle_21st": {
+      "type": "string",
+      "title": "Clé API 21st.dev",
+      "description": "Clé créée sur https://21st.dev/mcp. Elle est rangée dans le trousseau du Mac, jamais dans un fichier.",
+      "sensitive": true
+    }
+  }
+}

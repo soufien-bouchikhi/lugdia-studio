@@ -1,0 +1,16 @@
+{
+  "schema": "lugdia-projet/1",
+  "client": "{{CLIENT}}",
+  "slug": "{{SLUG}}",
+  "ref": "{{REF}}",
+  "domaine": "{{DOMAINE}}",
+  "creeLe": "{{DATE}}",
+  "parcours": null,
+  "etape": "cadrage",
+  "validations": {
+    "V1": { "statut": "à faire", "le": null },
+    "V2": { "statut": "à faire", "le": null },
+    "V3": { "statut": "à faire", "le": null },
+    "V4": { "statut": "à faire", "le": null }
+  }
+}

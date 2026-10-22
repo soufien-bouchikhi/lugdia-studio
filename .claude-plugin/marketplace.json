@@ -1,0 +1,58 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "lugdia",
+  "description": "Lugdia Studio : l’agence de Lugdia sous forme de plugin Claude Code (règles, agents, MCP), avec les skills tiers qu’elle utilise, figés sur une version relue.",
+  "owner": {
+    "name": "Lugdia",
+    "email": "contact@lugdia.fr",
+    "url": "https://lugdia.fr"
+  },
+  "plugins": [
+    {
+      "name": "lugdia-studio",
+      "source": "./plugins/lugdia-studio",
+      "description": "Règles de l’agence, démarrage d’un projet client, MCP de design et de contrôle. Installe aussi taste-skill, impeccable et gsap-skills.",
+      "category": "design",
+      "tags": ["agence", "site", "design", "animation", "recette"]
+    },
+    {
+      "name": "taste-skill",
+      "source": {
+        "source": "github",
+        "repo": "Leonxlnx/taste-skill",
+        "sha": "6010f91a9935f1c167dfc500fb1a475681892e6b"
+      },
+      "description": "Direction artistique anti-« slop » : directions tirées d’une étude de 247 sites, inspecteur en navigateur réel, boucle de captures. Version 2.1.4, licence MIT.",
+      "skills": ["./skills/taste-skill"],
+      "author": { "name": "leonxlnx" },
+      "homepage": "https://github.com/Leonxlnx/taste-skill",
+      "license": "MIT",
+      "category": "design"
+    },
+    {
+      "name": "impeccable",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/pbakaus/impeccable.git",
+        "path": "plugin",
+        "sha": "8644175285360c166e57b1e35ecadfbc85ff5209"
+      },
+      "description": "Audit, critique et finition d’interface : 24 commandes (/impeccable audit, polish, animate, delight…). Version 4.7.0, licence Apache 2.0.",
+      "homepage": "https://impeccable.style",
+      "license": "Apache-2.0",
+      "category": "design"
+    },
+    {
+      "name": "gsap-skills",
+      "source": {
+        "source": "github",
+        "repo": "greensock/gsap-skills",
+        "sha": "aed9cfd3277740755f6bfc1155c7aa645403b760"
+      },
+      "description": "Skills officiels GSAP : animations, timelines, ScrollTrigger, plugins, React, performance. Licence MIT ; GSAP est gratuit, y compris en usage commercial.",
+      "homepage": "https://gsap.com",
+      "license": "MIT",
+      "category": "design"
+    }
+  ]
+}
