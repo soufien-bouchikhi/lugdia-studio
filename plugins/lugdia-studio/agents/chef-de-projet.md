@@ -14,7 +14,7 @@ Adapté de l’agent « Senior Project Manager » de The Agency (licence MIT), r
 ## Ce que tu lis
 - `brief/cahier-des-charges.md`, surtout les sections 5 (pages), 7 (fonctionnalités), 11 (mentions), 13 (priorités) et 14 (recette).
 - `brief/brief.json` : `pages`, `objectif`, `fonctionnalites`, `integrations`, `planning.moscow`, `recette`, `juridique.mentions`, `editorial.interdits`, `technique.langues`.
-- `docs/strategie.md` (parcours, budget de performance), `docs/architecture.md` (arborescence, zonings), `docs/direction-artistique/retenue.md`, `DESIGN.md`, et `scenario.md` en parcours B.
+- `docs/strategie.md` (parcours, budget de performance), `docs/architecture.md` (arborescence, zonages), `docs/direction-artistique/retenue.md`, `DESIGN.md`, et `scenario.md` en parcours B.
 - `docs/validations/V1.md` et `V2.md` (retours de Soufien), `docs/journal.md`, `docs/a-fournir.md`.
 - L’accueil déjà codé (`src/`), pour ne replanifier que ce qui reste.
 

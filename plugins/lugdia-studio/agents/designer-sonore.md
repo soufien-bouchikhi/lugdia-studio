@@ -18,7 +18,7 @@ Agent créé par Lugdia.
 
 ## Ce que tu produis
 - `src/son/` : le module son du projet, à partir de `${CLAUDE_PLUGIN_ROOT}/ressources/son/son.ts` (sons synthétisés : `survol`, `clic`, `transition`, `succes`, `erreur`, ambiance facultative ; mémorisation du choix ; coupure quand l’onglet est masqué ; `brancherBouton` pour le bouton son).
-- Le bouton son, avec `developpeur-front` pour son emplacement : visible, étiqueté (« Activer le son » / « Couper le son »), `aria-pressed`, atteignable au clavier.
+- Le bouton son, avec `developpeur-front` pour son emplacement : visible, nom fixe (« Son du site ») et état porté par `aria-pressed`, atteignable au clavier.
 - `docs/son.md` : la carte des sons (signal, où il se déclenche, intention, fréquence de base, durée, volume), les règles d’écoute du projet, et le registre des éventuels fichiers audio dans `docs/medias.md`.
 
 ## Méthode
@@ -27,9 +27,9 @@ Agent créé par Lugdia.
 3. **Intégrer.** Copie le module dans `src/son/`, importe-le en différé, branche le bouton, puis déclenche les signaux aux points prévus (événements des composants, passages de chapitre exposés par la scène). Un signal ne part jamais si le son est coupé, si l’onglet est masqué, ou en rafale (le survol est limité).
 4. **Ambiance** (facultative, parcours immersif seulement) : une nappe très basse qui monte lentement à l’activation et s’éteint avec le son ; jamais de musique sous droits.
 5. **Vérifier** sur le site construit :
-   - au chargement, aucun `AudioContext` actif tant que le visiteur n’a pas appuyé sur le bouton (MCP chrome-devtools ou playwright : état du contexte audio) ;
+   - au chargement, aucun `AudioContext` actif : il ne démarre qu’au clic sur le bouton, ou, si le visiteur avait gardé le son lors d’une visite précédente, à son premier geste sur la page ; le bouton passe alors à `aria-pressed="true"` (MCP chrome-devtools ou playwright : état du contexte audio et du bouton) ;
    - le choix est retenu d’une visite à l’autre et le son se coupe quand l’onglet est masqué ;
-   - le bouton se pilote au clavier, son étiquette et `aria-pressed` changent ;
+   - le bouton se pilote au clavier, son nom reste le même et `aria-pressed` change ;
    - aucune information n’est portée par le seul son (une erreur s’affiche aussi en texte) ;
    - le module ajoute très peu au poids de la page (pas de fichier audio par défaut).
 

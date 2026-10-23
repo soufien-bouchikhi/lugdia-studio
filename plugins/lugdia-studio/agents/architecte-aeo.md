@@ -46,7 +46,7 @@ Dans le graphe du referenceur, avec ses `@id` :
 
 ### 5. Robots d’IA
 - Par défaut, accès permis aux robots des moteurs de réponse : un `robots.txt` qui les bloque par oubli est l’erreur la plus fréquente.
-- Distingue les robots de recherche, qui citent en direct, de ceux qui collectent pour l’entraînement (par exemple `GPTBot`, `OAI-SearchBot`, `ClaudeBot`, `PerplexityBot`, `Google-Extended`, `Applebot-Extended`, `CCBot`). Vérifie la liste et le rôle de chacun sur la documentation officielle de chaque opérateur le jour du projet : ces noms changent.
+- Distingue deux familles et écris-les en deux listes séparées dans `docs/aeo.md` : les robots de recherche et de réponse, qui lisent la page pour la citer (par exemple `OAI-SearchBot`, `ChatGPT-User`, `PerplexityBot`, `Claude-SearchBot`, `Claude-User`), toujours permis ; les robots d’entraînement (par exemple `GPTBot`, `ClaudeBot`, `Google-Extended`, `Applebot-Extended`, `CCBot`), selon le choix du client. Revérifie ces noms dans la documentation officielle de chaque éditeur le jour où tu écris : ils changent.
 - Ouvrir ou fermer l’entraînement revient au client : question pour Soufien, ta recommandation d’abord. Le bloc retenu s’écrit dans `docs/aeo.md` ; le developpeur-front l’intègre au `robots.txt` décrit par le referenceur.
 
 ### 6. llms.txt

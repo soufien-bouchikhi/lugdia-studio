@@ -10,7 +10,8 @@ Ce dépôt est une place de marché Claude Code (`lugdia`) qui publie le plugin 
   - `.mcp.json` : MCP, versions figées (jamais `@latest`).
   - `hooks/hooks.json` et `scripts/contexte-projet.mjs` : rappel au démarrage, seulement dans un projet client.
   - `skills/` : un dossier par skill (`SKILL.md` + `references/`).
-  - `agents/` : à partir de S2, un fichier par agent.
+  - `agents/` : un fichier par agent (26). Format : celui de `producteur.md` ; chaque agent précharge `regles-lugdia` et `organisation-studio`.
+  - `ressources/` : kit 3D, module son, modèles d’infrastructure, copiés dans les projets par les agents.
   - `templates/projet-client/` : modèle copié dans chaque dépôt client (`gitignore` et `env.example` sont renommés avec un point à la copie).
 - `scripts/verifier.mjs` : contrôles à lancer avant chaque commit.
 - `scripts/etat-des-tiers.mjs` : versions disponibles des plugins tiers.
@@ -26,4 +27,4 @@ Ce dépôt est une place de marché Claude Code (`lugdia`) qui publie le plugin 
 
 ## Feuille de route
 
-S1 socle (fait) · S2 équipe d’agents · S3 parcours A et B et commandes · S4 Lugdia Médias (n8n et OpenRouter) · S5 projet pilote : site de Sofiane Khelil.
+S1 socle (fait) · S2 équipe d’agents (faite, version 0.2) · S3 parcours A et B et commandes · S4 Lugdia Médias (n8n et OpenRouter) · S5 projet pilote : site de Sofiane Khelil.

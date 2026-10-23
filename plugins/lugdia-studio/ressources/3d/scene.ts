@@ -130,7 +130,7 @@ export function demarrerScene(canvas: HTMLCanvasElement, opts: OptionsScene): Sc
 
   // Qualité adaptative.
   const garderQualite = /[?&]hq\b/.test(window.location.search);
-  let lent = 0;
+  let lentMs = 0;
   let chauffe = 0;
   let dernier = performance.now();
   let enCours = false;
@@ -146,10 +146,11 @@ export function demarrerScene(canvas: HTMLCanvasElement, opts: OptionsScene): Sc
     ctx.temps += dt;
     opts.image(ctx, dt);
     if (ctx.qualite > 0 && !garderQualite && chauffe++ > 60) {
-      lent = brut > 0.034 && brut < 0.5 ? lent + 1 : Math.max(0, lent - 2);
-      if (lent > 120) {
+      // Temps passé sous ~30 images par seconde ; il redescend deux fois plus vite quand tout va bien.
+      lentMs = brut > 0.034 && brut < 0.5 ? lentMs + brut * 1000 : Math.max(0, lentMs - brut * 2000);
+      if (lentMs > 2000) {
         ctx.qualite -= 1;
-        lent = 0;
+        lentMs = 0;
         redimensionner();
         opts.surBaisse?.(ctx.qualite);
       }

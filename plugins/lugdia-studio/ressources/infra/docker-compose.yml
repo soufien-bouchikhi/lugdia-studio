@@ -1,0 +1,50 @@
+# Site client Lugdia : fichiers statiques (build Astro) servis par nginx, derrière le Traefik du VPS Lugdia.
+# Modèle tiré de lugdia.fr. À copier dans infra/ du projet et à compléter (remplacer SLUG, DOMAINE, ALIAS).
+# Conventions du serveur : Traefik sur le réseau hôte, routage par labels, aucun port publié sur l'hôte,
+# un dossier /docker/<projet>/ par site. Aperçu : même fichier avec le service « apercu » seulement.
+
+name: site-SLUG
+
+services:
+  web:
+    image: nginx:1.29-alpine
+    restart: unless-stopped
+    volumes:
+      - ./site:/usr/share/nginx/html:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=site-SLUG_default
+      # le site, sur son domaine canonique
+      - traefik.http.routers.site-SLUG.rule=Host(`DOMAINE`)
+      - traefik.http.routers.site-SLUG.entrypoints=websecure
+      - traefik.http.routers.site-SLUG.tls.certresolver=letsencrypt
+      - traefik.http.routers.site-SLUG.middlewares=site-SLUG-entetes,site-SLUG-compression
+      - traefik.http.routers.site-SLUG.service=site-SLUG
+      # autres adresses du client (www, autres extensions) : redirection 301 vers le domaine canonique, chemin gardé
+      - traefik.http.routers.site-SLUG-alias.rule=Host(`www.DOMAINE`)
+      - traefik.http.routers.site-SLUG-alias.entrypoints=websecure
+      - traefik.http.routers.site-SLUG-alias.tls.certresolver=letsencrypt
+      - traefik.http.routers.site-SLUG-alias.middlewares=site-SLUG-canonique
+      - traefik.http.routers.site-SLUG-alias.service=site-SLUG
+      - traefik.http.middlewares.site-SLUG-canonique.redirectregex.regex=^https?://[^/]+(.*)$$
+      - traefik.http.middlewares.site-SLUG-canonique.redirectregex.replacement=https://DOMAINE$${1}
+      - traefik.http.middlewares.site-SLUG-canonique.redirectregex.permanent=true
+      # compression (Brotli et gzip, selon la version de Traefik : vérifier sa documentation)
+      - traefik.http.middlewares.site-SLUG-compression.compress=true
+      # en-têtes de sécurité ; la CSP est posée par nginx (nginx.conf), au plus près des fichiers
+      - traefik.http.middlewares.site-SLUG-entetes.headers.stsSeconds=31536000
+      - traefik.http.middlewares.site-SLUG-entetes.headers.stsIncludeSubdomains=false
+      - traefik.http.middlewares.site-SLUG-entetes.headers.contentTypeNosniff=true
+      - traefik.http.middlewares.site-SLUG-entetes.headers.frameDeny=true
+      - traefik.http.middlewares.site-SLUG-entetes.headers.referrerPolicy=strict-origin-when-cross-origin
+      - traefik.http.middlewares.site-SLUG-entetes.headers.permissionsPolicy=camera=(), microphone=(), geolocation=()
+      - traefik.http.services.site-SLUG.loadbalancer.server.port=80
+      # Pour un APERÇU, remplacer DOMAINE par l'adresse d'aperçu prévue par Lugdia, supprimer le routeur « alias »
+      # et ajouter le middleware suivant au routeur principal (après site-SLUG-entetes) :
+      #   - traefik.http.middlewares.site-SLUG-noindex.headers.customResponseHeaders.X-Robots-Tag=noindex, nofollow

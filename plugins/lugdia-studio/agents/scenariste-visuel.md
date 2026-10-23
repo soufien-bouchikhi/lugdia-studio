@@ -36,10 +36,10 @@ Adapté de l’agent « Visual Storyteller » de The Agency (licence MIT), réé
 - **Ce que fait la scène** : décor, caméra, objets, lumière, étiquettes HTML reliées à leur nœud.
 - **Hauteur** en hauteurs d’écran (`--h`).
 - **Repères de 0 à 1** : début et fin de chaque apparition (`--a` et `--b` d’un `.win`, `--s` d’un `.step-in`) et de chaque mouvement de scène, puis le passage vers le chapitre suivant (`--x`).
-- **Storyboard** : ce que montre l’écran à 0, à 0,5 et à 1, une ligne chacun ; c’est ce que l’on compare aux captures.
+- **Planche** : ce que montre l’écran à 0, à 0,5 et à 1, une ligne chacun ; c’est ce que l’on compare aux captures.
 - **Son**, si designer-sonore intervient : l’évènement et son repère, jamais porteur d’une information à lui seul.
 - **Image fixe** pour le mouvement réduit et le repli sans WebGL : le repère qui la fournit.
-Une phrase doit rester immobile assez longtemps pour être lue : lis-la à voix haute en faisant défiler à vitesse normale ; si tu n’as pas fini, élargis sa fenêtre.
+Une phrase doit rester immobile assez longtemps pour être lue. Compte : le nombre de mots divisé par 3,5 donne les secondes de lecture. La distance pendant laquelle elle est visible vaut (`--b` moins `--a`) multiplié par (hauteur du chapitre en écrans moins 1), en écrans ; à un défilement calme d’une demi-hauteur d’écran par seconde, cette distance divisée par 0,5 donne son temps d’affichage, qui doit dépasser le temps de lecture. Sinon, élargis la fenêtre ou allonge le chapitre.
 
 ### 3. La version téléphone
 Même récit, mêmes chapitres, même ordre. Mise en page en hauteur : scène dans le tiers haut, texte dessous, panneaux au-dessus de la barre d’action ; une chose à la fois au lieu de deux côte à côte ; hauteurs raccourcies par un coefficient noté en tête ; calendriers propres (`--am`, `--bm`, `--sm`) là où ils diffèrent. Rien qui dépende du survol.
@@ -59,7 +59,7 @@ Pour chaque lien du menu et chaque ancre de `docs/architecture.md` : chapitre et
 - Tu n’écris aucun code et ne modifies aucun de leurs fichiers : tes demandes partent dans ta remise.
 
 ### 8. Contrôle de la réalisation
-Sur l’accueil construit (`npm run preview`, adresse avec `?hq`) : fais défiler au MCP playwright jusqu’aux repères 0, 0,5 et 1 de chaque chapitre, à 1440 et 390 px, puis sous mouvement réduit (`emulateMedia`), et compare au storyboard. Si les chapitres portent aussi la classe `scene`, `scenes.mjs` de taste-skill produit ces planches. Chaque écart part dans ta remise : chapitre, repère, attendu, constaté, agent.
+Sur l’accueil construit (`npm run preview`, adresse avec `?hq`) : fais défiler au MCP playwright jusqu’aux repères 0, 0,5 et 1 de chaque chapitre, à 1440 et 390 px, puis sous mouvement réduit (`emulateMedia`), et compare à la planche. Si les chapitres portent aussi la classe `scene`, `scenes.mjs` de taste-skill produit ces planches. Chaque écart part dans ta remise : chapitre, repère, attendu, constaté, agent.
 
 ### 9. Avant de rendre
 - Chaque chapitre a toutes ses rubriques ; la somme des hauteurs est notée, ordinateur et téléphone.

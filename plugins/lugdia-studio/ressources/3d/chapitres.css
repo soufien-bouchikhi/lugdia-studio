@@ -1,4 +1,4 @@
-/* Chapitres figés pilotés par --p (voir chapitres.ts). À copier dans les styles du projet.
+/* Chapitres figés pilotés par --p (voir chapitres.ts). À copier dans src/scenes/ avec chapitres.ts, puis à importer dans la mise en page.
    Ne jamais mettre overflow: hidden ni clip sur html ou body : cela casse position: sticky. */
 
 [data-ch] {

@@ -21,6 +21,8 @@ export interface Son {
   jouer: (signal: Signal) => void;
   /** Ambiance continue très douce, facultative ; s'arrête avec couper(). */
   ambiance: (marche: boolean) => void;
+  /** Prévient quand le son s'active ou se coupe (par le bouton ou par la réactivation au premier geste). */
+  surChange: (f: (actif: boolean) => void) => void;
 }
 
 export function creerSon(opts: OptionsSon): Son {
@@ -31,6 +33,8 @@ export function creerSon(opts: OptionsSon): Son {
   let actif = false;
   let nappe: { arreter: () => void } | null = null;
   let dernierSurvol = 0;
+  const abonnes: ((actif: boolean) => void)[] = [];
+  const prevenir = () => abonnes.forEach((f) => f(actif));
 
   const lire = () => {
     try { return localStorage.getItem(opts.cle) === '1'; } catch { return false; }
@@ -98,6 +102,7 @@ export function creerSon(opts: OptionsSon): Son {
       await ctx.resume();
       actif = true;
       ecrire(true);
+      prevenir();
     },
     couper() {
       actif = false;
@@ -105,6 +110,7 @@ export function creerSon(opts: OptionsSon): Son {
       nappe?.arreter();
       nappe = null;
       if (ctx) void ctx.suspend();
+      prevenir();
     },
     jouer(signal) {
       if (!actif || !ctx || document.hidden) return;
@@ -163,9 +169,13 @@ export function creerSon(opts: OptionsSon): Son {
         },
       };
     },
+    surChange(f) {
+      abonnes.push(f);
+    },
   };
 
-  // Le choix « son activé » est retenu, mais le contexte audio ne démarre qu'au premier geste du visiteur.
+  // Le choix « son activé » d'une visite précédente est retenu, mais le contexte audio ne démarre
+  // qu'au premier geste du visiteur sur la page (règle des navigateurs) ; le bouton est alors repeint.
   if (lire()) {
     const premierGeste = () => {
       void son.activer();
@@ -179,23 +189,26 @@ export function creerSon(opts: OptionsSon): Son {
   return son;
 }
 
-/** Relie un bouton au son : étiquette claire, aria-pressed, bascule au clic. */
-export function brancherBouton(bouton: HTMLButtonElement, son: Son, libelles = { activer: 'Activer le son', couper: 'Couper le son' }) {
+/**
+ * Relie un bouton au son : nom fixe (« Son du site ») et état porté par aria-pressed, ce qui se lit
+ * « Son du site, bouton bascule, activé » ou « … désactivé ». Le bouton se repeint à chaque changement.
+ */
+export function brancherBouton(bouton: HTMLButtonElement, son: Son, nom = 'Son du site') {
   const peindre = () => {
     const actif = son.actif();
     bouton.setAttribute('aria-pressed', String(actif));
-    bouton.setAttribute('aria-label', actif ? libelles.couper : libelles.activer);
-    bouton.title = actif ? libelles.couper : libelles.activer;
+    bouton.title = actif ? 'Couper le son' : 'Activer le son';
   };
   bouton.type = 'button';
+  if (!bouton.textContent?.trim()) bouton.setAttribute('aria-label', nom);
   bouton.addEventListener('click', async () => {
     if (son.actif()) son.couper();
     else {
       await son.activer();
       son.jouer('clic');
     }
-    peindre();
   });
+  son.surChange(peindre);
   peindre();
   return peindre;
 }

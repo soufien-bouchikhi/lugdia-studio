@@ -39,7 +39,7 @@ Fixés une fois, repris dans chaque invite :
 ### 3. Une fiche par visuel
 ```
 ### accueil-ambiance
-- Page et emplacement : accueil, zone haute (zoning de docs/architecture.md)
+- Page et emplacement : accueil, zone haute (zonage de docs/architecture.md)
 - Rôle : ce que l’image apporte au visiteur
 - Fonction : informative (alt écrit par le redacteur) | décorative (alt="")
 - Format : 16:9, affiché jusqu’à 1440 px, source à 2880 px ; recadrage téléphone 4:5
@@ -65,7 +65,7 @@ Fixés une fois, repris dans chaque invite :
 ### 5. Registre
 Une ligne par fichier publié : fichier, type, source, licence ou modèle et version, invite (renvoi à la fiche de `images.md`), date, pages. Polices, icônes, modèles 3D et sons y figurent aussi. Contrôle, depuis la racine du projet, qui ne doit rien renvoyer :
 ```
-find public src -type f \( -iname '*.avif' -o -iname '*.webp' -o -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.svg' -o -iname '*.mp4' -o -iname '*.webm' -o -iname '*.glb' -o -iname '*.woff2' -o -iname '*.mp3' -o -iname '*.ogg' \) | while read f; do grep -qF "$(basename "$f")" docs/medias.md || echo "absent du registre : $f"; done
+find public src -type f \( -iname '*.avif' -o -iname '*.webp' -o -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.svg' -o -iname '*.mp4' -o -iname '*.webm' -o -iname '*.glb' -o -iname '*.woff2' -o -iname '*.mp3' -o -iname '*.ogg' -o -iname '*.ktx2' -o -iname '*.gltf' -o -iname '*.woff' -o -iname '*.gif' -o -iname '*.ico' \) | while read f; do grep -qF "$(basename "$f")" docs/medias.md || echo "absent du registre : $f"; done
 ```
 
 ### Avant de rendre

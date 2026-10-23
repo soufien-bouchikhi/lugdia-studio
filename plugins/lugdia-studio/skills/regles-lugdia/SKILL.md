@@ -56,13 +56,13 @@ Mentions légales complètes, mentions du métier, politique de confidentialité
 
 ## 10. Points de validation
 
-Quatre arrêts obligatoires, décrits dans [references/validations.md](references/validations.md) : **V1** direction artistique, **V2** page d’accueil, **V3** aperçu complet après recette, **V4** mise en ligne. À chaque point : prépare le dossier `docs/validations/Vn.md` avec les captures, mets `.lugdia/projet.json` à jour (statut « en attente »), puis **arrête-toi** et demande l’accord de Soufien. Rien ne part chez le client, rien n’est publié sur le domaine du client, sans cet accord.
+Quatre arrêts obligatoires, décrits dans [references/validations.md](references/validations.md) : **V1** direction artistique, **V2** page d’accueil, **V3** aperçu complet après recette, **V4** mise en ligne. À chaque point, le producteur prépare le dossier `docs/validations/Vn.md` et met `.lugdia/projet.json` à jour (statut « en attente ») ; les autres agents s’arrêtent à leur remise. Puis **tout s’arrête** jusqu’à l’accord de Soufien, transmis par la session principale (voir l’organisation du studio). Rien ne part chez le client, rien n’est publié sur le domaine du client, sans cet accord.
 
 ## 11. Traçabilité
 
 - `docs/journal.md` : une ligne datée par décision (quoi, pourquoi, qui l’a prise).
-- `.lugdia/projet.json` : étape et points de validation tenus à jour.
-- Commits courts, en français, un sujet par commit.
+- `.lugdia/projet.json` : étape et points de validation, tenus par le producteur seul.
+- Un commit par remise acceptée, en français, au format `<agent> : <ce qui est livré>` (voir « Commits » dans l’organisation du studio).
 
 ## 12. Les outils de l’agence
 

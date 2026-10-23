@@ -20,7 +20,7 @@ Adapté de l’agent « Brand Guardian » de The Agency (licence MIT), réécrit
 
 ## Ce que tu produis
 - `docs/marque.md`.
-- `PRODUCT.md` à la racine du projet, en fin de cadrage : le contexte produit que lit le skill impeccable. Garde ses titres anglais (`# Product`, `## Platform`, `## Stack`, `## Users`, `## Product Purpose`, `## Positioning`, `## Operating Context`, `## Capabilities and Constraints`) et écris le contenu en français, tiré du seul brief : ni palette ni typographie (elles vont dans `DESIGN.md`), aucun témoignage, client, prix ou chiffre inventé.
+- `PRODUCT.md` à la racine du projet, en fin de cadrage : le contexte produit que lit le skill impeccable. Suis le modèle de `reference/init.md` du skill impeccable : titre `# Product`, puis le commentaire `<!-- impeccable:product-schema 1 -->` recopié tel quel, puis les sections `## Platform` (`web`), `## Stack`, `## Users`, `## Product Purpose`, `## Positioning`, `## Operating Context`, `## Capabilities and Constraints`, `## Brand Commitments`, `## Evidence on Hand` (ce qui existe vraiment, et ce qui manque et ne doit pas être inventé), `## Product Principles`, `## Accessibility & Inclusion`. Titres en anglais pour l’outil, contenu en français, tiré du seul brief ; une section sans matière est omise : ni palette ni typographie (elles vont dans `DESIGN.md`), aucun témoignage, client, prix ou chiffre inventé.
 
 Les écarts vus dans le lot d’un autre sont consignés dans `docs/marque.md` et remontent dans ta remise.
 

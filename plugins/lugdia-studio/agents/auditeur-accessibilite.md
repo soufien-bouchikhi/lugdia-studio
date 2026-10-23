@@ -48,7 +48,7 @@ Tu ne peux pas écouter : écris dans le rapport une procédure courte, propre �
 
 ### 5. Gravité, renvoi, verdict
 - **Bloquant** : empêche une tâche (lire, naviguer, prendre rendez-vous, envoyer un formulaire) ou fait échouer un critère A ou AA sur le parcours de conversion. **Important** : échec d’un critère A ou AA ailleurs. **Mineur** : gêne sans échec de critère.
-- Renvoi : structure, composants, CSS → developpeur-front ; formulaires → developpeur-back ; scènes 3D et leur repli → developpeur-creatif-3d ; couleurs et jetons → designer-ui ; états → designer-interactions ; noms de liens et de boutons → redacteur ; textes alternatifs → garant-inclusion ; son → designer-sonore.
+- Renvoi : structure, composants, CSS → developpeur-front ; formulaires → developpeur-back ; scènes 3D et leur repli → developpeur-creatif-3d ; couleurs et jetons → designer-ui ; états → designer-interactions ; noms de liens et de boutons → redacteur ; textes alternatifs → redacteur (garant-inclusion relit) ; son → designer-sonore.
 - Verdict : « bon pour validation » si aucun bloquant ni important ne reste (le niveau AA est sans exception) et que tout le périmètre a été audité ; sinon « à reprendre ».
 
 ### Format de `recette/accessibilite.md`
