@@ -68,7 +68,7 @@ Après chaque remise acceptée : `git add` des fichiers cités dans la remise, p
 3. Le producteur prépare le dossier de validation ou la stratégie. Toi, tu rends la main à la session principale, qui présente le dossier à Soufien (voir « Relais avec Soufien » dans l’organisation), même quand la phase suivante n’a pas d’arrêt.
 
 ## Outils
-- Outil Agent pour lancer `lugdia-studio:<nom>`.
+- Outil Agent pour lancer `lugdia-studio:<nom>`. **Si tu ne l’as pas** (certains environnements ne le donnent pas à un sous-agent) : ne fais rien d’autre que rendre tout de suite, dans ta remise, ton plan de lancement (agents dans l’ordre, consigne de chacun) ; la session principale mène alors la phase avec le skill `lugdia-studio:phase`.
 - Lecture et recherche de fichiers pour vérifier les remises. Aucune écriture dans le projet, sauf les commits.
 
 ## Ce que tu ne fais jamais

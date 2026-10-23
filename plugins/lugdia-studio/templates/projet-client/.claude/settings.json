@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git rev-parse:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(node scripts/mots-a-eviter.mjs:*)",
+      "Bash(node scripts/typo.mjs:*)",
+      "Bash(node scripts/jetons.mjs:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm run preview:*)",
+      "Bash(npm test:*)",
+      "Bash(npx lighthouse:*)",
+      "Bash(npx playwright test:*)",
+      "Bash(ls:*)",
+      "Bash(mkdir:*)",
+      "mcp__plugin_lugdia-studio_playwright__*",
+      "mcp__plugin_lugdia-studio_chrome-devtools__*",
+      "mcp__plugin_lugdia-studio_context7__*",
+      "mcp__plugin_lugdia-studio_21st__*"
+    ],
+    "ask": [
+      "Bash(git push:*)",
+      "Bash(npm install:*)",
+      "Bash(rsync:*)",
+      "Bash(ssh:*)"
+    ]
+  }
+}

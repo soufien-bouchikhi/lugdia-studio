@@ -46,7 +46,7 @@ Notation : `→` veut dire « après », `+` veut dire « en même temps ». Ent
 
 | Phase | Entrée | Agents | Sortie | Arrêt |
 |---|---|---|---|---|
-| 1. Cadrage | projet démarré | producteur → chercheur-ux + veilleur + gardien-marque (`docs/marque.md`, `PRODUCT.md`) → producteur | `docs/strategie.md` complet | — |
+| 1. Cadrage | projet démarré | producteur → chercheur-ux + veilleur + gardien-marque (`docs/marque.md`, puis `PRODUCT.md` tiré du brief et de la marque) → producteur (`docs/strategie.md`, cohérence avec `PRODUCT.md` vérifiée) | `docs/strategie.md` complet | — |
 | 2. Direction artistique | cadrage fini | architecte-ux → designer-ui [+ scenariste-visuel si 3D ou défilement scénarisé] [+ directeur-images si des visuels sont prévus, fournis ou générés] → gardien-marque (relecture) + garant-inclusion → controleur-verite → producteur | 3 pistes, arborescence, zonages | **V1** |
 | 3. Page d’accueil | V1 validée | designer-ui (`retenue.md`, `DESIGN.md`) → gardien-marque (relecture de `DESIGN.md`) + designer-interactions (spécification) [+ scenariste-visuel : scénario final] [+ directeur-images : images de l’accueil] → redacteur (accueil) → developpeur-front [+ developpeur-back si l’accueil a un formulaire] → [developpeur-creatif-3d + designer-sonore] → designer-interactions (contrôle) [+ scenariste-visuel (contrôle)] → developpeur-back (aperçu) → testeur-performance (accueil) + ingenieur-tests (accueil) + collecteur-preuves + garant-inclusion → relecteur-finition → controleur-verite → producteur | accueil codée, aperçu publié | **V2** |
 | 4. Fabrication | V2 validée | chef-de-projet (`docs/plan.md`) → directeur-images (fiches et classement de toutes les images) → redacteur → referenceur → architecte-aeo → redacteur (reprise des titres, de la FAQ et de la structure citable) → developpeur-front + developpeur-back → [developpeur-creatif-3d + designer-sonore] → designer-interactions (contrôle) → directeur-images (registre à jour) + garant-inclusion → producteur (étape `recette`) | toutes les pages | — |
@@ -55,7 +55,7 @@ Notation : `→` veut dire « après », `+` veut dire « en même temps ». Ent
 | 7. Bascule | V4 validée | developpeur-back (DNS, `PUBLIC_INDEXABLE=true`, déploiement, envoi réel depuis la production) → referenceur (contrôles après la bascule) + ingenieur-tests (suite sur la production) → producteur (étape `livre`) | site en ligne | — |
 | 8. Après | étape `livre` | stratege-citations-ia | plan de présence et de citations | — |
 
-Le `chef-orchestre` mène une phase de bout en bout et suit, en phase 4, les dépendances de `docs/plan.md`. Soufien peut aussi appeler un agent seul pour une tâche précise. Seul le producteur change l’étape dans `.lugdia/projet.json`.
+Une phase se mène depuis la session principale avec le skill `lugdia-studio:phase` (« lance la phase 2 ») ; le `chef-orchestre` peut aussi la mener seul quand il dispose de l’outil Agent. Dans les deux cas, en phase 4, on suit les dépendances de `docs/plan.md`. Soufien peut aussi appeler un agent seul pour une tâche précise. Seul le producteur change l’étape dans `.lugdia/projet.json`.
 
 ## Relais avec Soufien
 
@@ -69,7 +69,7 @@ Même chose pour tout résultat que seul Soufien peut produire (test au lecteur 
 ## Commits
 
 Le dépôt garde une version par remise acceptée, pour que chaque rapport de contrôle désigne la version qu’il a testée (`git rev-parse --short HEAD`) :
-- le chef-orchestre commite après chaque remise acceptée : `git add` des fichiers cités dans la remise, message `<agent> : <ce qui est livré>` ;
+- celui qui mène la phase (session principale ou chef-orchestre) commite après chaque remise acceptée : `git add` des fichiers cités dans la remise, plus `docs/journal.md` et `docs/a-fournir.md` s’ils ont changé, message `<agent> : <ce qui est livré>` ;
 - un agent appelé seul commite lui-même les fichiers de son lot, avec le même format ;
 - on ne pousse que si le dépôt distant existe, et jamais vers une branche de production sans V4.
 
@@ -111,7 +111,7 @@ Le dépôt garde une version par remise acceptée, pour que chaque rapport de co
 | `recette/verite.md` | controleur-verite | |
 | `recette/inclusion.md` | garant-inclusion | |
 | `docs/validations/Vn.md`, `docs/validations/retours-client.md` | producteur | |
-| `docs/journal.md` | tous, une ligne datée par décision | |
+| `docs/journal.md` | tous, une ligne datée par décision, toujours ajoutée en bas (ordre chronologique) | |
 | `docs/a-fournir.md` | tous, une ligne par manque constaté | producteur coche ce qui est reçu |
 
 Un agent qui voit un problème dans le lot d’un autre ne le corrige pas : il le note dans sa remise, avec le fichier et la ligne, et le chef-orchestre l’envoie au bon agent.

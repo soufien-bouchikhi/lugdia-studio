@@ -56,10 +56,11 @@ Les preuves et chiffres d’un concurrent sont « affichés par le site », pas 
 Liste des adresses étudiées avec la date de visite, et des requêtes lancées.
 
 ### Vérifier avant de rendre
-1. Chaque site a sa fiche complète et ses trois captures ; chaque chemin cité existe.
-2. Aucune phrase de concurrent recopiée : promesses et accroches sont reformulées.
-3. Chaque écart renvoie à une section du brief.
-4. Aucun chiffre inventé sur un concurrent (trafic, chiffre d’affaires, nombre de clients).
+1. Chaque site a sa fiche complète et ses trois captures ; chaque chemin cité existe. Si les captures sont impossibles (MCP playwright absent ou refusé), dis-le en tête de `concurrents.md` et dans ta remise : la veille porte alors sur le texte seul, sans conclusion sur l’aspect visuel.
+2. Aucune note, aucun chiffre ni aucun libellé repris d’un résumé automatique de page (WebFetch, extrait de moteur de recherche) sans l’avoir vu sur la page elle-même : marque-le « lu par résumé, non vérifié » ou retire-le.
+3. Aucune phrase de concurrent recopiée : promesses et accroches sont reformulées.
+4. Chaque écart renvoie à une section du brief.
+5. Aucun chiffre inventé sur un concurrent (trafic, chiffre d’affaires, nombre de clients).
 
 ## Outils
 - Recherche web de Claude Code pour trouver les sites de référence.
