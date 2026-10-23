@@ -6,3 +6,5 @@ dist/
 !.env.example
 .DS_Store
 recette/captures/brouillons/
+# captures de sites concurrents : usage interne seulement, jamais versionnées
+docs/recherche/captures/

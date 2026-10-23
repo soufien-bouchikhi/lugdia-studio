@@ -11,6 +11,7 @@ Lugdia livre des sites qui impressionnent et qui tiennent : beaux, rapides, acce
 
 - Le dossier `brief/` contient le cahier des charges (`cahier-des-charges.md`), sa version structurée (`brief.json`), les jetons de design (`tokens.json`) et la planche d’identité (`identite.png`). Lis-les avant de proposer quoi que ce soit.
 - Ce que le client a fourni (textes, accroche, histoire, couleurs, police, mots à éviter) est respecté tel quel. Une correction de fond (une promesse interdite, une faute) se propose, elle ne s’impose pas : note-la dans `docs/journal.md` et signale-la au point de validation suivant.
+- Seule exception : la forme. Fautes d’orthographe, typographie française et casse de phrase (« Vos projets, Votre Stratégie » devient « Vos projets, votre stratégie ») sont corrigées d’office dans le site, et la version d’origine est gardée dans `docs/journal.md` pour que Soufien puisse la rétablir.
 - Une information manque : écris « à fournir » à l’endroit voulu, ajoute la ligne dans `docs/a-fournir.md`, et continue. N’invente jamais pour boucher un trou.
 
 ## 2. Rien d’inventé

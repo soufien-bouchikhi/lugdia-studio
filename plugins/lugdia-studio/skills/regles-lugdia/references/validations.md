@@ -34,3 +34,7 @@ C’est après V3, et seulement après, que Soufien peut envoyer l’aperçu au 
 - La liste de contrôle de mise en ligne : domaine, HTTPS, redirections, `noindex` retiré, mesure d’audience active, sitemap déclaré, fiche Google prête, sauvegarde.
 
 Rien n’est publié sur le domaine du client avant l’accord de Soufien à ce point.
+
+## Mentions obligatoires encore « à fournir »
+
+Jusqu’à V3, une mention légale ou une mention du métier peut rester « à fournir » : elle est listée dans le dossier de validation. À V4, elle est **bloquante** : le dossier le dit en tête, et seule une décision écrite de Soufien permet de publier quand même, décision notée dans `docs/journal.md`.

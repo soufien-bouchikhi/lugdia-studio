@@ -42,17 +42,19 @@ Les agents s’appellent `lugdia-studio:<nom>`.
 
 ## Les phases
 
-| Phase | Agents, dans l’ordre | Sortie | Arrêt |
-|---|---|---|---|
-| 1. Cadrage | producteur → chercheur-ux, veilleur, gardien-marque (en parallèle) → producteur | `docs/strategie.md` complet | — |
-| 2. Direction artistique | architecte-ux → designer-ui (avec scenariste-visuel en parcours B, directeur-images si des visuels sont générés) → garant-inclusion → controleur-verite → producteur | 3 pistes, arborescence, zonings | **V1** |
-| 3. Page d’accueil | redacteur (accueil) → developpeur-front, developpeur-creatif-3d et designer-sonore si parcours B → designer-interactions → collecteur-preuves → relecteur-finition → controleur-verite → producteur | accueil codée | **V2** |
-| 4. Fabrication | chef-de-projet (plan) → redacteur, referenceur, architecte-aeo → developpeur-front, developpeur-back (et 3D, son) → designer-interactions | toutes les pages | — |
-| 5. Recette | auditeur-accessibilite, testeur-performance, ingenieur-tests, collecteur-preuves (en parallèle) → corrections → relecteur-finition → controleur-verite → producteur | `recette/` complet, aperçu en `noindex` | **V3** |
-| 6. Mise en ligne | developpeur-back, referenceur → controleur-verite → producteur | liste de contrôle de mise en ligne | **V4** |
-| 7. Après | stratege-citations-ia | plan de présence et de citations | — |
+Notation : `→` veut dire « après », `+` veut dire « en même temps ». Entre crochets, ce qui ne s’applique qu’à certains parcours.
 
-Le `chef-orchestre` mène une phase de bout en bout ; Soufien peut aussi appeler un agent seul pour une tâche précise.
+| Phase | Entrée | Agents | Sortie | Arrêt |
+|---|---|---|---|---|
+| 1. Cadrage | projet démarré | producteur → chercheur-ux + veilleur + gardien-marque → producteur | `docs/strategie.md` complet | — |
+| 2. Direction artistique | cadrage fini | architecte-ux → designer-ui [+ scenariste-visuel en parcours B] [+ directeur-images si des visuels sont générés] → gardien-marque (relecture) + garant-inclusion → controleur-verite → producteur | 3 pistes, arborescence, zonings | **V1** |
+| 3. Page d’accueil | V1 validée | designer-ui (`retenue.md` et `DESIGN.md`) → redacteur (accueil) → developpeur-front [+ developpeur-creatif-3d + designer-sonore en parcours B] → designer-interactions → collecteur-preuves → relecteur-finition → controleur-verite → producteur | accueil codée | **V2** |
+| 4. Fabrication | V2 validée | chef-de-projet (`docs/plan.md`) → redacteur → referenceur + architecte-aeo → developpeur-front + developpeur-back [+ 3D + son] → designer-interactions → producteur (passe l’étape à `recette`) | toutes les pages | — |
+| 5. Recette | étape `recette` | auditeur-accessibilite + testeur-performance + ingenieur-tests + collecteur-preuves → corrections par les agents concernés → relecteur-finition → controleur-verite → producteur | `recette/` complet, aperçu en `noindex` | **V3** |
+| 6. Mise en ligne | V3 validée et retours du client traités | developpeur-back + referenceur → controleur-verite → producteur | liste de contrôle de mise en ligne | **V4** |
+| 7. Après | V4 validée | stratege-citations-ia | plan de présence et de citations | — |
+
+Le `chef-orchestre` mène une phase de bout en bout et suit, en phase 4, les dépendances de `docs/plan.md`. Soufien peut aussi appeler un agent seul pour une tâche précise. Seul le producteur change l’étape dans `.lugdia/projet.json`.
 
 ## Qui écrit quoi
 
@@ -67,7 +69,7 @@ Le `chef-orchestre` mène une phase de bout en bout ; Soufien peut aussi appeler
 | `docs/plan.md` | chef-de-projet | producteur y lit les jalons |
 | `docs/architecture.md` | architecte-ux | |
 | `docs/direction-artistique/` (`piste-a.md`, `piste-b.md`, `piste-c.md`, `retenue.md`, captures) | designer-ui | |
-| `DESIGN.md` (racine du projet, lu par impeccable) | designer-ui, après V1 | gardien-marque relit |
+| `DESIGN.md` (racine du projet, lu par impeccable) | designer-ui, au début de la phase 3 | gardien-marque relit |
 | `docs/direction-artistique/scenario.md` | scenariste-visuel | |
 | `docs/direction-artistique/interactions.md` | designer-interactions | |
 | `docs/direction-artistique/images.md` | directeur-images | |
@@ -89,6 +91,7 @@ Le `chef-orchestre` mène une phase de bout en bout ; Soufien peut aussi appeler
 | `recette/inclusion.md` | garant-inclusion | |
 | `docs/validations/Vn.md` | producteur | |
 | `docs/journal.md` | tous, une ligne datée par décision | |
+| `docs/a-fournir.md` | tous, une ligne par manque constaté | producteur coche ce qui est reçu |
 
 Un agent qui voit un problème dans le lot d’un autre ne le corrige pas : il le note dans sa remise, avec le fichier et la ligne, et le chef-orchestre l’envoie au bon agent.
 
