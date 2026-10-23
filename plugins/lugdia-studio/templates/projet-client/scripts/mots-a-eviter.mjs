@@ -21,6 +21,13 @@ const cibles = process.argv.slice(2).length ? process.argv.slice(2) : ['docs/con
 const plat = (s) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[  ]/g, ' ').replace(/[’']/g, "'");
 const motifs = interdits.map((x) => ({ ...x, re: new RegExp('(^|[^a-z0-9])' + plat(x.mot).replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i') }));
 
+// Expressions admises (mentions obligatoires qui contiennent un mot à éviter, par exemple « garantie financière »),
+// une par ligne dans docs/mots-admis.txt, chacune justifiée dans le journal. Elles sont retirées avant la recherche.
+const admises = existsSync('docs/mots-admis.txt')
+  ? readFileSync('docs/mots-admis.txt', 'utf8').split('\n').map((l) => l.replace(/#.*/, '').trim()).filter(Boolean).map(plat)
+  : [];
+const sansAdmises = (l) => admises.reduce((s, a) => s.split(a).join(' '), l);
+
 const fichiers = [];
 const parcourir = (c) => {
   if (!existsSync(c)) return;
@@ -34,7 +41,7 @@ cibles.forEach(parcourir);
 let n = 0;
 for (const f of fichiers) {
   readFileSync(f, 'utf8').split('\n').forEach((ligne, i) => {
-    const l = plat(ligne);
+    const l = sansAdmises(plat(ligne));
     for (const m of motifs) {
       if (m.re.test(l)) {
         n++;

@@ -1,0 +1,3 @@
+# Expressions admises malgré un mot à éviter du brief : mentions obligatoires ou termes réglementaires.
+# Une expression par ligne ; chacune est justifiée dans docs/journal.md. Lu par scripts/mots-a-eviter.mjs.
+garantie financière
