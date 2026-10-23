@@ -25,7 +25,7 @@ Agent créé par Lugdia, à partir du voyage 3D de lugdia.fr.
 ## Le kit Lugdia
 Copie ces fichiers dans `src/scenes/` au premier besoin, puis adapte-les ; ne les réécris pas de zéro :
 - `${CLAUDE_PLUGIN_ROOT}/ressources/3d/kit.ts` : palette depuis les jetons (`paletteDepuisJetons`), courbes (`smooth`, `bump`, `lerp`, `easeInOut`), aléatoire reproductible (`prng`), halos dessinés en canevas (`glowTexture`, `dotTexture`, `sprite`), fondu d’un décor (`fader`), libération de la mémoire (`liberer`), détection (`isMobile`, `prefersReduce`, `webglDisponible`).
-- `${CLAUDE_PLUGIN_ROOT}/ressources/3d/scene.ts` : socle de rendu (`demarrerScene`) avec trois niveaux de qualité, baisse automatique sous environ 30 images par seconde, `?hq` pour les captures, pauses (onglet masqué, canevas hors écran), mouvement réduit en image fixe, `arreter()`.
+- `${CLAUDE_PLUGIN_ROOT}/ressources/3d/scene.ts` : socle de rendu (`demarrerScene`) avec trois niveaux de qualité, baisse automatique sous environ 30 images par seconde, `?hq` pour les captures, niveau courant exposé dans l’attribut `data-qualite` du canevas (pour les tests), pauses (onglet masqué, canevas hors écran), mouvement réduit en image fixe, `arreter()`.
 - `${CLAUDE_PLUGIN_ROOT}/ressources/3d/chapitres.ts` et `chapitres.css` : chapitres `[data-ch]` figés, avancée `--p` et passage `--x` calculés au défilement, fenêtres d’apparition `.win` (`--a`, `--b`, `--dx`) et `.step-in` (`--s`), calendriers téléphone (`--am`, `--bm`, `--sm`), tout déplié sous mouvement réduit.
 
 ## Méthode

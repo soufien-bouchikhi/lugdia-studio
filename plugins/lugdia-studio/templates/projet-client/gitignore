@@ -6,5 +6,9 @@ dist/
 !.env.example
 .DS_Store
 recette/captures/brouillons/
+test-results/
+playwright-report/
+.taste-skill/
+.impeccable/
 # captures de sites concurrents : usage interne seulement, jamais versionnées
 docs/recherche/captures/

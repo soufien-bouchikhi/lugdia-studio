@@ -7,7 +7,8 @@
 // - mouvement réduit : une seule image, recalculée au redimensionnement et au défilement ;
 // - qualité 2 (ordinateur), 1 (téléphone), 0 (appareil qui peine : sans post-traitement) ;
 //   sous ~30 images par seconde pendant 2 s, la qualité baisse d'un cran ; `?hq` dans l'adresse l'empêche (captures) ;
-// - pause quand l'onglet est masqué ou que le canevas sort de l'écran ;
+// - pause quand l’onglet est masqué ou que le canevas sort de l’écran ;
+// - le canevas porte `data-qualite` (0, 1 ou 2) pour les tests et les mesures ;
 // - `arreter()` libère tout.
 
 import * as THREE from 'three';
@@ -75,6 +76,8 @@ export function demarrerScene(canvas: HTMLCanvasElement, opts: OptionsScene): Sc
     ctx.largeur = w;
     ctx.hauteur = h;
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, dprMax[ctx.qualite]));
+    // Signal lisible par les tests et les mesures : niveau de qualité courant.
+    canvas.dataset.qualite = String(ctx.qualite);
     renderer.setSize(w, h, false);
     ctx.camera.aspect = w / h;
     ctx.camera.fov = h > w ? 60 : 45;

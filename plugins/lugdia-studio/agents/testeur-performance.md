@@ -45,9 +45,9 @@ npx lighthouse <adresse> --only-categories=performance,accessibility,best-practi
 
 ### 5. Scènes 3D
 1. **Fréquence d’image** sur profil modeste (`emulate` téléphone, `cpuThrottlingRate: 4`) : `evaluate_script` compte les images sur 5 secondes pendant un défilement par paliers à travers les chapitres :
-   `async () => { let n = 0, pire = 0, t0 = performance.now(), d = t0; await new Promise((ok) => { const f = (t) => { n++; pire = Math.max(pire, t - d); d = t; if (t - t0 < 5000) requestAnimationFrame(f); else ok(); }; requestAnimationFrame(f); }); return { ips: n / 5, pireImageMs: Math.round(pire) }; }`
-   Note le moteur WebGL (`WEBGL_debug_renderer_info`) : un rendu logiciel sans carte graphique donne une mesure pessimiste, à présenter comme telle.
-2. **Baisse de qualité** : sous un ralentissement plus fort, le signal décrit dans `docs/3d.md` apparaît (résolution réduite, puis effets coupés). Sans signal observable, c’est « non vérifiable » et une demande à developpeur-creatif-3d.
+   `async () => { const pas = setInterval(() => scrollBy(0, innerHeight / 3), 400); let n = 0, pire = 0, t0 = performance.now(), d = t0; await new Promise((ok) => { const f = (t) => { n++; pire = Math.max(pire, t - d); d = t; if (t - t0 < 5000) requestAnimationFrame(f); else ok(); }; requestAnimationFrame(f); }); clearInterval(pas); return { ips: n / 5, pireImageMs: Math.round(pire) }; }`
+   Mesure une fois la qualité stabilisée et note le niveau atteint. Note aussi le moteur WebGL (`WEBGL_debug_renderer_info`) : un rendu logiciel sans carte graphique donne une mesure pessimiste, à présenter comme telle.
+2. **Baisse de qualité** : sous un ralentissement plus fort, la résolution baisse puis les effets coûteux disparaissent. Avec le socle `scene.ts` du studio, le canevas porte l’attribut `data-qualite` (2, 1 ou 0) : relève sa valeur avant et après le ralentissement. Un autre signal écrit dans `docs/3d.md` le remplace. Sans signal observable, c’est « non vérifiable » et une demande à developpeur-creatif-3d.
 3. **Repli sans WebGL** : `navigate_page` avec un `initScript` qui fait renvoyer `null` à `getContext('webgl')` et `getContext('webgl2')` ; le repli 2D s’affiche, l’appel à l’action est là, la console est propre.
 4. **Mouvement réduit** (`emulate`, `prefersReducedMotion: 'reduce'`) : image fixe, boucle de rendu arrêtée ; note si le morceau 3D est quand même téléchargé.
 

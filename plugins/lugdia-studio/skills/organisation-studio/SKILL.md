@@ -48,9 +48,9 @@ Notation : `→` veut dire « après », `+` veut dire « en même temps ». Ent
 |---|---|---|---|---|
 | 1. Cadrage | projet démarré | producteur → chercheur-ux + veilleur + gardien-marque → producteur | `docs/strategie.md` complet | — |
 | 2. Direction artistique | cadrage fini | architecte-ux → designer-ui [+ scenariste-visuel en parcours B] [+ directeur-images si des visuels sont générés] → gardien-marque (relecture) + garant-inclusion → controleur-verite → producteur | 3 pistes, arborescence, zonings | **V1** |
-| 3. Page d’accueil | V1 validée | designer-ui (`retenue.md` et `DESIGN.md`) → redacteur (accueil) → developpeur-front [+ developpeur-creatif-3d + designer-sonore en parcours B] → designer-interactions → collecteur-preuves → relecteur-finition → controleur-verite → producteur | accueil codée | **V2** |
+| 3. Page d’accueil | V1 validée | designer-ui (`retenue.md` et `DESIGN.md`) → redacteur (accueil) → developpeur-front [+ developpeur-creatif-3d + designer-sonore en parcours B] → designer-interactions → testeur-performance (accueil) + collecteur-preuves → relecteur-finition → controleur-verite → producteur | accueil codée | **V2** |
 | 4. Fabrication | V2 validée | chef-de-projet (`docs/plan.md`) → redacteur → referenceur + architecte-aeo → developpeur-front + developpeur-back [+ 3D + son] → designer-interactions → producteur (passe l’étape à `recette`) | toutes les pages | — |
-| 5. Recette | étape `recette` | auditeur-accessibilite + testeur-performance + ingenieur-tests + collecteur-preuves → corrections par les agents concernés → relecteur-finition → controleur-verite → producteur | `recette/` complet, aperçu en `noindex` | **V3** |
+| 5. Recette | étape `recette` | auditeur-accessibilite + testeur-performance + ingenieur-tests + collecteur-preuves → corrections par les agents concernés → developpeur-back (un envoi réel de chaque formulaire jusqu’à n8n, marqué « test ») + collecteur-preuves (pages corrigées) → relecteur-finition → controleur-verite → producteur | `recette/` complet, aperçu en `noindex` | **V3** |
 | 6. Mise en ligne | V3 validée et retours du client traités | developpeur-back + referenceur → controleur-verite → producteur | liste de contrôle de mise en ligne | **V4** |
 | 7. Après | V4 validée | stratege-citations-ia | plan de présence et de citations | — |
 
@@ -81,7 +81,8 @@ Le `chef-orchestre` mène une phase de bout en bout et suit, en phase 4, les dé
 | `docs/3d.md`, `src/scenes/` | developpeur-creatif-3d | |
 | `docs/son.md`, `src/son/` | designer-sonore | |
 | `src/` (hors scènes et son), `public/` | developpeur-front | |
-| formulaires, en-têtes, `docs/mise-en-ligne.md` | developpeur-back | |
+| `package.json` | developpeur-front | ingenieur-tests y ajoute ses dépendances de test et le script `test` |
+| formulaires, en-têtes, `docs/mise-en-ligne.md`, `recette/formulaires.md` | developpeur-back | |
 | `recette/accessibilite.md` | auditeur-accessibilite | |
 | `recette/performance.md` | testeur-performance | |
 | `recette/captures/`, `recette/preuves.md` | collecteur-preuves | |

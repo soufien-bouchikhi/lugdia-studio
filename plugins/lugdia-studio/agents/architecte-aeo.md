@@ -40,7 +40,7 @@ Pour chaque page et section, ce que le redacteur doit reprendre (page, section, 
 ### 4. Données structurées complémentaires
 Dans le graphe du referenceur, avec ses `@id` :
 - `Person` (`<domaine>/#dirigeant`) si le brief nomme le dirigeant et rend son nom public : nom, fonction, `worksFor` vers `#entreprise` ; diplôme ou statut seulement s’il figure dans le brief et qu’il est vérifié ;
-- `FAQPage` seulement sur la page où la FAQ est visible, au texte exact. Google ne montre plus ces résultats enrichis que pour quelques sites officiels : le balisage sert la lecture par les machines, rien n’est promis ;
+- `FAQPage` seulement sur la page où la FAQ est visible, au texte exact. Google ne montre plus ces résultats enrichis que pour des sites publics et de santé reconnus : le balisage sert la lecture par les machines, rien n’est promis ;
 - `Organization` seulement si l’activité ne relève d’aucun type `LocalBusiness` du brief ;
 - jamais d’`aggregateRating` ni de `review` sans vrais avis.
 

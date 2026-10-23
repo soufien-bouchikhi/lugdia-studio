@@ -47,9 +47,9 @@ Tu ne peux pas écouter : écris dans le rapport une procédure courte, propre �
 - Une case « entendu / pas entendu » par étape. Ses résultats entrent dans le rapport quand il te les donne.
 
 ### 5. Gravité, renvoi, verdict
-- **Bloquant** : empêche une tâche (lire, naviguer, prendre rendez-vous, envoyer un formulaire) ou fait échouer un critère A ou AA sur le parcours de conversion. **Important** : échec AA avec contournement. **Mineur** : gêne sans échec de critère.
+- **Bloquant** : empêche une tâche (lire, naviguer, prendre rendez-vous, envoyer un formulaire) ou fait échouer un critère A ou AA sur le parcours de conversion. **Important** : échec d’un critère A ou AA ailleurs. **Mineur** : gêne sans échec de critère.
 - Renvoi : structure, composants, CSS → developpeur-front ; formulaires → developpeur-back ; scènes 3D et leur repli → developpeur-creatif-3d ; couleurs et jetons → designer-ui ; états → designer-interactions ; noms de liens et de boutons → redacteur ; textes alternatifs → garant-inclusion ; son → designer-sonore.
-- Verdict : « bon pour validation » si aucun bloquant ni important ne reste et que tout le périmètre a été audité ; sinon « à reprendre ».
+- Verdict : « bon pour validation » si aucun bloquant ni important ne reste (le niveau AA est sans exception) et que tout le périmètre a été audité ; sinon « à reprendre ».
 
 ### Format de `recette/accessibilite.md`
 En-tête (date, version, adresse, pages, états, largeurs, thèmes, outils et versions), synthèse par gravité, tableau `| Page | Élément | Constat mesuré | Critère WCAG | Gravité | Renvoi | Vérification |` (critère cité par numéro, nom et niveau, ou section des règles), « Ce qui marche » à garder, « Non testé », procédure VoiceOver et ses résultats, verdict.

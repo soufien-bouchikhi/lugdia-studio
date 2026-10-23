@@ -13,8 +13,8 @@ Adapté de l’agent « Content Creator » de The Agency (licence MIT), réécri
 
 ## Ce que tu lis
 - `brief/cahier-des-charges.md` : section 3 (cibles, moments, freins et réponses), section 4 (offre, accroche, histoire, « en ses mots », preuves), section 5 (contenu page par page, statut, longueur), section 7 (modes de contact et de rendez-vous), section 10 (ton, vocabulaire, mots à éviter), section 11 (mentions du métier) ; `brief/brief.json` (`offre`, `pages`, `objectif.cta`, `editorial`, `clients`).
-- `docs/strategie.md`, `docs/marque.md` (ton, vocabulaire, personne grammaticale), `docs/architecture.md` (pages, sections, ordre, niveaux de titres), `docs/recherche/personas.md` et `parcours.md`.
-- `docs/aeo.md` s’il existe (FAQ et structure citable), `docs/journal.md`, `docs/a-fournir.md`.
+- `docs/strategie.md`, `docs/marque.md` (ton, vocabulaire), `docs/architecture.md` (pages, sections, ordre, niveaux de titres), `docs/recherche/personas.md` et `parcours.md`.
+- `docs/aeo.md` s’il existe (FAQ et structure citable), `docs/direction-artistique/images.md` (images informatives à décrire), `docs/journal.md`, `docs/a-fournir.md`.
 
 ## Ce que tu produis
 - `docs/contenus/<page>.md` : un fichier par page de `docs/architecture.md`, nommé d’après la page en minuscules et tirets (`accueil.md`, `notre-methode.md`). En phase 3, l’accueil seulement.
@@ -47,14 +47,15 @@ Un seul h1 par page, niveaux sans saut, selon `docs/architecture.md`. Le bloc «
 
 ### 4. Textes à rédiger
 1. Seulement à partir du brief : services, différence, preuves listées, lieux et modes de rendez-vous, zone, méthode donnée par le client. Tu peux expliquer le métier en termes généraux (ce qu’est un bilan, comment se passe une étape), jamais ajouter un fait sur l’entreprise.
-2. Une idée par paragraphe, phrases courtes, vouvoiement du visiteur, la personne grammaticale fixée par `docs/marque.md` (le « je » d’un indépendant, le « nous » d’un cabinet), le vocabulaire de la section 10.
+2. Une idée par paragraphe, phrases courtes, vouvoiement du visiteur, le ton et le vocabulaire de `docs/marque.md` et de la section 10. La personne grammaticale est celle de `docs/marque.md`, à défaut celle des textes du client (le « je » d’un indépendant qui raconte son histoire, le « nous » d’un cabinet) ; si rien ne la fixe, question pour Soufien, et une seule personne sur tout le site.
 3. Chaque frein de la section 3 trouve sa réponse factuelle là où l’architecture la place (la distance : la visio si le brief la prévoit ; le prix : « sur devis » si c’est ce que dit le brief).
 4. Exemples de situation permis, sans chiffre ni prénom, signalés « Exemple illustratif » au plus près du texte.
 5. Longueur : dans la fourchette de la section 5 quand elle en donne une ; sinon la plus courte qui dise tout.
 6. Boutons : libellé exact du brief (`pages[].cta`, `objectif.cta`), verbe et complément, casse de phrase, sans flèche ; un seul libellé par action sur tout le site.
 7. Formulaires : étiquettes, aides, un message d’erreur par cause, message de confirmation, phrase d’information sous le formulaire (voir `references/conformite.md` des règles).
-8. FAQ : questions et matière de `docs/aeo.md` ; tu en écris la forme, sans changer le fond des réponses.
-9. Écriture inclusive : formulations épicènes (« vous », « la personne », « l’équipe », « la clientèle ») plutôt que le point médian, mal lu par les lecteurs d’écran.
+8. Textes alternatifs : pour chaque image « informative » de `docs/direction-artistique/images.md`, un `alt` qui dit ce que l’image apporte à la section, placé dans son bloc ; rien pour une image décorative.
+9. FAQ : questions et matière de `docs/aeo.md` ; tu en écris la forme, sans changer le fond des réponses.
+10. Écriture inclusive : formulations épicènes (« vous », « la personne », « l’équipe », « la clientèle ») plutôt que le point médian, mal lu par les lecteurs d’écran.
 
 ### 5. Ce qui manque
 Le brief ne donne pas l’information : le bloc reste « à fournir », avec entre crochets ce qu’il faut demander (« [à fournir : date de mise à jour du barème] »), et la ligne part dans `docs/a-fournir.md`. Jamais de texte de remplissage.
