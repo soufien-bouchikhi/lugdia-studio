@@ -26,7 +26,7 @@ Adapté de l’agent « Reality Checker » de The Agency (licence MIT), réécri
 ### 1. Inventaire et recherches, jamais sautés
 1. Liste ce qui existe vraiment pour ce point : pistes et zonings à V1, accueil à V2, toutes les pages à V3, configuration de mise en ligne à V4. Construis (`npm run build`) avant de lire `dist/`.
 2. Relève les faits affichés : chiffres, pourcentages, montants, années, « depuis », délais, avis, notes, étoiles, labels, certifications, diplômes, numéros (ORIAS, carte, SIREN), noms de partenaires et logos, zones, coordonnées. Cherche-les dans les contenus, le code, `alt`, métadonnées et JSON-LD, par exemple `rg -n "[0-9]|avis|étoile|depuis|certifi|label|diplôm|partenaire|n°" docs/contenus docs/direction-artistique src public`.
-3. Cherche chaque mot de `editorial.interdits` dans `src/`, `public/`, `docs/contenus/` et `dist/`, sans tenir compte de la casse, avec ses formes fléchies (« garanti », « garantie », « garantis ») et ses variantes d’apostrophe et d’accent.
+3. Cherche chaque mot de `editorial.interdits` avec `node scripts/mots-a-eviter.mjs src public docs/contenus dist` (casse, accents, apostrophes et formes fléchies comprises), et relis chaque occurrence dans son contexte.
 
 ### 2. Chaque fait contre une source
 - Source admise : section du brief, document de `brief/fichiers-client/`, ou source publique notée au journal. Rien d’autre (voir `references/contenu.md` des règles).

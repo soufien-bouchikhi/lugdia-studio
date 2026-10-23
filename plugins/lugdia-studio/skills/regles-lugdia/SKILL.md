@@ -52,7 +52,7 @@ Titres et descriptions propres à chaque page, un seul `h1`, données structuré
 
 ## 9. Conformité
 
-Mentions légales complètes, mentions du métier, politique de confidentialité, information au plus près de chaque formulaire, mesure d’audience sans cookie, contenus tiers (carte, vidéo, agenda) chargés au clic, aucun cookie tiers sans consentement, aucune donnée de santé, tout chatbot se présente comme une IA. Aucun secret dans le code : seules des variables publiques non sensibles côté site, les clés vivent dans n8n. Détail : [references/conformite.md](references/conformite.md).
+Mentions légales complètes, mentions du métier, politique de confidentialité, information au plus près de chaque formulaire, formulaires conformes au contrat n8n ([references/formulaires.md](references/formulaires.md)), mesure d’audience sans cookie, contenus tiers (carte, vidéo, agenda) chargés au clic, aucun cookie tiers sans consentement, aucune donnée de santé, tout chatbot se présente comme une IA. Aucun secret dans le code : seules des variables publiques non sensibles côté site, les clés vivent dans n8n. Détail : [references/conformite.md](references/conformite.md).
 
 ## 10. Points de validation
 

@@ -24,9 +24,9 @@ Adapté de l’agent « Backend Architect » de The Agency (licence MIT), rééc
 ## Méthode
 
 ### 1. Le contrat avec n8n
-- Celui du formulaire de lugdia.fr : POST JSON vers `PUBLIC_WEBHOOK_URL`, corps `{ type, date, contact: { prenom, nom, email, telephone, message } }`, prénom et nom séparés, réponse `{ ok: true }` (200) ou `{ ok: false }` (400).
-- Ajouts pour un site client : `site` (le `slug` de `.lugdia/projet.json`), `page` (le chemin) et `id` (un identifiant par envoi, pour que n8n écarte les doublons). Hypothèse tant que le webhook des sites clients n’est pas documenté : fais confirmer les noms par Soufien avant V3.
-- Longueurs maximales alignées sur celles que le webhook tronque. Seulement les champs utiles du brief, aucune donnée de santé, aucune case précochée.
+- Il est fixé dans `references/formulaires.md` des règles (charge envoyée, réponses, message par cause) : `contrat.ts` le transcrit, sans champ en plus à la racine ; un champ propre au métier va dans `donnees`.
+- Longueurs maximales alignées sur celles que n8n accepte. Seulement les champs utiles du brief, aucune donnée de santé, aucune case précochée.
+- Si le webhook du site n’existe pas encore côté n8n, construis et teste avec une adresse fictive, et signale-le dans ta remise : c’est Lugdia qui le crée.
 
 ### 2. L’envoi
 1. **Pot de miel** : champ hors écran (pas `display: none`), `tabindex="-1"`, `autocomplete="off"`, caché aux lecteurs d’écran, nommé pour qu’aucun remplissage automatique ne le vise. Rempli : rien ne part, message neutre avec les coordonnées publiques.
@@ -46,10 +46,13 @@ Les libellés viennent de `docs/contenus/` (redacteur). Une cause sans libellé 
 - **Aperçus** : `X-Robots-Tag: noindex, nofollow` sur toute adresse d’aperçu, en plus du `noindex` des pages.
 - **Redirections** en 301, chemin conservé : `http` vers `https`, `www` et autres domaines du client vers le domaine canonique ; en refonte, la table des anciennes adresses de `docs/seo.md`.
 
-### 4. Les variables
+### 4. L’aperçu
+Tu publies l’aperçu du site pour les points V2 et V3, à l’adresse que Lugdia a prévue pour les aperçus (à défaut, demande-la à Soufien), avec `X-Robots-Tag: noindex, nofollow` et `PUBLIC_INDEXABLE=false`. Note l’adresse et la date dans `docs/mise-en-ligne.md`. L’aperçu n’est envoyé au client que par Soufien, après V3.
+
+### 5. Les variables
 `.env.example` : `PUBLIC_WEBHOOK_URL`, `PUBLIC_INDEXABLE`, `PUBLIC_UMAMI_SRC`, `PUBLIC_UMAMI_ID`, et `PUBLIC_CAL_URL` si un agenda est prévu ; un commentaire par variable. Aucun secret : les clés vivent dans n8n.
 
-### 5. La liste de contrôle de V4
+### 6. La liste de contrôle de V4
 `docs/mise-en-ligne.md`, une case par point, avec la preuve attendue :
 - zone DNS relevée avant tout changement ; seuls `@` (A, AAAA) et `www` (CNAME) changent ; jamais les enregistrements de messagerie (MX, SPF, DKIM, DMARC) ;
 - HTTPS et certificat valides ; chaque redirection testée ;
@@ -59,7 +62,7 @@ Les libellés viennent de `docs/contenus/` (redacteur). Une cause sans libellé 
 - en-têtes vérifiés, `npm audit` propre, dépendances figées ;
 - sauvegarde : dépôt poussé, étiquette de version, copie du `dist/` publié, procédure de retour arrière écrite.
 
-### 6. Avant de rendre
+### 7. Avant de rendre
 1. MCP playwright avec interception réseau : chaque cause simulée (200 avec `ok: true`, 200 sans, 400, 429, 500, délai dépassé, hors connexion) donne le bon message, au bon endroit, avec le bon focus ; le succès n’apparaît que dans le premier cas.
 2. Un envoi réel vers le webhook de test fourni par Soufien, suivi jusqu’à sa destination ; jamais vers la production du client sans son accord.
 3. `curl -sI` sur l’aperçu : en-têtes, cache, compression, `X-Robots-Tag`, redirections ; console sans violation de CSP à 390 et 1440 px.

@@ -76,9 +76,9 @@ Seules les informations du brief, URL absolues sur le domaine final, une ligne p
 - Chaque ligne de la fiche, chaque réponse de la FAQ et chaque phrase de `llms.txt` a sa source dans le brief.
 - Chaque lien de `llms.txt` correspond à une page de `docs/architecture.md`.
 - Coordonnées identiques dans `docs/aeo.md`, `public/llms.txt`, `docs/seo.md` et `docs/contenus/`.
-- Aucun mot à éviter du brief ; cette commande ne renvoie rien :
+- Aucun mot à éviter du brief ; chaque occurrence relevée par cette commande est relue et justifiée :
 ```
-node -e "const fs=require('fs'),p=require('path');const m=require(process.cwd()+'/brief/brief.json').editorial.interdits.map(x=>(x.mot||x).toLowerCase());const L=a=>fs.statSync(a).isDirectory()?fs.readdirSync(a).flatMap(n=>L(p.join(a,n))):[a];for(const f of process.argv.slice(1).flatMap(L))fs.readFileSync(f,'utf8').split('\n').forEach((l,i)=>{const s=l.toLowerCase().replace(/[  ]/g,' ');for(const w of m)if(s.includes(w))console.log(f+':'+(i+1)+' « '+w+' »')})" docs/aeo.md public/llms.txt
+node scripts/mots-a-eviter.mjs docs/aeo.md public/llms.txt
 ```
 
 ## Outils

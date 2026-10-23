@@ -48,9 +48,9 @@ Notation : `→` veut dire « après », `+` veut dire « en même temps ». Ent
 |---|---|---|---|---|
 | 1. Cadrage | projet démarré | producteur → chercheur-ux + veilleur + gardien-marque → producteur | `docs/strategie.md` complet | — |
 | 2. Direction artistique | cadrage fini | architecte-ux → designer-ui [+ scenariste-visuel en parcours B] [+ directeur-images si des visuels sont générés] → gardien-marque (relecture) + garant-inclusion → controleur-verite → producteur | 3 pistes, arborescence, zonings | **V1** |
-| 3. Page d’accueil | V1 validée | designer-ui (`retenue.md` et `DESIGN.md`) → redacteur (accueil) → developpeur-front [+ developpeur-creatif-3d + designer-sonore en parcours B] → designer-interactions → testeur-performance (accueil) + collecteur-preuves → relecteur-finition → controleur-verite → producteur | accueil codée | **V2** |
-| 4. Fabrication | V2 validée | chef-de-projet (`docs/plan.md`) → redacteur → referenceur + architecte-aeo → developpeur-front + developpeur-back [+ 3D + son] → designer-interactions → producteur (passe l’étape à `recette`) | toutes les pages | — |
-| 5. Recette | étape `recette` | auditeur-accessibilite + testeur-performance + ingenieur-tests + collecteur-preuves → corrections par les agents concernés → developpeur-back (un envoi réel de chaque formulaire jusqu’à n8n, marqué « test ») + collecteur-preuves (pages corrigées) → relecteur-finition → controleur-verite → producteur | `recette/` complet, aperçu en `noindex` | **V3** |
+| 3. Page d’accueil | V1 validée | designer-ui (`retenue.md` et `DESIGN.md`) → redacteur (accueil) → developpeur-front [+ developpeur-back si l’accueil a un formulaire] [+ developpeur-creatif-3d + designer-sonore en parcours B] → designer-interactions → testeur-performance (accueil) + collecteur-preuves + garant-inclusion → relecteur-finition → controleur-verite → producteur | accueil codée | **V2** |
+| 4. Fabrication | V2 validée | chef-de-projet (`docs/plan.md`) → redacteur → referenceur + architecte-aeo → redacteur (reprise de leurs propositions : titres, FAQ, structure citable) → developpeur-front + developpeur-back [+ 3D + son] → designer-interactions → directeur-images (registre à jour) + garant-inclusion → producteur (passe l’étape à `recette`) | toutes les pages | — |
+| 5. Recette | étape `recette` | auditeur-accessibilite + testeur-performance + ingenieur-tests + collecteur-preuves → corrections par les agents concernés → developpeur-back (un envoi réel de chaque formulaire jusqu’à n8n, marqué « test ») + collecteur-preuves (pages corrigées) + garant-inclusion → relecteur-finition → controleur-verite → producteur | `recette/` complet, aperçu en `noindex` | **V3** |
 | 6. Mise en ligne | V3 validée et retours du client traités | developpeur-back + referenceur → controleur-verite → producteur | liste de contrôle de mise en ligne | **V4** |
 | 7. Après | V4 validée | stratege-citations-ia | plan de présence et de citations | — |
 
@@ -66,6 +66,7 @@ Le `chef-orchestre` mène une phase de bout en bout et suit, en phase 4, les dé
 | `docs/recherche/personas.md`, `parcours.md` | chercheur-ux | |
 | `docs/recherche/concurrents.md`, `docs/recherche/captures/` | veilleur | |
 | `docs/marque.md` | gardien-marque | |
+| `PRODUCT.md` (racine du projet, lu par impeccable) | gardien-marque, en fin de cadrage | |
 | `docs/plan.md` | chef-de-projet | producteur y lit les jalons |
 | `docs/architecture.md` | architecte-ux | |
 | `docs/direction-artistique/` (`piste-a.md`, `piste-b.md`, `piste-c.md`, `retenue.md`, captures) | designer-ui | |
@@ -74,15 +75,17 @@ Le `chef-orchestre` mène une phase de bout en bout et suit, en phase 4, les dé
 | `docs/direction-artistique/interactions.md` | designer-interactions | |
 | `docs/direction-artistique/images.md` | directeur-images | |
 | `docs/contenus/<page>.md` | redacteur | referenceur annote titres et descriptions |
-| `docs/seo.md` | referenceur | |
+| `docs/seo.md` (dont la fiche Google préparée pour V4 et les contrôles de mise en ligne du référencement) | referenceur | stratege-citations-ia complète la fiche Google en phase 7 |
 | `docs/aeo.md`, `public/llms.txt` | architecte-aeo | |
+| `public/robots.txt` | developpeur-front l’écrit | à partir de `docs/seo.md` (referenceur) et du bloc des robots d’IA de `docs/aeo.md` (architecte-aeo) |
+| Textes alternatifs (`alt`) | redacteur les écrit dans `docs/contenus/` | directeur-images classe chaque image (informative ou décorative), garant-inclusion relit |
 | `docs/citations-ia.md` | stratege-citations-ia | |
 | `docs/medias.md` | directeur-images | tout agent qui ajoute un média y ajoute sa ligne |
 | `docs/3d.md`, `src/scenes/` | developpeur-creatif-3d | |
 | `docs/son.md`, `src/son/` | designer-sonore | |
-| `src/` (hors scènes et son), `public/` | developpeur-front | |
+| `src/` (sauf `scenes/`, `son/` et `formulaires/`), `public/` (sauf `llms.txt`), `scripts/jetons.mjs` | developpeur-front | |
 | `package.json` | developpeur-front | ingenieur-tests y ajoute ses dépendances de test et le script `test` |
-| formulaires, en-têtes, `docs/mise-en-ligne.md`, `recette/formulaires.md` | developpeur-back | |
+| `src/formulaires/`, `infra/` (nginx, Traefik), `.env.example`, `docs/mise-en-ligne.md`, `recette/formulaires.md`, publication de l’aperçu | developpeur-back | l’adresse de l’aperçu est notée dans `docs/mise-en-ligne.md` |
 | `recette/accessibilite.md` | auditeur-accessibilite | |
 | `recette/performance.md` | testeur-performance | |
 | `recette/captures/`, `recette/preuves.md` | collecteur-preuves | |
@@ -97,6 +100,12 @@ Le `chef-orchestre` mène une phase de bout en bout et suit, en phase 4, les dé
 Un agent qui voit un problème dans le lot d’un autre ne le corrige pas : il le note dans sa remise, avec le fichier et la ligne, et le chef-orchestre l’envoie au bon agent.
 
 ## Règles de travail
+
+- Les textes de `docs/contenus/` portent déjà la typographie française complète (espaces insécables, apostrophes, guillemets) : developpeur-front les intègre tels quels. Les documents internes gardent des espaces simples.
+- Dossiers de travail des outils (`.taste-skill/`, `.impeccable/`, `test-results/`) : jamais versionnés ; ce qui compte est recopié dans `docs/`.
+- Maquettes et captures de la direction artistique : `docs/direction-artistique/maquettes/` et `docs/direction-artistique/captures/`.
+- Jetons de mouvement (`--duree-courte`, `--duree-moyenne`, `--courbe-sortie`…) : posés par designer-ui dans `DESIGN.md`, utilisés par designer-interactions, developpeur-front et developpeur-creatif-3d.
+- Les contrôles de texte se font avec les scripts du projet, pas avec des commandes recopiées : `node scripts/mots-a-eviter.mjs <fichiers ou dossiers>` (mots à éviter du brief) et `node scripts/typo.mjs <fichiers ou dossiers>` (typographie française).
 
 - Lire avant d’écrire : le brief, `docs/strategie.md`, `docs/journal.md`, puis les fichiers d’entrée de son lot.
 - Une hypothèse se signale (« hypothèse : … ») et part dans la remise ; une information manquante devient « à fournir ».

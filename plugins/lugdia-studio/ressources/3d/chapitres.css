@@ -32,10 +32,16 @@
   transform: translateY(calc((1 - var(--sv)) * 12px));
 }
 
-/* Téléphone : calendriers propres (--am, --bm, --sm) quand ils sont déclarés. */
+/* Téléphone : calendriers propres (--am, --bm, --sm), quand ils sont déclarés dans l'attribut style ;
+   sinon les valeurs de l'ordinateur (--a, --b, --s) s'appliquent. */
 @media (max-width: 860px) {
-  .win { --a: var(--am, var(--a0, 0)); --b: var(--bm, var(--b0, 1)); }
-  .step-in { --s: var(--sm, var(--s0, 0)); }
+  .win {
+    --in: clamp(0, (var(--p, 0) - var(--am, var(--a, 0))) / 0.04, 1);
+    --out: clamp(0, (var(--p, 0) - var(--bm, var(--b, 1))) / 0.04, 1);
+  }
+  .step-in {
+    --sv: clamp(0, (var(--p, 0) - var(--sm, var(--s, 0))) / 0.025, 1);
+  }
 }
 
 /* Mouvement réduit : rien de figé, tout se lit à la suite, rien n'est masqué. */

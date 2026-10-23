@@ -29,4 +29,4 @@ Sauf budget propre fixé dans `docs/strategie.md` (un parcours immersif peut avo
 - Scripts tiers : aucun par défaut ; agenda, carte, vidéo chargés au clic.
 - Animations sur `transform` et `opacity` uniquement ; `will-change` posé juste avant l’animation et retiré après.
 - 3D : import dynamique après le premier affichage, modèles compressés, textures KTX2, `devicePixelRatio` plafonné à 2 (1,5 sur téléphone).
-- En-têtes de cache longs pour les fichiers versionnés, compression Brotli côté serveur.
+- En-têtes de cache longs pour les fichiers versionnés ; compression Brotli si le serveur le permet (middleware de Traefik ou module nginx), sinon gzip.

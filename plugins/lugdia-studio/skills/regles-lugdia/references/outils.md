@@ -9,6 +9,7 @@
 | Animation | skills **gsap-skills** | `gsap-core`, `gsap-timeline`, `gsap-scrolltrigger`, `gsap-performance`, `gsap-react`. GSAP et tous ses plugins (SplitText, ScrollSmoother, Flip…) sont gratuits, y compris en usage commercial. |
 | Captures et parcours | MCP **playwright** | Captures à 390, 768 et 1440 px, parcours au clavier, test des formulaires, capture sous mouvement réduit (`emulateMedia`). Les captures vont dans `recette/captures/`. |
 | Mesures | MCP **chrome-devtools** | Traces de performance, LCP, CLS, INP, requêtes réseau, console. À utiliser sur le site construit (`npm run preview`). |
+| Chapitres au défilement | **kit Lugdia** (`ressources/3d/` du plugin) | Convention par défaut : sections `[data-ch]`, avancée `--p`, fenêtres `.win` et `.step-in`. Le système de scènes de taste-skill (`section.scene` et `scenes.mjs`) ne sert que si les chapitres portent aussi la classe `scene`. |
 | 3D éditable | **Spline** (application de bureau, si installée) | Son MCP s’ajoute tout seul quand l’application est ouverte. Export Three.js ou React Three Fiber, puis règles 3D de `accessibilite-mouvement.md`. |
 | Images, vidéos, voix | **Lugdia Médias** (à venir) | Workflow n8n relié à OpenRouter, avec plafond de dépense par projet. En attendant : visuels en code, fichiers fournis par le client, ou « à fournir ». |
 

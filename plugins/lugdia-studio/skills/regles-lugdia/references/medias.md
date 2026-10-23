@@ -2,11 +2,11 @@
 
 ## Registre obligatoire : `docs/medias.md`
 
-Une ligne par fichier publié :
+Une ligne par fichier publié. Pour une image générée, la colonne « Invite » renvoie à sa fiche dans `docs/direction-artistique/images.md` plutôt que de recopier l’invite :
 
 | Fichier | Type | Source | Licence ou modèle | Invite (si générée) | Date | Pages |
 |---|---|---|---|---|---|---|
-| `public/img/hero.avif` | image générée | Lugdia Médias | modèle et version | « … » | 2026-10-22 | accueil |
+| `public/img/hero.avif` | image générée | Lugdia Médias | modèle et version | fiche « accueil-hero » de `docs/direction-artistique/images.md` | 2026-10-22 | accueil |
 
 Un fichier absent du registre ne part pas en ligne.
 

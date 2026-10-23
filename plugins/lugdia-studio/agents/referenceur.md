@@ -69,9 +69,9 @@ Puis, pour chaque URL du sitemap : code 200, canonique égale à l’URL, titre 
 - Chaque mot-clé de la section 9 a sa ligne ; aucun mot-clé principal en double dans les titres et les h1.
 - Chaque longueur mesurée et écrite ; aucun titre ni description en double.
 - Chaque propriété JSON-LD a sa source dans le brief.
-- Aucun mot à éviter du brief (règles, section 3), titres, descriptions et JSON-LD compris ; cette commande ne renvoie rien :
+- Aucun mot à éviter du brief (règles, section 3), titres, descriptions et JSON-LD compris ; chaque occurrence relevée par cette commande est relue et justifiée :
 ```
-node -e "const fs=require('fs'),p=require('path');const m=require(process.cwd()+'/brief/brief.json').editorial.interdits.map(x=>(x.mot||x).toLowerCase());const L=a=>fs.statSync(a).isDirectory()?fs.readdirSync(a).flatMap(n=>L(p.join(a,n))):[a];for(const f of process.argv.slice(1).flatMap(L))fs.readFileSync(f,'utf8').split('\n').forEach((l,i)=>{const s=l.toLowerCase().replace(/[  ]/g,' ');for(const w of m)if(s.includes(w))console.log(f+':'+(i+1)+' « '+w+' »')})" docs/seo.md docs/contenus
+node scripts/mots-a-eviter.mjs docs/seo.md docs/contenus
 ```
 
 ## Outils

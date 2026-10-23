@@ -38,7 +38,7 @@ Outil Agent, type `lugdia-studio:<nom>`. Chaque consigne contient :
 - la précision du lot s’il y en a une (par exemple « page : accueil » pour le redacteur en phase 3) ;
 - le rappel de finir par le bloc de remise.
 
-Lance dans un même message les agents que le tableau marque « en parallèle » (phases 1 et 5). Ailleurs, respecte l’ordre du tableau, et en phase 4 les dépendances de `docs/plan.md` : le referenceur annote les contenus du redacteur, il passe donc après lui.
+Lance dans un même message les agents que le tableau relie par `+` ; ceux que sépare `→` attendent la remise acceptée des précédents. Les éléments entre crochets ne s’appliquent qu’au parcours ou au cas indiqué. En phase 4, suis en plus les dépendances de `docs/plan.md`.
 
 ### 3. Contrôler chaque remise
 Une remise ne vaut rien sur parole. Pour chacune :

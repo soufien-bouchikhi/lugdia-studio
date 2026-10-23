@@ -4,7 +4,7 @@ Fichiers produits par brief.lugdia.fr, en lecture seule :
 
 - `cahier-des-charges.md` : le cahier des charges complet (14 sections).
 - `brief.json` : la même commande, structurée (`schema: lugdia-brief/2`).
-- `tokens.json` : les jetons de design (`schema: lugdia-tokens/1`).
+- `tokens.json` : les jetons de design (`schema: lugdia-tokens/1`). `mode` vaut `clair`, `sombre` ou `les-deux` (thème clair et thème sombre, couleurs du sombre dans `couleursSombre`).
 - `identite.png` : la planche d’identité visuelle.
 - `fichiers-client/` : documents déposés ou envoyés par le client (logo, flyer, photos).
 

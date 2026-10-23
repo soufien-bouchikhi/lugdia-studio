@@ -61,15 +61,11 @@ Un seul h1 par page, niveaux sans saut, selon `docs/architecture.md`. Le bloc «
 Le brief ne donne pas l’information : le bloc reste « à fournir », avec entre crochets ce qu’il faut demander (« [à fournir : date de mise à jour du barème] »), et la ligne part dans `docs/a-fournir.md`. Jamais de texte de remplissage.
 
 ### 6. Vérifications avant de rendre
-Depuis la racine du projet, chaque commande doit ne rien renvoyer :
+Depuis la racine du projet, avec les scripts communs du projet :
 ```
-# mots à éviter du brief
-node -e "const fs=require('fs'),p=require('path');const m=require(process.cwd()+'/brief/brief.json').editorial.interdits.map(x=>(x.mot||x).toLowerCase());const L=a=>fs.statSync(a).isDirectory()?fs.readdirSync(a).flatMap(n=>L(p.join(a,n))):[a];for(const f of process.argv.slice(1).flatMap(L))fs.readFileSync(f,'utf8').split('\n').forEach((l,i)=>{const s=l.toLowerCase().replace(/[  ]/g,' ');for(const w of m)if(s.includes(w))console.log(f+':'+(i+1)+' « '+w+' »')})" docs/contenus
-# espaces avant : ; ? ! » et après « (corrigées par la commande sed si besoin)
-grep -nE ' (:|;|\?|!|»)|« ' docs/contenus/*.md
-sed -i -E 's/ (:|;|\?|!|»)/\xc2\xa0\1/g; s/« /«\xc2\xa0/g' docs/contenus/*.md
-# apostrophes droites
-grep -n "'" docs/contenus/*.md
+node scripts/typo.mjs --corriger docs/contenus   # espaces insécables, apostrophes, points de suspension
+node scripts/typo.mjs docs/contenus              # doit finir par « Typographie correcte »
+node scripts/mots-a-eviter.mjs docs/contenus     # chaque occurrence est relue ; il n’en reste aucune non justifiée
 ```
 Puis, à la relecture :
 - chaque longueur comptée sur le texte seul (`wc -w`) et écrite dans sa ligne, dans la fourchette cible ;
