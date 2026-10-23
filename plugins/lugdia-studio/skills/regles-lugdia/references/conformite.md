@@ -11,7 +11,7 @@
 
 - Une phrase d’information sous chaque formulaire : qui reçoit les données, pour quoi faire, combien de temps, lien vers la politique de confidentialité.
 - Aucune case précochée, aucun champ inutile.
-- Envoi vers le webhook n8n prévu par Lugdia (variable publique `PUBLIC_WEBHOOK_URL`), jamais vers un service tiers non prévu au brief.
+- Envoi vers le webhook n8n prévu par Lugdia (variable publique `PUBLIC_WEBHOOK_URL`), selon le contrat de `formulaires.md` (charge, réponses, un message par cause), jamais vers un service tiers non prévu au brief.
 - Pot de miel et durée minimale contre les robots ; aucun CAPTCHA tiers par défaut.
 - Aucune donnée de santé collectée.
 

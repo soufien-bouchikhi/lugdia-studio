@@ -1,0 +1,53 @@
+/* Chapitres figés pilotés par --p (voir chapitres.ts). À copier dans src/scenes/ avec chapitres.ts, puis à importer dans la mise en page.
+   Ne jamais mettre overflow: hidden ni clip sur html ou body : cela casse position: sticky. */
+
+[data-ch] {
+  position: relative;
+  /* hauteur du chapitre en hauteurs d'écran, réglée par chapitre : style="--h: 3" */
+  height: calc(var(--h, 2) * 100svh);
+}
+[data-ch] > .stick {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: clip; /* sur le bloc figé seulement, jamais sur html ou body */
+}
+
+/* Fenêtre d'apparition : visible entre --a et --b de l'avancée du chapitre, décalage --dx. */
+.win {
+  --in: clamp(0, (var(--p, 0) - var(--a, 0)) / 0.04, 1);
+  --out: clamp(0, (var(--p, 0) - var(--b, 1)) / 0.04, 1);
+  opacity: calc(var(--in) - var(--out));
+  transform: translate3d(
+    calc((1 - var(--in)) * var(--dx, 0px) - var(--out) * var(--dx, 0px) * 0.5),
+    calc((1 - var(--in)) * 26px - var(--out) * 20px),
+    0
+  );
+}
+
+/* Apparition à partir de --s. */
+.step-in {
+  --sv: clamp(0, (var(--p, 0) - var(--s, 0)) / 0.025, 1);
+  opacity: var(--sv);
+  transform: translateY(calc((1 - var(--sv)) * 12px));
+}
+
+/* Téléphone : calendriers propres (--am, --bm, --sm), quand ils sont déclarés dans l'attribut style ;
+   sinon les valeurs de l'ordinateur (--a, --b, --s) s'appliquent. */
+@media (max-width: 860px) {
+  .win {
+    --in: clamp(0, (var(--p, 0) - var(--am, var(--a, 0))) / 0.04, 1);
+    --out: clamp(0, (var(--p, 0) - var(--bm, var(--b, 1))) / 0.04, 1);
+  }
+  .step-in {
+    --sv: clamp(0, (var(--p, 0) - var(--sm, var(--s, 0))) / 0.025, 1);
+  }
+}
+
+/* Mouvement réduit : rien de figé, tout se lit à la suite, rien n'est masqué. */
+@media (prefers-reduced-motion: reduce) {
+  [data-ch] { height: auto; }
+  [data-ch] > .stick { position: static; height: auto; overflow: visible; }
+  .win,
+  .step-in { opacity: 1; transform: none; }
+}

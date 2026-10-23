@@ -11,6 +11,7 @@ Lugdia livre des sites qui impressionnent et qui tiennent : beaux, rapides, acce
 
 - Le dossier `brief/` contient le cahier des charges (`cahier-des-charges.md`), sa version structurée (`brief.json`), les jetons de design (`tokens.json`) et la planche d’identité (`identite.png`). Lis-les avant de proposer quoi que ce soit.
 - Ce que le client a fourni (textes, accroche, histoire, couleurs, police, mots à éviter) est respecté tel quel. Une correction de fond (une promesse interdite, une faute) se propose, elle ne s’impose pas : note-la dans `docs/journal.md` et signale-la au point de validation suivant.
+- Seule exception : la forme. Fautes d’orthographe, typographie française et casse de phrase (« Vos projets, Votre Stratégie » devient « Vos projets, votre stratégie ») sont corrigées d’office dans le site, et la version d’origine est gardée dans `docs/journal.md` pour que Soufien puisse la rétablir.
 - Une information manque : écris « à fournir » à l’endroit voulu, ajoute la ligne dans `docs/a-fournir.md`, et continue. N’invente jamais pour boucher un trou.
 
 ## 2. Rien d’inventé
@@ -51,17 +52,17 @@ Titres et descriptions propres à chaque page, un seul `h1`, données structuré
 
 ## 9. Conformité
 
-Mentions légales complètes, mentions du métier, politique de confidentialité, information au plus près de chaque formulaire, mesure d’audience sans cookie, contenus tiers (carte, vidéo, agenda) chargés au clic, aucun cookie tiers sans consentement, aucune donnée de santé, tout chatbot se présente comme une IA. Aucun secret dans le code : seules des variables publiques non sensibles côté site, les clés vivent dans n8n. Détail : [references/conformite.md](references/conformite.md).
+Mentions légales complètes, mentions du métier, politique de confidentialité, information au plus près de chaque formulaire, formulaires conformes au contrat n8n ([references/formulaires.md](references/formulaires.md)), mesure d’audience sans cookie, contenus tiers (carte, vidéo, agenda) chargés au clic, aucun cookie tiers sans consentement, aucune donnée de santé, tout chatbot se présente comme une IA. Aucun secret dans le code : seules des variables publiques non sensibles côté site, les clés vivent dans n8n. Détail : [references/conformite.md](references/conformite.md).
 
 ## 10. Points de validation
 
-Quatre arrêts obligatoires, décrits dans [references/validations.md](references/validations.md) : **V1** direction artistique, **V2** page d’accueil, **V3** aperçu complet après recette, **V4** mise en ligne. À chaque point : prépare le dossier `docs/validations/Vn.md` avec les captures, mets `.lugdia/projet.json` à jour (statut « en attente »), puis **arrête-toi** et demande l’accord de Soufien. Rien ne part chez le client, rien n’est publié sur le domaine du client, sans cet accord.
+Quatre arrêts obligatoires, décrits dans [references/validations.md](references/validations.md) : **V1** direction artistique, **V2** page d’accueil, **V3** aperçu complet après recette, **V4** mise en ligne. À chaque point, le producteur prépare le dossier `docs/validations/Vn.md` et met `.lugdia/projet.json` à jour (statut « en attente ») ; les autres agents s’arrêtent à leur remise. Puis **tout s’arrête** jusqu’à l’accord de Soufien, transmis par la session principale (voir l’organisation du studio). Rien ne part chez le client, rien n’est publié sur le domaine du client, sans cet accord.
 
 ## 11. Traçabilité
 
 - `docs/journal.md` : une ligne datée par décision (quoi, pourquoi, qui l’a prise).
-- `.lugdia/projet.json` : étape et points de validation tenus à jour.
-- Commits courts, en français, un sujet par commit.
+- `.lugdia/projet.json` : étape et points de validation, tenus par le producteur seul.
+- Un commit par remise acceptée, en français, au format `<agent> : <ce qui est livré>` (voir « Commits » dans l’organisation du studio).
 
 ## 12. Les outils de l’agence
 

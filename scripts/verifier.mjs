@@ -38,6 +38,26 @@ for (const f of tous.filter((f) => /\/skills\/[^/]+\/SKILL\.md$/.test(f) || /\/a
   if (!/^description: .{40,}/m.test(tete)) erreurs.push(rel(f) + ' : « description » absente ou trop courte.');
 }
 
+// 4 bis. Agents : nom = nom du fichier, description YAML sûre, couleur permise, skills préchargés existants,
+// chemins ${CLAUDE_PLUGIN_ROOT} existants.
+const PLUGIN = join(racine, 'plugins/lugdia-studio');
+const skillsPlugin = new Set(readdirSync(join(PLUGIN, 'skills')).map((s) => 'lugdia-studio:' + s));
+const COULEURS = new Set(['red', 'blue', 'green', 'yellow', 'purple', 'orange', 'pink', 'cyan']);
+for (const f of tous.filter((f) => f.startsWith(join(PLUGIN, 'agents') + '/') && f.endsWith('.md'))) {
+  const t = readFileSync(f, 'utf8');
+  const tete = (t.match(/^---\n([\s\S]*?)\n---/) || [])[1] || '';
+  const nom = (tete.match(/^name: (.+)$/m) || [])[1];
+  if (nom && nom + '.md' !== f.split('/').pop()) erreurs.push(rel(f) + ' : « name » (' + nom + ') différent du nom de fichier.');
+  const desc = (tete.match(/^description: (.+)$/m) || [])[1] || '';
+  if (/: /.test(desc) || /^["']/.test(desc)) erreurs.push(rel(f) + ' : la description contient « : » ou commence par un guillemet (YAML fragile).');
+  const couleur = (tete.match(/^color: (.+)$/m) || [])[1];
+  if (couleur && !COULEURS.has(couleur.trim())) erreurs.push(rel(f) + ' : couleur « ' + couleur + ' » non permise.');
+  for (const s of tete.matchAll(/^\s+- (lugdia-studio:[a-z0-9-]+)$/gm)) if (!skillsPlugin.has(s[1])) erreurs.push(rel(f) + ' : skill préchargé inconnu ' + s[1]);
+  if (!/lugdia-studio:regles-lugdia/.test(tete)) erreurs.push(rel(f) + ' : ne précharge pas lugdia-studio:regles-lugdia.');
+  for (const m of t.matchAll(/\$\{CLAUDE_PLUGIN_ROOT\}\/([^\s`)]+)/g)) if (!existsSync(join(PLUGIN, m[1]))) erreurs.push(rel(f) + ' : chemin introuvable ' + m[1]);
+  if (!/## Remise/.test(t)) erreurs.push(rel(f) + ' : section « Remise » absente.');
+}
+
 // 5. Liens relatifs des skills vers des fichiers existants.
 for (const f of tous.filter((f) => f.endsWith('.md') && f.includes('/skills/'))) {
   const t = readFileSync(f, 'utf8');

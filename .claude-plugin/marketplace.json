@@ -11,7 +11,7 @@
     {
       "name": "lugdia-studio",
       "source": "./plugins/lugdia-studio",
-      "description": "Règles de l’agence, démarrage d’un projet client, MCP de design et de contrôle. Installe aussi taste-skill, impeccable et gsap-skills.",
+      "description": "Équipe de 26 agents, règles de l’agence, démarrage d’un projet client, kit 3D et module son, MCP de design et de contrôle. Installe aussi taste-skill, impeccable et gsap-skills.",
       "category": "design",
       "tags": ["agence", "site", "design", "animation", "recette"]
     },

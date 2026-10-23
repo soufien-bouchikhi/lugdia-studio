@@ -4,20 +4,26 @@ L’agence Lugdia dans Claude Code : les règles de la maison, le démarrage d�
 
 Dépôt privé. Une seule installation par ordinateur ; chaque projet client en profite, et chaque amélioration du studio profite à tous les projets.
 
-## Contenu (version 0.1, socle)
+## Contenu (version 0.2)
 
 | Élément | Rôle |
 |---|---|
-| Skill `regles-lugdia` | Règles communes : rien d’inventé, médias tracés, AA, mouvement réduit, 3D et son, performance, référencement, RGPD, AI Act, points de validation, outils. |
-| Skill `demarrer-projet` | `/lugdia-studio:demarrer-projet <dossier du brief>` : crée le dépôt d’un client à partir des fichiers de brief.lugdia.fr. |
+| 26 agents (`lugdia-studio:<nom>`) | Pilotage (producteur, chef-orchestre, chef-de-projet, controleur-verite), stratégie et marque (chercheur-ux, veilleur, gardien-marque, redacteur, referenceur, architecte-aeo, stratege-citations-ia), design (architecte-ux, designer-ui, scenariste-visuel, designer-interactions, directeur-images, garant-inclusion), fabrication (developpeur-front, developpeur-creatif-3d, designer-sonore, developpeur-back), contrôle (relecteur-finition, auditeur-accessibilite, testeur-performance, collecteur-preuves, ingenieur-tests). 24 adaptés de The Agency (MIT), 2 créés par Lugdia. |
+| Skill `organisation-studio` | Les 8 phases d’un projet, qui écrit quel fichier, le relais avec Soufien, les commits, le format de remise. Préchargé par chaque agent. |
+| Skill `regles-lugdia` | Règles communes : rien d’inventé, médias tracés, AA, mouvement réduit, 3D et son, performance, référencement, RGPD, AI Act, contrat des formulaires, points de validation, outils. Préchargé par chaque agent. |
+| Skill `demarrer-projet` | `/lugdia-studio:demarrer-projet <dossier du brief>` : crée le dépôt d’un client à partir des fichiers de brief.lugdia.fr, avec les scripts `mots-a-eviter.mjs` et `typo.mjs`. |
+| Ressources | Kit 3D (`kit.ts`, `scene.ts`, `chapitres.ts`, `chapitres.css`), module son synthétisé (`son.ts`), modèles nginx et Traefik (`infra/`). |
 | Rappel au démarrage | Dans un projet client (`.lugdia/projet.json`), Claude reçoit l’étape, les points de validation et les règles à chaque session. Silencieux ailleurs. |
-| MCP `21st` | Composants et idées d’interface de 21st.dev, logos de marques. |
-| MCP `playwright` | Captures à plusieurs largeurs, parcours au clavier, formulaires. |
-| MCP `chrome-devtools` | Traces de performance, console, réseau. |
-| MCP `context7` | Documentation à jour des bibliothèques. |
+| MCP | `21st` (composants et logos), `playwright` (captures, clavier, formulaires), `chrome-devtools` (performance), `context7` (documentation). |
 | Plugins tiers | `taste-skill` (direction artistique), `impeccable` (audit et finition), `gsap-skills` (animation), installés avec le studio. |
 
-À venir : l’équipe d’agents (S2), les parcours A et B avec leurs commandes (S3), Lugdia Médias pour les images, vidéos et voix via n8n et OpenRouter (S4).
+## Mener un projet
+
+1. `/lugdia-studio:demarrer-projet <dossier du brief>` dans un dossier vide.
+2. « Lance la phase 1 avec le chef-orchestre » : cadrage (personas, concurrents, marque, stratégie).
+3. À chaque point de validation (V1 direction artistique, V2 accueil, V3 aperçu complet, V4 mise en ligne), le producteur rend son dossier : tu réponds « validé » ou tu donnes tes retours, et la phase suivante se lance sur ton accord.
+
+À venir : les commandes de parcours (S3) et Lugdia Médias pour les images, vidéos et voix via n8n et OpenRouter (S4).
 
 ## Installation sur le Mac
 
