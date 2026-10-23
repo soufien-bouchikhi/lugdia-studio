@@ -1,0 +1,23 @@
+// Vérifie un commentaire avant de l'enregistrer. Le site vient de l'en-tête posé par nginx.
+const req = $input.first().json;
+const b = req.body || {};
+const h = req.headers || {};
+const txt = (v, max) => String(v == null ? '' : v).replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '').trim().slice(0, max);
+const num = (v) => { const n = Math.round(Number(v)); return Number.isFinite(n) ? Math.max(0, Math.min(n, 200000)) : 0; };
+const refus = (motif) => [{ json: { ok: false, corps: JSON.stringify({ ok: false, motif }) } }];
+const site = txt(h['x-apercu-site'], 40);
+if (txt(b.fax, 50) !== '') return refus('robot');
+if (!/^[a-z0-9-]{2,40}$/.test(site)) return refus('site');
+const sd = $getWorkflowStaticData('global');
+if (!sd.apercus || !sd.apercus[site]) return refus('site');
+const piste = txt(b.piste, 10);
+if (!/^[a-z]$/.test(piste)) return refus('piste');
+const appareil = txt(b.appareil, 10);
+if (['ordi', 'tel'].indexOf(appareil) === -1) return refus('appareil');
+const theme = txt(b.theme, 10);
+if (['light', 'dark'].indexOf(theme) === -1) return refus('theme');
+const auteur = txt(b.auteur, 60);
+if (auteur.length < 1) return refus('auteur');
+const texte = txt(b.texte, 2000);
+if (texte.length < 2) return refus('texte');
+return [{ json: { ok: true, ligne: { site, page: txt(b.page, 40) || 'accueil', piste, appareil, theme, x: num(b.x), y: num(b.y), l: num(b.l), h: num(b.h), cible: txt(b.cible, 160), auteur, texte, statut: 'ouvert' } } }];

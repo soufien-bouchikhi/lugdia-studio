@@ -4,7 +4,7 @@ L’agence Lugdia dans Claude Code : les règles de la maison, le démarrage d�
 
 Dépôt privé. Une seule installation par ordinateur ; chaque projet client en profite, et chaque amélioration du studio profite à tous les projets.
 
-## Contenu (version 0.2.3)
+## Contenu (version 0.2.4)
 
 | Élément | Rôle |
 |---|---|

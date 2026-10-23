@@ -1,0 +1,107 @@
+# Aperçus clients de Lugdia (un sous-domaine de lugdia.fr par aperçu) : nginx devant le workflow n8n « Lugdia · Aperçus clients ».
+# Les fichiers de chaque aperçu sont déposés dans n8n (webhook lugdia-apercu-depot, clé fixée au premier dépôt) ;
+# nginx les relaie et les garde 10 minutes en cache. Les commentaires par zone passent par /api/commenter et /api/commentaires
+# et sont rangés dans la table n8n « Lugdia · Commentaires des aperçus ».
+# Ajouter un aperçu : une ligne dans le « map » ci-dessous, l'hôte dans la règle Traefik, un enregistrement DNS A et AAAA.
+# Projet Docker « lugdia-apercus » du VPS srv1888069.
+
+name: lugdia-apercus
+
+services:
+  web:
+    image: nginx:1.29-alpine
+    restart: unless-stopped
+    configs:
+      - source: nginx
+        target: /etc/nginx/conf.d/default.conf
+    networks:
+      - default
+      - n8n
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1/healthz"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=lugdia-apercus_default
+      - traefik.http.routers.lugdia-apercus.rule=Host(`skpatrimoine.lugdia.fr`)
+      - traefik.http.routers.lugdia-apercus.entrypoints=websecure
+      - traefik.http.routers.lugdia-apercus.tls.certresolver=letsencrypt
+      - traefik.http.routers.lugdia-apercus.middlewares=lugdia-apercus-hsts,lugdia-apercus-debit
+      - traefik.http.middlewares.lugdia-apercus-hsts.headers.stsSeconds=31536000
+      - traefik.http.middlewares.lugdia-apercus-debit.ratelimit.average=40
+      - traefik.http.middlewares.lugdia-apercus-debit.ratelimit.burst=120
+      - traefik.http.services.lugdia-apercus.loadbalancer.server.port=80
+
+configs:
+  nginx:
+    content: |
+      proxy_cache_path /var/cache/nginx/apercus levels=1:2 keys_zone=apercus:10m max_size=200m inactive=7d use_temp_path=off;
+      map $$host $$apercu_site {
+        skpatrimoine.lugdia.fr skpatrimoine;
+        default "";
+      }
+      limit_req_zone $$binary_remote_addr zone=commentaires:1m rate=10r/m;
+      server {
+        listen 80;
+        server_name _;
+        charset utf-8;
+        server_tokens off;
+        gzip on;
+        gzip_types text/css application/javascript text/javascript application/json;
+        resolver 127.0.0.11 valid=300s ipv6=off;
+        set_real_ip_from 172.16.0.0/12;
+        set_real_ip_from 10.0.0.0/8;
+        real_ip_header X-Forwarded-For;
+        real_ip_recursive on;
+        add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src 'self'; frame-ancestors 'self'; base-uri 'none'; form-action 'none'; object-src 'none'" always;
+        add_header X-Content-Type-Options "nosniff" always;
+        add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+        add_header X-Robots-Tag "noindex, nofollow" always;
+        add_header Permissions-Policy "camera=(), microphone=(), geolocation=()" always;
+        location = /healthz { access_log off; default_type text/plain; return 200 "ok"; }
+        location = /robots.txt { default_type text/plain; return 200 "User-agent: *\nDisallow: /\n"; }
+        location = /favicon.ico { access_log off; return 204; }
+        location = /api/commentaires {
+          if ($$apercu_site = "") { return 404; }
+          limit_except GET { deny all; }
+          set $$liste http://n8n:5678/webhook/lugdia-apercu-commentaires?site=$$apercu_site;
+          proxy_pass $$liste;
+          proxy_hide_header Content-Security-Policy;
+          proxy_hide_header Set-Cookie;
+        }
+        location = /api/commenter {
+          if ($$apercu_site = "") { return 404; }
+          limit_except POST { deny all; }
+          limit_req zone=commentaires burst=6 nodelay;
+          limit_req_status 429;
+          client_max_body_size 16k;
+          proxy_set_header X-Apercu-Site $$apercu_site;
+          set $$envoi http://n8n:5678/webhook/lugdia-apercu-commentaire;
+          proxy_pass $$envoi;
+          proxy_hide_header Content-Security-Policy;
+          proxy_hide_header Set-Cookie;
+        }
+        location / {
+          if ($$apercu_site = "") { return 404; }
+          limit_except GET { deny all; }
+          set $$fichier http://n8n:5678/webhook/lugdia-apercu-fichier?site=$$apercu_site&chemin=$$uri;
+          proxy_pass $$fichier;
+          proxy_hide_header Content-Security-Policy;
+          proxy_hide_header Set-Cookie;
+          proxy_ignore_headers Set-Cookie;
+          proxy_cache apercus;
+          proxy_cache_key $$apercu_site$$uri;
+          proxy_cache_valid 200 10m;
+          proxy_cache_valid 404 1m;
+          proxy_cache_use_stale error timeout updating http_500 http_502 http_503 http_504;
+          proxy_cache_background_update on;
+          proxy_cache_lock on;
+        }
+      }
+
+networks:
+  n8n:
+    name: n8n-with-ai-assistant-6nvz_default
+    external: true
