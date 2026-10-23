@@ -51,7 +51,7 @@ Adapté de l’agent « UI Designer » de The Agency (licence MIT), réécrit po
 1. Une maquette par piste, en HTML et CSS natif : la zone haute de l’accueil, avec les vrais textes du brief ou « à fournir » visible, polices en fichiers locaux (Fontsource), jamais Google Fonts ni photo de banque présentée comme réelle.
 2. `lint.mjs` puis `inspect.mjs` de taste-skill sur chaque maquette : zéro FAIL à 1440 et 390 ; chaque WARN corrigé ou défendu en une phrase dans la piste.
 3. `/impeccable critique` sur chaque maquette : corrige les trois premiers problèmes, note les autres.
-4. Captures au MCP playwright à 1440 et 390 px, cadrées sur la zone haute.
+4. Captures au MCP playwright à 1440 et 390 px, cadrées sur la zone haute, prises après la fin des animations d’entrée (attendre leur durée), jamais en cours d’animation.
 
 ### 5. Après V1 : la piste retenue et `DESIGN.md`
 1. `retenue.md` : la piste choisie, les retours de Soufien recopiés mot pour mot depuis `docs/validations/V1.md`, les ajustements, ce qui est abandonné.

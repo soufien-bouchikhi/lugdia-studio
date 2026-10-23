@@ -14,7 +14,7 @@ Un fichier absent du registre ne part pas en ligne.
 
 - **Fournis par le client** : photos, logo, plaquettes, avec son accord pour la publication.
 - **Générés** (image, vidéo, voix) : décors, ambiances, objets, textures, illustrations, visuels 3D abstraits, pictogrammes.
-- **Créés en code** : SVG, scènes 3D, shaders, dégradés, sons d’interface synthétisés (Web Audio).
+- **Créés en code** : SVG, scènes 3D, shaders, dégradés, sons d’interface synthétisés (Web Audio). Un visuel pré-calculé (rendu d’une scène en WebP, par exemple) garde sa source dans le dépôt du client, avec la commande qui le reproduit : `docs/direction-artistique/rendu3d/` (scène, `package.json`, `README.md`) tant que le site n’existe pas, puis à côté du code du site. Jamais dans un dossier de travail temporaire.
 - **Banques sous licence** : seulement avec la licence notée dans le registre.
 - **Icônes** : Lucide (licence ISC) ou un jeu cohérent avec la marque.
 
