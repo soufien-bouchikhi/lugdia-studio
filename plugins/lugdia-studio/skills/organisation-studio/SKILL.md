@@ -1,0 +1,115 @@
+---
+name: organisation-studio
+description: Organisation de l’équipe Lugdia Studio pour un projet client - les 26 agents, les phases du projet, qui produit quel fichier, à quel point de validation, et le format de remise entre agents. À charger par chaque agent du studio et par toute session qui pilote un projet client Lugdia.
+---
+
+# Organisation du studio
+
+Un projet client se mène comme une opération : une maîtrise d’ouvrage (le client, représenté par Soufien), une maîtrise d’œuvre (le studio), un pilotage (le producteur, notre OPC), un contrôle extérieur (le contrôleur de vérité) et une réception par étapes (les points de validation V1 à V4). Chaque agent a un lot, il le livre complet, il ne touche pas au lot des autres.
+
+## L’équipe
+
+Les agents s’appellent `lugdia-studio:<nom>`.
+
+| Pôle | Agent | Lot |
+|---|---|---|
+| Pilotage | `producteur` | Planning, état du projet, dossiers de validation, seul à tenir `.lugdia/projet.json` |
+| | `chef-orchestre` | Enchaîne les agents d’une phase, contrôle chaque remise, relance les corrections |
+| | `chef-de-projet` | Découpe le travail en lots et tâches avec critères d’acceptation (`docs/plan.md`) |
+| | `controleur-verite` | Contrôle extérieur : rien d’inventé, mots à éviter, mentions, preuves avant chaque validation |
+| Stratégie et marque | `chercheur-ux` | Personas, moments déclencheurs, freins, parcours, tirés du seul brief |
+| | `veilleur` | Concurrents cités, sites de référence du métier, tendances utiles |
+| | `gardien-marque` | Plateforme de marque, ton, charte et jetons tenus comme un contrat |
+| | `redacteur` | Textes de chaque page, dans les mots du client |
+| | `referenceur` | Mots-clés, titres, descriptions, maillage, données structurées, pages locales |
+| | `architecte-aeo` | Site lisible et citable par les moteurs de réponse (llms.txt, FAQ, entités) |
+| | `stratege-citations-ia` | Présence hors site : fiche Google, annuaires, cohérence des coordonnées, plan après lancement |
+| Design | `architecte-ux` | Arborescence, zonings, parcours de conversion |
+| | `designer-ui` | Trois pistes de direction artistique, puis le système visuel retenu |
+| | `scenariste-visuel` | Récit du défilement et des chapitres (parcours immersif) |
+| | `designer-interactions` | Micro-interactions, survols, états, petits moments de plaisir, avec mesure |
+| | `directeur-images` | Invites de génération, cohérence des visuels, registre des médias |
+| | `garant-inclusion` | Représentation juste, biais des images générées, textes alternatifs |
+| Fabrication | `developpeur-front` | Site Astro : pages, composants, intégration, performance |
+| | `developpeur-creatif-3d` | Scènes 3D, shaders, défilement scénarisé, qualité adaptative |
+| | `designer-sonore` | Sons d’interface synthétisés, bouton son, règles d’écoute |
+| | `developpeur-back` | Formulaires vers n8n, en-têtes de sécurité, configuration de mise en ligne |
+| Contrôle | `relecteur-finition` | Dernière passe visuelle avant chaque validation |
+| | `auditeur-accessibilite` | Audit AA complet, clavier, lecteur d’écran, mouvement réduit |
+| | `testeur-performance` | Lighthouse, Core Web Vitals, poids, traces |
+| | `collecteur-preuves` | Captures à 390, 768 et 1440 px, mouvement réduit, preuves de chaque validation |
+| | `ingenieur-tests` | Tests Playwright automatisés : parcours, formulaires, liens, mentions |
+
+## Les phases
+
+| Phase | Agents, dans l’ordre | Sortie | Arrêt |
+|---|---|---|---|
+| 1. Cadrage | producteur → chercheur-ux, veilleur, gardien-marque (en parallèle) → producteur | `docs/strategie.md` complet | — |
+| 2. Direction artistique | architecte-ux → designer-ui (avec scenariste-visuel en parcours B, directeur-images si des visuels sont générés) → garant-inclusion → controleur-verite → producteur | 3 pistes, arborescence, zonings | **V1** |
+| 3. Page d’accueil | redacteur (accueil) → developpeur-front, developpeur-creatif-3d et designer-sonore si parcours B → designer-interactions → collecteur-preuves → relecteur-finition → controleur-verite → producteur | accueil codée | **V2** |
+| 4. Fabrication | chef-de-projet (plan) → redacteur, referenceur, architecte-aeo → developpeur-front, developpeur-back (et 3D, son) → designer-interactions | toutes les pages | — |
+| 5. Recette | auditeur-accessibilite, testeur-performance, ingenieur-tests, collecteur-preuves (en parallèle) → corrections → relecteur-finition → controleur-verite → producteur | `recette/` complet, aperçu en `noindex` | **V3** |
+| 6. Mise en ligne | developpeur-back, referenceur → controleur-verite → producteur | liste de contrôle de mise en ligne | **V4** |
+| 7. Après | stratege-citations-ia | plan de présence et de citations | — |
+
+Le `chef-orchestre` mène une phase de bout en bout ; Soufien peut aussi appeler un agent seul pour une tâche précise.
+
+## Qui écrit quoi
+
+| Fichier | Responsable | Les autres |
+|---|---|---|
+| `brief/` | personne (lecture seule) | lisent |
+| `.lugdia/projet.json` | producteur | lisent |
+| `docs/strategie.md` | producteur (assemble) | chercheur-ux, veilleur, gardien-marque y contribuent par leurs fichiers |
+| `docs/recherche/personas.md`, `parcours.md` | chercheur-ux | |
+| `docs/recherche/concurrents.md`, `docs/recherche/captures/` | veilleur | |
+| `docs/marque.md` | gardien-marque | |
+| `docs/plan.md` | chef-de-projet | producteur y lit les jalons |
+| `docs/architecture.md` | architecte-ux | |
+| `docs/direction-artistique/` (`piste-a.md`, `piste-b.md`, `piste-c.md`, `retenue.md`, captures) | designer-ui | |
+| `DESIGN.md` (racine du projet, lu par impeccable) | designer-ui, après V1 | gardien-marque relit |
+| `docs/direction-artistique/scenario.md` | scenariste-visuel | |
+| `docs/direction-artistique/interactions.md` | designer-interactions | |
+| `docs/direction-artistique/images.md` | directeur-images | |
+| `docs/contenus/<page>.md` | redacteur | referenceur annote titres et descriptions |
+| `docs/seo.md` | referenceur | |
+| `docs/aeo.md`, `public/llms.txt` | architecte-aeo | |
+| `docs/citations-ia.md` | stratege-citations-ia | |
+| `docs/medias.md` | directeur-images | tout agent qui ajoute un média y ajoute sa ligne |
+| `docs/3d.md`, `src/scenes/` | developpeur-creatif-3d | |
+| `docs/son.md`, `src/son/` | designer-sonore | |
+| `src/` (hors scènes et son), `public/` | developpeur-front | |
+| formulaires, en-têtes, `docs/mise-en-ligne.md` | developpeur-back | |
+| `recette/accessibilite.md` | auditeur-accessibilite | |
+| `recette/performance.md` | testeur-performance | |
+| `recette/captures/`, `recette/preuves.md` | collecteur-preuves | |
+| `tests/`, `recette/tests.md` | ingenieur-tests | |
+| `recette/finition.md` | relecteur-finition | |
+| `recette/verite.md` | controleur-verite | |
+| `recette/inclusion.md` | garant-inclusion | |
+| `docs/validations/Vn.md` | producteur | |
+| `docs/journal.md` | tous, une ligne datée par décision | |
+
+Un agent qui voit un problème dans le lot d’un autre ne le corrige pas : il le note dans sa remise, avec le fichier et la ligne, et le chef-orchestre l’envoie au bon agent.
+
+## Règles de travail
+
+- Lire avant d’écrire : le brief, `docs/strategie.md`, `docs/journal.md`, puis les fichiers d’entrée de son lot.
+- Une hypothèse se signale (« hypothèse : … ») et part dans la remise ; une information manquante devient « à fournir ».
+- Les messages à Soufien le tutoient ; les textes du site vouvoient le visiteur.
+- Avant de rendre : relire son lot contre les règles de `lugdia-studio:regles-lugdia`, et contre les mots à éviter du brief.
+
+## Format de remise
+
+Chaque agent termine par ce bloc, et rien d’autre après :
+
+```
+## Remise · <agent>
+- Fait : <ce qui est livré, en une ou deux lignes>
+- Fichiers : <chemins créés ou modifiés>
+- Contrôles passés : <ce qui a été vérifié et comment>
+- À fournir : <informations manquantes, ou « rien »>
+- Questions pour Soufien : <décisions qui lui reviennent, ou « aucune »>
+- Problèmes vus ailleurs : <fichier, ligne, problème, agent concerné ; ou « aucun »>
+- Suite : <agent ou étape suivante>
+```
