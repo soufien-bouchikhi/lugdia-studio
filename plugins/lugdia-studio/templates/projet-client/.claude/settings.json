@@ -9,6 +9,7 @@
       "Bash(git commit:*)",
       "Bash(node scripts/mots-a-eviter.mjs:*)",
       "Bash(node scripts/typo.mjs:*)",
+      "Bash(node scripts/generique.mjs:*)",
       "Bash(node scripts/jetons.mjs:*)",
       "Bash(npm run build:*)",
       "Bash(npm run preview:*)",

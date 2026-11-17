@@ -1,0 +1,18 @@
+{
+  "schema": "lugdia-brief/2",
+  "ref": "CDC-ebenisterie-exemple-20261110-AB12",
+  "entreprise": {
+    "nom": "Ébénisterie Exemple",
+    "slug": "ebenisterie-exemple",
+    "ville": "Lyon"
+  },
+  "technique": {
+    "domaine": "ebenisterie-exemple.fr"
+  },
+  "editorial": {
+    "interdits": [
+      "pas cher",
+      "numéro 1"
+    ]
+  }
+}

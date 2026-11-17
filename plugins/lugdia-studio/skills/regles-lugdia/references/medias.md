@@ -10,6 +10,32 @@ Une ligne par fichier publié. Pour une image générée, la colonne « Invite �
 
 Un fichier absent du registre ne part pas en ligne.
 
+## Médias du dossier du CRM
+
+Quand le projet a démarré depuis le dossier du CRM, `brief/medias/medias.json` est l’inventaire de départ : chaque photo, vidéo, logo, charte ou police du client, avec ses droits, ses personnes reconnaissables, sa légende et son origine.
+
+- **Droits** : un média `droits: false` ne part jamais en ligne ; il reste dans `docs/a-fournir.md` (« Droits d’usage et accord des personnes ») jusqu’à ce que Soufien confirme les droits dans le CRM et prépare un nouveau dossier. La case du CRM couvre aussi l’accord des personnes reconnaissables.
+- **Images générées par le CRM** (`origine: "généré"`) : mêmes règles que toute image générée (jamais présentée comme une photo du client) ; leur invite est reprise dans la fiche de `docs/direction-artistique/images.md` et le modèle dans le registre.
+- **Images à générer pendant le projet** : le directeur-images prépare l’invite dans sa fiche ; Soufien génère l’image dans l’onglet « Site » de la fiche du CRM, puis prépare un nouveau dossier ; l’image arrive par la mise à jour du projet (`lugdia-studio:demarrer-projet`). Les coûts restent comptés dans le CRM.
+- **Polices de `brief/charte/`** : licence web vérifiée avant tout usage (nom de la licence noté au registre). Sans licence web, la police est « à fournir » et un équivalent libre de même genre est proposé en question à Soufien.
+- **Captures des références** (`brief/references/captures/`) : usage interne, pour la direction artistique ; jamais dans `public/` ni dans le site.
+- **Prises de vue manquantes** : elles sont dans `docs/a-fournir.md` ; en attendant, la place reste « à fournir » ou reçoit un visuel en code, jamais une image générée qui ferait croire à une photo du client.
+
+### Originaux et copies réduites
+
+Les originaux du client restent dans `brief/` (`medias/fichiers/`, `charte/`, `references/captures/`), hors de git : le CRM les garde et les sauvegarde. Un clone du dépôt les retrouve en important de nouveau le même dossier.
+
+- Le code du site ne cite jamais `brief/` : chaque média affiché entre par une copie.
+- Photo : copie réduite à 2880 px au plus sur le grand côté, métadonnées retirées (position GPS comprise), dans `src/assets/medias/`. Depuis la racine du site (Astro installe `sharp`, qui retire les métadonnées ; `rotate()` applique d’abord l’orientation de l’appareil) :
+
+  ```bash
+  node -e "require('sharp')(process.argv[1]).rotate().resize(2880, 2880, { fit: 'inside', withoutEnlargement: true }).toFile(process.argv[2])" brief/medias/fichiers/<nom>.jpg src/assets/medias/<nom>.jpg
+  ```
+
+- Logo et polices : sous leur forme web (`.svg`, `.woff2`) dans `public/`.
+- Vidéo : seulement sa version web compressée (formats ci-dessous), jamais l’original.
+- Le registre `docs/medias.md` donne, pour chaque copie, son original (`brief/medias/fichiers/<nom>`) dans la colonne « Source ».
+
 ## Ce qu’on peut utiliser
 
 - **Fournis par le client** : photos, logo, plaquettes, avec son accord pour la publication.

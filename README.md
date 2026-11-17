@@ -4,15 +4,15 @@ L’agence Lugdia dans Claude Code : les règles de la maison, le démarrage d�
 
 Dépôt privé. Une seule installation par ordinateur ; chaque projet client en profite, et chaque amélioration du studio profite à tous les projets.
 
-## Contenu (version 0.2.4)
+## Contenu (version 0.3.0)
 
 | Élément | Rôle |
 |---|---|
-| 26 agents (`lugdia-studio:<nom>`) | Pilotage (producteur, chef-orchestre, chef-de-projet, controleur-verite), stratégie et marque (chercheur-ux, veilleur, gardien-marque, redacteur, referenceur, architecte-aeo, stratege-citations-ia), design (architecte-ux, designer-ui, scenariste-visuel, designer-interactions, directeur-images, garant-inclusion), fabrication (developpeur-front, developpeur-creatif-3d, designer-sonore, developpeur-back), contrôle (relecteur-finition, auditeur-accessibilite, testeur-performance, collecteur-preuves, ingenieur-tests). 24 adaptés de The Agency (MIT), 2 créés par Lugdia. |
+| 27 agents (`lugdia-studio:<nom>`) | Pilotage (producteur, chef-orchestre, chef-de-projet, controleur-verite), stratégie et marque (chercheur-ux, veilleur, gardien-marque, redacteur, referenceur, architecte-aeo, stratege-citations-ia), design (architecte-ux, designer-ui, scenariste-visuel, designer-interactions, directeur-images, garant-inclusion), fabrication (developpeur-front, developpeur-creatif-3d, designer-sonore, developpeur-back), contrôle (relecteur-finition, auditeur-accessibilite, testeur-performance, collecteur-preuves, ingenieur-tests, controleur-singularite). 24 adaptés de The Agency (MIT), 3 créés par Lugdia. |
 | Skill `organisation-studio` | Les 8 phases d’un projet, qui écrit quel fichier, le relais avec Soufien, les commits, le format de remise. Préchargé par chaque agent. |
 | Skill `regles-lugdia` | Règles communes : rien d’inventé, médias tracés, AA, mouvement réduit, 3D et son, performance, référencement, RGPD, AI Act, contrat des formulaires, points de validation, outils. Préchargé par chaque agent. |
 | Skill `phase` | `/lugdia-studio:phase <n>` ou « lance la phase 2 » : la session principale mène une phase (lance les agents, contrôle les remises, commite, te présente le dossier de validation). |
-| Skill `demarrer-projet` | `/lugdia-studio:demarrer-projet <dossier du brief>` : crée le dépôt d’un client à partir des fichiers de brief.lugdia.fr, avec les scripts `mots-a-eviter.mjs` et `typo.mjs`. |
+| Skill `demarrer-projet` | `/lugdia-studio:demarrer-projet <archive du dossier du CRM>` : crée le dépôt d’un client à partir du dossier du studio préparé par le CRM (brief, découverte, références, médias, charte), ou des seuls fichiers de brief.lugdia.fr, et le met à jour quand un nouveau dossier arrive ; scripts `mots-a-eviter.mjs`, `typo.mjs` et `generique.mjs` dans le projet. |
 | Ressources | Kit 3D (`kit.ts`, `scene.ts`, `chapitres.ts`, `chapitres.css`), module son synthétisé (`son.ts`), modèles nginx et Traefik (`infra/`). |
 | Rappel au démarrage | Dans un projet client (`.lugdia/projet.json`), Claude reçoit l’étape, les points de validation et les règles à chaque session. Silencieux ailleurs. |
 | MCP | `21st` (composants et logos), `playwright` (captures, clavier, formulaires), `chrome-devtools` (performance), `context7` (documentation). |
@@ -20,7 +20,7 @@ Dépôt privé. Une seule installation par ordinateur ; chaque projet client en 
 
 ## Mener un projet
 
-1. `/lugdia-studio:demarrer-projet <dossier du brief>` dans un dossier vide.
+1. `/lugdia-studio:demarrer-projet <archive du dossier du CRM>` dans un dossier vide.
 2. « Lance la phase 1 » (skill `phase`) : cadrage (personas, concurrents, marque, stratégie). Le modèle de projet installe `.claude/settings.json`, qui autorise les commandes courantes (git, scripts, build, tests, MCP du studio) et demande toujours avant un `git push` ou un `npm install`.
 3. À chaque point de validation (V1 direction artistique, V2 accueil, V3 aperçu complet, V4 mise en ligne), le producteur rend son dossier : tu réponds « validé » ou tu donnes tes retours, et la phase suivante se lance sur ton accord.
 
@@ -48,12 +48,13 @@ Facultatif : l’application de bureau Spline (version 2) ajoute son propre MCP 
 ## Démarrer un projet client
 
 1. Créer un dossier vide pour le client (par exemple `~/Lugdia/clients/sofiane-khelil`) et y ouvrir Claude Code.
-2. Lancer `/lugdia-studio:demarrer-projet ~/Téléchargements/brief-sofiane-khelil` (le dossier où sont les fichiers du brief).
-3. Claude range le brief, crée la structure du projet, relève les manques et suggère un parcours, puis s’arrête.
+2. Lancer `/lugdia-studio:demarrer-projet ~/Téléchargements/dossier-<client>-1.zip` : l’archive téléchargée dans l’onglet « Site » de la fiche du CRM (bouton « Préparer le dossier du studio »). À défaut, le dossier où sont les seuls fichiers du brief.
+3. Claude range le brief et le dossier (découverte, références, médias, charte), crée la structure du projet, relève les manques et suggère un parcours, puis s’arrête. Un dossier sans brief est refusé.
+4. Un dossier préparé de nouveau plus tard se donne à la même commande : le projet est mis à jour. Les originaux du client (photos, charte, captures) restent hors de git ; sur une autre machine, le même dossier les remet en place.
 
 ## Mettre à jour
 
-- Le studio : `/plugin marketplace update lugdia`, puis `/plugin update lugdia-studio@lugdia`.
+- Le studio : `/plugin marketplace update lugdia`, puis `/plugin update lugdia-studio@lugdia`, puis une nouvelle session (ou `/reload-plugins`).
 - Les plugins tiers : `node scripts/etat-des-tiers.mjs` montre s’il existe une version plus récente. On relit la nouvelle version (licence, hooks, scripts téléchargés) avant de changer son `sha` dans `.claude-plugin/marketplace.json`.
 
 ## Maintenir le studio

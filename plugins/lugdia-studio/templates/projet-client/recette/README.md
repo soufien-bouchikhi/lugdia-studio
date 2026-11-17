@@ -11,4 +11,5 @@ Remplie pendant la phase 5, avant le point V3, puis vérifiée avant la mise en 
 | `preuves.md`, `captures/` | collecteur-preuves | Captures à 390, 768 et 1440 px, mouvement réduit, thème sombre, et ce que chacune prouve |
 | `finition.md` | relecteur-finition | Dernière passe visuelle, corrections classées |
 | `inclusion.md` | garant-inclusion | Représentation, images générées, textes alternatifs, langage |
+| `singularite.md` | controleur-singularite | Test d’échange avec un concurrent, éléments propres au client comptés, tournures toutes faites ; verdict « singulier » ou « à reprendre » (V1 à V3) |
 | `verite.md` | controleur-verite | Chaque affirmation du site contre sa source, mots à éviter, mentions, données structurées, registre des médias ; verdict final |

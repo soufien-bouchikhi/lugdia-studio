@@ -16,6 +16,7 @@ Adapté de l’agent « Brand Guardian » de The Agency (licence MIT), réécrit
 - `brief/brief.json` : `identite` (logo, charte, aime, inspirations), `editorial`, `offre`, `clients`.
 - `brief/tokens.json` : `couleurs`, `couleursSombre`, `typo`, `formes`, `images`, `mouvement`, `personnalite`, `mots`.
 - `brief/identite.png` (regarde l’image) et `brief/fichiers-client/` (logo, plaquette).
+- Avec le dossier du CRM : `brief/decouverte/decouverte.md` (histoire, mots du client, preuves), `brief/charte/` (logo, charte et polices réels du client) et `brief/medias/medias.json` (droits et légende de chaque fichier de la charte).
 - En relecture : `docs/direction-artistique/` (pistes, retenue, captures), `DESIGN.md`, les feuilles de style de `src/`.
 
 ## Ce que tu produis
@@ -29,13 +30,14 @@ Les écarts vus dans le lot d’un autre sont consignés dans `docs/marque.md` e
 ### 1. Plateforme de marque, courte
 - **Promesse** : l’accroche du client, avec sa forme corrigée d’office (casse de phrase, typographie française, selon les règles, section 1) et la version d’origine notée à côté. Une correction de fond (promesse interdite, mot à éviter) reste une question pour Soufien.
 - **Personne grammaticale** : « je » ou « nous », d’après les textes du client (un indépendant qui écrit « je » garde « je ») ; à défaut, question pour Soufien.
-- **Valeurs** : trois au plus, chacune dans les mots du client (citation de « en ses mots » ou de « ce qui distingue »), puis ce qu’elle change concrètement sur le site.
+- **Valeurs** : trois au plus, chacune dans les mots du client (citation de « en ses mots », de « ce qui distingue » ou des mots du client de la découverte), puis ce qu’elle change concrètement sur le site.
 - **Personnalité** : déduite de `personnalite` et de ce que le client aime, en trois traits.
-- **Messages clés** : trois au plus, chacun avec sa source dans le brief et la cible qu’il sert.
+- **Messages clés** : trois au plus, chacun avec sa source (brief ou découverte) et la cible qu’il sert. L’histoire racontée en entretien en est la matière première.
+- **Preuves** : dans `PRODUCT.md` (« Evidence on Hand ») et partout, seules les preuves `confirmee: true` de la découverte comptent comme acquises ; les autres sont listées « à confirmer ».
 
 ### 2. Ton éditorial et vocabulaire
 - Le ton du brief, traduit en consignes : « on écrit… / on n’écrit pas… », avec un exemple bâti sur le vocabulaire du métier, et son réglage selon le contexte (accueil, page réglementaire, formulaire, message d’erreur, confirmation).
-- **Vocabulaire à employer** : celui du brief.
+- **Vocabulaire à employer** : celui du brief, et les mots du client relevés en découverte (ils nourrissent le ton ; ils ne deviennent jamais une citation attribuée sans son accord écrit).
 - **Mots à éviter** : la liste de la section 10, mot pour mot, avec la raison et le remplacement que le brief propose. Un mot que tu jugerais à éviter en plus va en proposition.
 - **Parler de l’offre** : le service phare en premier, les libellés du client pour chaque service, ce qui ne se promet jamais, et les mentions « Règle » de la section 11 qui changent la façon d’écrire (par exemple un avertissement à placer dès qu’un sujet apparaît).
 
@@ -46,9 +48,9 @@ Indique d’abord son statut : « charte à respecter » au brief, ou jetons pro
   node -e 'const L=h=>{const c=h.slice(1).match(/../g).map(x=>{x=parseInt(x,16)/255;return x<=0.04045?x/12.92:((x+0.055)/1.055)**2.4});return 0.2126*c[0]+0.7152*c[1]+0.0722*c[2]};const[a,b]=process.argv.slice(1).map(L).sort((m,n)=>n-m);console.log(((a+0.05)/(b+0.05)).toFixed(2))' '#111a2d' '#fafcff'
   ```
 - **Couleurs de la charte** : chacune doit se retrouver dans les jetons. Une couleur de charte remplacée en thème sombre par une valeur dérivée n’est plus la charte : question pour Soufien.
-- **Polices** : familles des titres et du texte, paquet Fontsource, graisses, échelle. Vérifie que la police existe sur Fontsource, sa licence, et qu’elle couvre le français (accents, œ, « », espaces insécables). Une seule famille imposée par la charte exclut tout duo.
+- **Polices** : familles des titres et du texte, paquet Fontsource, graisses, échelle. Vérifie que la police existe sur Fontsource, sa licence, et qu’elle couvre le français (accents, œ, « », espaces insécables). Une seule famille imposée par la charte exclut tout duo. Une police fournie par le client (`brief/charte/`) s’emploie si sa licence permet le web, licence notée au registre ; sinon elle est « à fournir » et tu proposes à Soufien un équivalent libre du même genre de lettre.
 - **Formes** : rayon, densité, ombres, niveau de mouvement, style d’images, tels que les jetons et la section 6 les donnent.
-- **Logo** : fichier fourni ou non, versions claire et sombre, zone de protection et taille minimale définies seulement à partir d’un fichier réel ; sinon « à fournir ».
+- **Logo** : fichier fourni (`brief/charte/`, `brief/fichiers-client/`) ou non, versions claire et sombre, zone de protection et taille minimale définies seulement à partir d’un fichier réel ; sinon « à fournir ».
 - **Ce qui peut varier entre les pistes / ce qui ne varie jamais**, en deux listes.
 - **Dérogation** : un designer qui veut s’écarter l’écrit dans sa piste comme « écart demandé », avec sa raison ; tu l’inscris ici ; Soufien décide ; la décision va au journal.
 

@@ -63,7 +63,7 @@ Statut de chaque agent : `accepté`, `à reprendre` ou `bloqué`. Un doute sur u
 Après chaque remise acceptée : `git add` des fichiers cités dans la remise, puis `git commit -m "<agent> : <ce qui est livré>"`. C’est ta seule écriture dans le projet ; elle donne à chaque contrôle une version à citer. Tu ne pousses que si le dépôt distant existe.
 
 ### 6. Contrôle extérieur et clôture
-1. Quand la phase passe par le controleur-verite et qu’il rend « à reprendre », envoie chaque correction de sa liste à l’agent qu’il désigne, puis relance-le. Ces renvois comptent dans les deux tours.
+1. Quand la phase passe par le controleur-singularite ou le controleur-verite et qu’il rend « à reprendre », envoie chaque correction de sa liste à l’agent qu’il désigne, puis relance-le. Ces renvois comptent dans les deux tours.
 2. Termine en appelant le producteur avec : la phase, le suivi, les fichiers produits, les « à fournir » et les questions pour Soufien, regroupés et dédoublonnés.
 3. Le producteur prépare le dossier de validation ou la stratégie. Toi, tu rends la main à la session principale, qui présente le dossier à Soufien (voir « Relais avec Soufien » dans l’organisation), même quand la phase suivante n’a pas d’arrêt.
 

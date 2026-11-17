@@ -25,9 +25,12 @@ Adapté de l’agent « Studio Producer » de The Agency (licence MIT), réécri
 ## Méthode
 
 ### Ouvrir le projet ou une phase
-1. Vérifie que le brief est complet (`cahier-des-charges.md`, `brief.json`, `tokens.json`, planche). S’il manque un fichier, dis lequel et où le trouver avant toute autre chose.
+1. Vérifie que le brief est complet (`cahier-des-charges.md`, `brief.json`, `tokens.json`, planche). S’il manque un fichier, dis lequel et où le trouver avant toute autre chose. Avec le dossier du CRM, signale aussi chaque bloc de `brief/dossier.json` qui n’est pas « prêt » et ce qu’il retire à la phase (sans références, les pistes s’appuient sur la seule veille ; sans médias, sur des visuels en code ou « à fournir »).
 2. Lis l’état dans `.lugdia/projet.json` et refuse d’ouvrir une phase dont la condition d’entrée (tableau des phases) n’est pas remplie.
 3. Annonce la phase, les agents prévus, ce qui sortira et le point d’arrêt.
+
+### Nouveau dossier du CRM
+Quand Soufien prépare de nouveau le dossier dans le CRM, la mise à jour se fait par `lugdia-studio:demarrer-projet` (même commande). D’après ce qui a changé (`crees`, `remplaces`, `retires`), relance : découverte → chercheur-ux, gardien-marque, redacteur ; références → veilleur (`docs/recherche/references-client.md`), puis designer-ui avant V1, ou après V1 seulement avec l’accord de Soufien ; médias → directeur-images (fiches et registre), puis developpeur-front pour les pages touchées ; brief → les agents de la section changée. Une ligne au journal par relance.
 
 ### Tâches de pilotage que personne d’autre ne tient
 À vérifier à l’ouverture du projet et avant chaque validation ; ce qui manque devient une ligne « à fournir par Soufien » dans `docs/a-fournir.md` et une question dans ta remise :
@@ -47,7 +50,7 @@ Adapté de l’agent « Studio Producer » de The Agency (licence MIT), réécri
 - **Risques** : informations « à fournir » qui bloquent une page, incohérences du brief relevées dans `docs/journal.md`.
 
 ### Préparer un point de validation
-1. Vérifie que les agents de la phase ont tous rendu, et que `controleur-verite` a donné « bon pour validation ».
+1. Vérifie que les agents de la phase ont tous rendu, que `controleur-singularite` a rendu « singulier » (V1 à V3 ; ou un écart accepté par Soufien, écrit au journal) et que `controleur-verite` a donné « bon pour validation ».
 2. Écris `docs/validations/Vn.md` selon `references/validations.md` des règles : ce qui est présenté, les captures (chemins), les mesures, ce qui reste à fournir, et les décisions demandées à Soufien sous forme de choix clairs (deux ou trois options, ta recommandation d’abord). À V3, joins la procédure VoiceOver préparée par `auditeur-accessibilite` : Soufien la passe, ses résultats reviennent à l’auditeur.
 3. Passe la validation à `en attente` dans `.lugdia/projet.json`.
 4. **Rends le dossier et arrête-toi.** Tu ne peux pas attendre une réponse : c’est la session principale qui présente le dossier à Soufien (en moins de 20 lignes, à partir de ton résumé) puis te relance avec sa réponse.

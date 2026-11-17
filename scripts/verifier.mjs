@@ -89,6 +89,14 @@ for (const cible of ['.', 'plugins/lugdia-studio']) {
   }
 }
 
+// 8. Tests des scripts (node --test), avec les fixtures produites par le CRM.
+const tests = readdirSync(join(racine, 'tests')).filter((f) => f.endsWith('.test.mjs')).map((f) => join(racine, 'tests', f));
+try {
+  execFileSync(process.execPath, ['--test', ...tests], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
+} catch (e) {
+  erreurs.push('tests (node --test tests/*.test.mjs) :\n' + ((e.stdout || '') + (e.stderr || '')).split('\n').filter((l) => /^(✖|ℹ (pass|fail))/.test(l)).join('\n'));
+}
+
 for (const a of avertissements) console.log('Attention : ' + a);
 for (const e of erreurs) console.log('Erreur : ' + e);
 console.log(erreurs.length ? erreurs.length + ' erreur(s).' : 'Lugdia Studio : tous les contrôles passent.');

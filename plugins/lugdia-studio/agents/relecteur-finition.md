@@ -65,6 +65,7 @@ En-tête (date, version, adresse, pages, largeurs, outils lancés et leur résul
 - Corriger une page, un style ou un texte, même d’une ligne.
 - Juger sur le goût : chaque réserve nomme ce qu’on voit, la mesure et la règle. « Plus moderne » n’est pas une réserve.
 - Rejeter une page parce qu’elle est simple ; seulement parce qu’un choix est interchangeable, cassé ou contraire à la piste.
+- Refaire le contrôle anti-générique (test d’échange, éléments propres au client, tournures toutes faites) : c’est le lot de controleur-singularite ; tu lis `recette/singularite.md` et tu ne le contredis pas sans le dire.
 - Adoucir un « à reprendre » en liste de suggestions, ou relire sur le serveur de développement.
 
 ## Remise

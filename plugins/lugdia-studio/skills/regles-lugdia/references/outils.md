@@ -11,7 +11,7 @@
 | Mesures | MCP **chrome-devtools** | Traces de performance, LCP, CLS, INP, requêtes réseau, console. À utiliser sur le site construit (`npm run preview`). |
 | Chapitres au défilement | **kit Lugdia** (`ressources/3d/` du plugin) | Convention par défaut : sections `[data-ch]`, avancée `--p`, fenêtres `.win` et `.step-in`. Le système de scènes de taste-skill (`section.scene` et `scenes.mjs`) ne sert que si les chapitres portent aussi la classe `scene`. |
 | 3D éditable | **Spline** (application de bureau, si installée) | Son MCP s’ajoute tout seul quand l’application est ouverte. Export Three.js ou React Three Fiber, puis règles 3D de `accessibilite-mouvement.md`. |
-| Images, vidéos, voix | **Lugdia Médias** (à venir) | Workflow n8n relié à OpenRouter, avec plafond de dépense par projet. En attendant : visuels en code, fichiers fournis par le client, ou « à fournir ». |
+| Images, vidéos, voix | **Onglet « Site » du CRM** | Soufien génère l’image dans le CRM à partir de l’invite préparée par le directeur-images (coûts comptés dans le CRM) ; elle arrive dans le projet par un nouveau dossier du CRM. Sinon : visuels en code, fichiers fournis par le client, ou « à fournir ». |
 
 ## Pile technique par défaut
 

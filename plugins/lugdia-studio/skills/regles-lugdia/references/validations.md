@@ -8,8 +8,15 @@ Quatre arrêts obligatoires. À chacun : écrire `docs/validations/Vn.md`, mettr
 - Le résumé stratégique en 5 lignes (`docs/strategie.md`) : cible principale, promesse, objectif mesurable, parcours choisi (A à E) et pourquoi.
 - **Trois pistes** visuelles distinctes, chacune avec : l’idée tirée du métier du client, la composition de l’accueil, le duo typographique (dans le respect de la charte du client), la palette (dans le respect des jetons), le principe de mouvement, et une capture de la zone haute de l’accueil à 1440 et 390 px.
 - Le budget de performance si le parcours est immersif.
+- Le verdict de singularité de chaque piste (`recette/singularite.md`).
 
 Règle : si le client a une charte (« à respecter » dans le brief), les trois pistes la respectent toutes ; elles varient la composition, le mouvement et l’imagerie, pas la marque.
+
+Avec le dossier du CRM, chaque piste dit aussi :
+- ce qu’elle garde de ce que le client aime sur ses sites de référence, et ce qu’elle évite de ce qu’il n’aime pas (d’après `docs/recherche/references-client.md`) ;
+- sa typographie : pourquoi ce choix pour ce métier, la licence de chaque police, et une planche (titres, texte courant, chiffres, accents, guillemets « ») capturée à 1440 et 390 px. Une police du client s’emploie si sa licence permet le web. Les polices relevées sur ses références indiquent un goût (un genre de lettre), elles ne se reprennent pas sans licence. Aucune police « par défaut » sans raison écrite.
+
+Sans référence dans le dossier, le dossier V1 le dit.
 
 ## V2 · Page d’accueil
 
@@ -17,12 +24,14 @@ Règle : si le client a une charte (« à respecter » dans le brief), les trois
 - L’accueil codé, avec la piste retenue, ses vrais textes (ou « à fournir »), en version ordinateur et téléphone.
 - Captures à 390, 768 et 1440 px, et une capture sous `prefers-reduced-motion`.
 - Premier passage Lighthouse téléphone et premier audit impeccable, avec ce qui reste à corriger.
+- Le verdict de singularité de l’accueil (`recette/singularite.md`) : zone haute avec au moins 2 éléments propres au client.
 
 ## V3 · Aperçu complet
 
 À présenter :
 - L’adresse de l’aperçu (en `noindex`).
 - Le dossier `recette/` complet : Lighthouse par page, contrastes, clavier, lecteur d’écran sur l’accueil, formulaires testés jusqu’à leur destination, mentions présentes, données structurées valides, recherche des mots à éviter, registre des médias complet.
+- Le verdict de singularité de chaque page (`recette/singularite.md`).
 - La liste de ce qui reste « à fournir » par le client.
 
 C’est après V3, et seulement après, que Soufien peut envoyer l’aperçu au client.

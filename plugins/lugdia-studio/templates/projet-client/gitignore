@@ -12,3 +12,11 @@ playwright-report/
 .impeccable/
 # captures de sites concurrents : usage interne seulement, jamais versionnées
 docs/recherche/captures/
+# originaux du client (dossier du CRM) : gardés par le CRM, jamais versionnés ; le site versionne seulement
+# les copies réduites qu'il affiche. Un clone les retrouve en important de nouveau le même dossier.
+brief/medias/fichiers/
+brief/charte/
+brief/references/captures/
+# archive du dossier du CRM, ou dossier décompressé, laissés dans le projet : jamais versionnés
+/dossier-*.zip
+/dossier-*/

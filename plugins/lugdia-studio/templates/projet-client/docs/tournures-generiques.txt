@@ -1,0 +1,23 @@
+# Tournures toutes faites : des phrases que n'importe quel concurrent pourrait signer.
+# Une par ligne, cherchées par scripts/generique.mjs (casse, accents, apostrophes et espaces insécables ignorés).
+# Liste modifiable pour ce projet ; une expression justifiée par le brief va dans docs/mots-admis.txt.
+bienvenue sur notre site
+votre partenaire de confiance
+à votre écoute
+n’hésitez pas à nous contacter
+des solutions sur mesure
+solutions innovantes
+un savoir-faire unique
+qualité et professionnalisme
+notre équipe de passionnés
+l’excellence au service de
+au cœur de votre
+clé en main
+accompagnement personnalisé
+à la pointe
+nous mettons tout en œuvre
+votre satisfaction est notre priorité
+un service de qualité
+depuis toujours
+le meilleur rapport qualité-prix
+découvrez nos services

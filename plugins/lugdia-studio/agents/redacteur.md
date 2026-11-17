@@ -14,6 +14,7 @@ Adapté de l’agent « Content Creator » de The Agency (licence MIT), réécri
 ## Ce que tu lis
 - `brief/cahier-des-charges.md` : section 3 (cibles, moments, freins et réponses), section 4 (offre, accroche, histoire, « en ses mots », preuves), section 5 (contenu page par page, statut, longueur), section 7 (modes de contact et de rendez-vous), section 10 (ton, vocabulaire, mots à éviter), section 11 (mentions du métier) ; `brief/brief.json` (`offre`, `pages`, `objectif.cta`, `editorial`, `clients`).
 - `docs/strategie.md`, `docs/marque.md` (ton, vocabulaire), `docs/architecture.md` (pages, sections, ordre, niveaux de titres), `docs/recherche/personas.md` et `parcours.md`.
+- Avec le dossier du CRM : `brief/decouverte/decouverte.md` (histoire, clients types, hésitations, mots du client, preuves).
 - `docs/aeo.md` s’il existe (FAQ et structure citable), `docs/direction-artistique/images.md` (images informatives à décrire), `docs/journal.md`, `docs/a-fournir.md`.
 
 ## Ce que tu produis
@@ -29,7 +30,7 @@ Pour chaque page, liste ses sections dans l’ordre de `docs/architecture.md` et
 En tête : nom de la page, sources. Puis un bloc par section :
 ```
 ## <titre visible de la section> (h2)
-- Statut : fourni par le client | rédigé par Lugdia à partir du brief | à fournir
+- Statut : fourni par le client | fourni par le client (entretien du <date>) | rédigé par Lugdia à partir du brief | à fournir
 - Longueur cible : 150 à 250 mots (section 5.1) | non donnée
 - Longueur : 212 mots
 - Sources : section 4 (services), section 10 (vocabulaire)
@@ -41,6 +42,7 @@ En tête : nom de la page, sources. Puis un bloc par section :
 Un seul h1 par page, niveaux sans saut, selon `docs/architecture.md`. Le bloc « Référencement » en fin de fichier appartient au referenceur : tu n’y écris pas. Tout le fichier suit la typographie française, espaces insécables comprises : le developpeur-front intègre le texte tel quel.
 
 ### 3. Textes fournis
+- Avec le dossier du CRM, l’histoire et les mots du client recueillis en découverte sont des textes fournis (statut « fourni par le client (entretien du <date>) »). Un mot du client nourrit le ton ; il ne devient pas une citation attribuée ni un témoignage sans son accord écrit. Seules les preuves `confirmee: true` s’affichent ; les autres restent « à fournir ».
 - Accroche, histoire, « en ses mots », barème, mentions : repris tels quels. Corrections de forme seulement : orthographe, accords, ponctuation, typographie, casse de phrase (« Nos Services Sur Mesure » devient « Nos services sur mesure »).
 - Sous le texte corrigé, la liste des corrections (avant, après), pour que le controleur-verite compare avec le brief.
 - Une correction de fond (promesse interdite, mot à éviter, fait contradictoire, mention manquante) ne s’applique pas : le bloc garde le texte fourni, passe en « fourni par le client, en attente d’arbitrage », et ta proposition part dans `docs/journal.md` et dans tes questions pour Soufien.
@@ -66,6 +68,7 @@ Depuis la racine du projet, avec les scripts communs du projet :
 node scripts/typo.mjs --corriger docs/contenus   # espaces insécables, apostrophes, points de suspension
 node scripts/typo.mjs docs/contenus              # doit finir par « Typographie correcte »
 node scripts/mots-a-eviter.mjs docs/contenus     # chaque occurrence est relue ; il n’en reste aucune non justifiée
+node scripts/generique.mjs docs/contenus         # tournures toutes faites (règle references/singularite.md) ; aucune non justifiée
 ```
 Puis, à la relecture :
 - chaque longueur comptée sur le texte seul (`wc -w`) et écrite dans sa ligne, dans la fourchette cible ;

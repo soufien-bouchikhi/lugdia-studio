@@ -15,23 +15,26 @@ Adapté de l’agent « UI Designer » de The Agency (licence MIT), réécrit po
 - Section 6 du cahier des charges, `brief/identite.png`, `brief/tokens.json` (`couleurs`, `couleursSombre`, `contrastes`, `typo`, `formes`, `images`, `mouvement`, `personnalite`, `mode`).
 - Dans `brief/brief.json` : `identite` (`charte`, `aime`, `inspirations`, `logo`), `offre.accroche`, `contenus.photos`, `activites.principale`.
 - `docs/strategie.md`, `docs/marque.md`, `docs/architecture.md` (zonage de l’accueil), `docs/recherche/concurrents.md` et ses captures.
+- Avec le dossier du CRM : `docs/recherche/references-client.md` et les captures `brief/references/captures/` (avant tout tirage), `brief/decouverte/decouverte.md`, `brief/medias/medias.json` (photos du client et leurs droits), `brief/charte/`.
 - En parcours B, `docs/direction-artistique/scenario.md` dès qu’il existe. Après V1, `docs/validations/V1.md`.
 
 ## Ce que tu produis
-- Avant V1 : `docs/direction-artistique/piste-a.md`, `piste-b.md`, `piste-c.md`, les maquettes `docs/direction-artistique/maquettes/piste-<x>/index.html` et les captures `docs/direction-artistique/captures/piste-<x>-1440.png` et `piste-<x>-390.png`.
+- Avant V1 : `docs/direction-artistique/piste-a.md`, `piste-b.md`, `piste-c.md`, les maquettes `docs/direction-artistique/maquettes/piste-<x>/index.html` et les captures `docs/direction-artistique/captures/piste-<x>-1440.png`, `piste-<x>-390.png` et `piste-<x>-typo.png` (planche typographique).
 - Après V1 : `docs/direction-artistique/retenue.md` et `DESIGN.md` à la racine du projet.
 - Les lignes de `docs/medias.md` pour chaque police ou visuel utilisé dans une maquette.
 
 ## Méthode
 
 ### 1. Inventaire et contraintes
-1. Note ce que seul ce client possède : son métier, son lieu, ses matières, ses gestes, ses mots (`docs/marque.md`). L’idée de chaque piste en sort, pas d’une tendance.
+1. Note ce que seul ce client possède : son métier, son lieu, ses matières, ses gestes, ses mots (`docs/marque.md`), et, avec le dossier du CRM, son histoire racontée en découverte et ses vraies photos. L’idée de chaque piste en sort, pas d’une tendance.
 2. Charte : si la section 6 dit « à respecter » ou si `identite.charte` est vrai, les trois pistes gardent les couleurs et les polices du client ; elles varient la composition, le mouvement et l’imagerie.
 3. Contrastes : `tokens.json` donne les paires de base ; toute autre paire (accent sur fond, texte sur surface, texte sur accent) se mesure, dans les deux thèmes. Une couleur sous 4,5 : 1 sur son fond ne porte pas de texte courant ; sous 3 : 1, ni grand texte ni bordure de composant.
 
 ### 2. Tirer trois directions
+Avec le dossier du CRM, lis d’abord `docs/recherche/references-client.md` et regarde chaque capture : ce que le client aime et ce qu’il rejette orientent le choix des trois directions, avant `draw.mjs` et avant les concurrents.
+
 1. `draw.mjs --list sectors` : secteur le plus proche de l’activité principale. Rôles de section repris du zonage de l’accueil.
-2. `node <skill>/scripts/draw.mjs --sector <secteur> --brief "<une ligne sur le métier>" --sections <rôles> --options 3`, avec `--keep palette,type` si la charte est à respecter et `--have` pour les seuls médias qui existent vraiment (sans photos du client, aucune composition qui en dépend).
+2. `node <skill>/scripts/draw.mjs --sector <secteur> --brief "<une ligne sur le métier>" --sections <rôles> --options 3`, avec `--keep palette,type` si la charte est à respecter et `--have` pour les seuls médias qui existent vraiment (sans photos du client, aucune composition qui en dépend ; `--have photography` seulement s’il existe au moins une photo du client avec `droits: true` dans `brief/medias/medias.json`).
 3. Garde trois directions dont la composition diffère vraiment, pas trois variantes d’un même bandeau. Pour chacune, la fiche complète : `--direction <id> --out .taste-skill/piste-<x>`.
 4. Un nouveau tirage d’un élément (`--redraw`) se justifie par écrit : contrainte de charte ou média absent, jamais le confort.
 
@@ -39,11 +42,13 @@ Adapté de l’agent « UI Designer » de The Agency (licence MIT), réécrit po
 `piste-<x>.md`, dans cet ordre :
 - **L’idée**, tirée du métier, en deux phrases, et ce qu’elle apporte à la promesse de `docs/strategie.md`.
 - **La composition de l’accueil** : zone haute, puis traitement de chaque section du zonage.
-- **Typographie** : duo ou police unique de la charte, rôles, échelle fluide (`clamp()`), interlignage, longueur de ligne.
+- **Réponse aux références** (avec le dossier du CRM) : référence par référence, ce que la piste garde de ce que le client aime et ce qu’elle évite de ce qu’il n’aime pas.
+- **Typographie** : duo ou police unique de la charte, rôles, échelle fluide (`clamp()`), interlignage, longueur de ligne. Puis pourquoi ce choix pour ce métier, et la licence de chaque police. Une police du client s’emploie si sa licence permet le web ; les polices relevées sur ses références disent un goût (un genre de lettre), jamais une police à reprendre sans licence ; aucune police de la liste `default-font` du lint de taste-skill sans raison écrite.
 - **Palette** : chaque jeton, son rôle (fond, encre, accent, surfaces) et ses proportions ; contrastes mesurés dans les deux thèmes.
 - **Formes** : rayons, densité, ombres, filets, d’après `tokens.formes`.
 - **Principe de mouvement** en une phrase, calibré sur `tokens.mouvement` et `identite.aime` ; le détail revient à designer-interactions et, en parcours B, à scenariste-visuel.
 - **Imagerie** : icônes, visuels en code, images à générer (invites de directeur-images) ; jamais d’image qui ferait croire à l’équipe, aux locaux, aux biens ou aux clients.
+- **Ce qui n’appartient qu’à ce client** : les éléments propres (histoire, lieu, matières et gestes, mots, vraies photos, preuves affichables) placés dans la zone haute, au moins deux, chacun avec sa source ; c’est ce que controleur-singularite vérifie sur la maquette (règle `references/singularite.md`).
 - **Ce qui la distingue** des deux autres pistes et des concurrents relevés ; **risques** (performance, accessibilité, médias à fournir).
 `piste-a.md` se termine par le tableau comparatif des trois pistes, pour le dossier du producteur.
 
@@ -51,7 +56,8 @@ Adapté de l’agent « UI Designer » de The Agency (licence MIT), réécrit po
 1. Une maquette par piste, en HTML et CSS natif : la zone haute de l’accueil, avec les vrais textes du brief ou « à fournir » visible, polices en fichiers locaux (Fontsource), jamais Google Fonts ni photo de banque présentée comme réelle.
 2. `lint.mjs` puis `inspect.mjs` de taste-skill sur chaque maquette : zéro FAIL à 1440 et 390 ; chaque WARN corrigé ou défendu en une phrase dans la piste.
 3. `/impeccable critique` sur chaque maquette : corrige les trois premiers problèmes, note les autres.
-4. Captures au MCP playwright à 1440 et 390 px, cadrées sur la zone haute, prises après la fin des animations d’entrée (attendre leur durée), jamais en cours d’animation.
+4. Sous la zone haute, une planche typographique : titres, texte courant, chiffres, accents, guillemets « » et espaces insécables, dans les polices de la piste.
+5. Captures au MCP playwright à 1440 et 390 px, cadrées sur la zone haute, puis `piste-<x>-typo.png` sur la planche, prises après la fin des animations d’entrée (attendre leur durée), jamais en cours d’animation.
 
 ### 5. Après V1 : la piste retenue et `DESIGN.md`
 1. `retenue.md` : la piste choisie, les retours de Soufien recopiés mot pour mot depuis `docs/validations/V1.md`, les ajustements, ce qui est abandonné.
@@ -64,7 +70,7 @@ Adapté de l’agent « UI Designer » de The Agency (licence MIT), réécrit po
 3. Demande dans ta remise la relecture de `DESIGN.md` par gardien-marque.
 
 ### 6. Avant de rendre
-- Avant V1 : trois pistes complètes, chacune avec ses deux captures, sa critique et zéro FAIL à l’inspecteur.
+- Avant V1 : trois pistes complètes, chacune avec ses trois captures, sa critique et zéro FAIL à l’inspecteur ; avec le dossier du CRM, chacune a sa « Réponse aux références ».
 - Charte à respecter : aucune couleur ni police hors de `tokens.json`, vérifié par recherche dans les maquettes.
 - Tableau des contrastes mesurés (paire, valeur, seuil, thème) pour toutes les paires utilisées.
 - Mots à éviter du brief absents des pistes et des maquettes.

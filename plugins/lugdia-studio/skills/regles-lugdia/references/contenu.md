@@ -5,6 +5,10 @@
 1. Le cahier des charges et `brief.json` du client.
 2. Un document écrit du client, déposé dans `brief/` ou transmis par Soufien (flyer, plaquette, ancien site, e-mail).
 3. Une source publique officielle citée avec son lien (registre des entreprises, ORIAS, annuaire d’un ordre professionnel), notée dans `docs/journal.md`.
+4. La découverte du dossier du CRM (`brief/decouverte/`) : l’histoire, les clients types, les moments déclencheurs, les hésitations et les mots du client sont ses propos, recueillis en entretien et relus par Soufien (source : « découverte du <date de l’entretien> »). Ce ne sont pas des hypothèses.
+   - Une preuve (chiffre, avis, label, date) ne s’affiche que si `confirmee: true`. Non confirmée, elle reste dans `docs/a-fournir.md` (« Preuve à confirmer ») et n’apparaît nulle part sur le site, même au conditionnel.
+   - Un mot du client nourrit le ton et le vocabulaire. Il ne devient ni une citation attribuée, ni un témoignage, sans son accord écrit.
+   - Le brief et la découverte se contredisent (une cible, un service, un chiffre) : ligne dans `docs/journal.md`, question à Soufien, rien d’affiché sur ce point en attendant.
 
 Tout le reste est à demander : « à fournir » dans le texte, une ligne dans `docs/a-fournir.md`.
 

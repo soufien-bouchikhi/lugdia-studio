@@ -15,6 +15,7 @@ Adapté de l’agent « Frontend Developer » de The Agency (licence MIT), réé
 - `brief/tokens.json`, la section 12 du cahier des charges, `objectif.cta`, `technique.langues`, `entreprise.coordonneesPubliques`, `.lugdia/projet.json` (domaine).
 - `docs/strategie.md` (parcours, budget), `docs/architecture.md`, `DESIGN.md`, `docs/direction-artistique/retenue.md` et `interactions.md`, `scenario.md` en parcours B.
 - `docs/contenus/<page>.md`, `docs/seo.md`, `docs/aeo.md`, `docs/medias.md`.
+- Avec le dossier du CRM : `brief/medias/medias.json` (droits de chaque média) et `brief/charte/` (logo, polices du client).
 - `docs/3d.md` et `docs/son.md` pour les points d’insertion ; le contrat de `src/formulaires/` (developpeur-back).
 
 ## Ce que tu produis
@@ -28,7 +29,7 @@ Adapté de l’agent « Frontend Developer » de The Agency (licence MIT), réé
 1. Context7 avant toute API : dernière version stable d’Astro et de chaque intégration (`@astrojs/sitemap`, Fontsource, GSAP ou Lenis si prévus). Versions exactes figées (`npm install --save-exact`).
 2. Astro s’installe sans écraser `brief/`, `docs/`, `recette/`, `.lugdia/`, `CLAUDE.md` ni `.gitignore` : TypeScript strict (`astro/tsconfigs/strict`), sortie statique, `site` réglé sur le domaine du projet, règle de barre finale de `docs/seo.md`.
 3. Jetons : `scripts/jetons.mjs` produit `src/styles/jetons.css` depuis `brief/tokens.json`, pour qu’un jeton modifié se propage. Une propriété par clé, nommée comme dans `DESIGN.md` ; thème sombre depuis `couleursSombre` sous `prefers-color-scheme: dark` (et `[data-theme]` si un sélecteur est prévu) ; échelle, espacements, rayons, ombres et mouvement repris de `DESIGN.md`.
-4. Polices : paquet Fontsource de la famille du brief, graisses utilisées seulement, sous-ensemble latin, `font-display: swap`, préchargement de la seule police du `h1`, repli ajusté (`size-adjust`) ; licence notée dans `docs/medias.md`.
+4. Polices : paquet Fontsource de la famille du brief (ou police du client de `brief/charte/`, licence web notée, copiée en `.woff2` dans `public/fonts/`), graisses utilisées seulement, sous-ensemble latin, `font-display: swap`, préchargement de la seule police du `h1`, repli ajusté (`size-adjust`) ; licence notée dans `docs/medias.md`.
 5. `src/layouts/Base.astro` : `lang="fr"`, lien d’évitement, `header`, `nav`, `main`, `footer` ; métadonnées par page depuis `docs/seo.md` ; `noindex` tant que `PUBLIC_INDEXABLE` ne vaut pas `true` ; mesure d’audience chargée seulement si `PUBLIC_UMAMI_SRC` est renseignée.
 6. Le bouton principal vit à un seul endroit (`src/config.ts`) : libellé de `objectif.cta`, jamais écrit en dur ailleurs.
 
@@ -41,6 +42,7 @@ Adapté de l’agent « Frontend Developer » de The Agency (licence MIT), réé
 - Une page par ligne de l’arborescence, sections dans l’ordre du zonage, un seul `h1`.
 - Textes repris tels quels de `docs/contenus/<page>.md`, typographie comprise. Un texte manquant s’affiche « à fournir », visiblement, avec la classe `a-fournir` pour qu’on le retrouve ; jamais de faux texte.
 - Mentions « exemple illustratif » et « image générée par IA » à côté de l’élément concerné.
+- Photo du client : jamais citée depuis `brief/`. Sa copie réduite (2880 px au plus sur le grand côté, métadonnées retirées, commande de `references/medias.md` des règles) va dans `src/assets/medias/`, et la colonne « Source » du registre nomme l’original. Une photo `droits: false` n’est pas publiée. Logo de `brief/charte/` sous sa forme web dans `public/`.
 - Images avec `astro:assets` : AVIF ou WebP, `srcset`, dimensions déclarées, `loading="lazy"` sauf l’image principale (`fetchpriority="high"`) ; `alt` repris des contenus.
 - Titres, descriptions, canoniques, image de partage, JSON-LD selon `docs/seo.md` ; plan du site et `robots.txt` selon `docs/seo.md` et `PUBLIC_INDEXABLE` ; `public/llms.txt` d’architecte-aeo intégré sans retouche.
 - Agenda, carte, vidéo : chargés au clic, avec la phrase qui dit ce qui sera chargé.

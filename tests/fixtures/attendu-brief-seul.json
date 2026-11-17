@@ -1,0 +1,52 @@
+{
+  "resume": {
+    "ok": true,
+    "client": "Ébénisterie Exemple",
+    "slug": "ebenisterie-exemple",
+    "ref": "CDC-ebenisterie-exemple-20261110-AB12",
+    "domaine": "ebenisterie-exemple.fr",
+    "crees": [
+      ".claude/settings.json",
+      ".lugdia/projet.json",
+      "CLAUDE.md",
+      "brief/README.md",
+      "docs/journal.md",
+      "docs/medias.md",
+      "docs/mots-admis.txt",
+      "docs/strategie.md",
+      ".env.example",
+      ".gitignore",
+      "recette/README.md",
+      "scripts/mots-a-eviter.mjs",
+      "scripts/typo.mjs",
+      "brief/cahier-des-charges.md",
+      "brief/brief.json",
+      "brief/tokens.json",
+      "brief/identite.png",
+      "docs/a-fournir.md"
+    ],
+    "gardes": [],
+    "manquants": [],
+    "aFournir": 2
+  },
+  "fichiers": [
+    ".claude/settings.json",
+    ".env.example",
+    ".gitignore",
+    ".lugdia/projet.json",
+    "CLAUDE.md",
+    "brief/README.md",
+    "brief/brief.json",
+    "brief/cahier-des-charges.md",
+    "brief/identite.png",
+    "brief/tokens.json",
+    "docs/a-fournir.md",
+    "docs/journal.md",
+    "docs/medias.md",
+    "docs/mots-admis.txt",
+    "docs/strategie.md",
+    "recette/README.md",
+    "scripts/mots-a-eviter.mjs",
+    "scripts/typo.mjs"
+  ]
+}

@@ -7,9 +7,16 @@ description: Règles communes de l’agence Lugdia pour tout site ou contenu liv
 
 Lugdia livre des sites qui impressionnent et qui tiennent : beaux, rapides, accessibles, conformes, sans un mot inventé. Ces règles s’appliquent à tous les agents et à toutes les étapes. Quand une règle gêne une idée de design, c’est l’idée qui s’adapte, jamais la règle. Si une règle semble vraiment bloquer le projet, arrête-toi et pose la question à Soufien.
 
-## 1. Le brief est la source de vérité
+## 1. Le brief et le dossier du CRM sont la source de vérité
 
 - Le dossier `brief/` contient le cahier des charges (`cahier-des-charges.md`), sa version structurée (`brief.json`), les jetons de design (`tokens.json`) et la planche d’identité (`identite.png`). Lis-les avant de proposer quoi que ce soit.
+- Quand le projet a démarré depuis le dossier du studio préparé par le CRM, `brief/` contient aussi, en lecture seule :
+  - `dossier.json` : l’affaire, la date du dossier et l’état de chaque bloc (« vide », « en cours », « prêt ») ;
+  - `decouverte/decouverte.md` et `decouverte.json` : l’entretien de découverte, c’est-à-dire l’histoire, les clients types, les moments déclencheurs, les hésitations, les mots du client, les concurrents qu’il cite et ses preuves (affichables seulement si `confirmee: true`) ;
+  - `references/references.json` et `references/captures/` : trois à cinq sites que le client aime, avec ce qu’il en aime et n’en aime pas, et leurs captures à 1440 et 390 px ;
+  - `medias/medias.json` et `medias/fichiers/` : ses photos et vidéos (droits, personnes reconnaissables, légende, origine « client » ou « généré » avec l’invite), et les prises de vue qui manquent ;
+  - `charte/` : son logo, sa charte, ses polices.
+- Les originaux du client (`brief/medias/fichiers/`, `brief/charte/`, `brief/references/captures/`) ne sont jamais versionnés ni cités par le code du site : le CRM les garde. Le site n’utilise que des copies réduites (détail : [references/medias.md](references/medias.md)).
 - Ce que le client a fourni (textes, accroche, histoire, couleurs, police, mots à éviter) est respecté tel quel. Une correction de fond (une promesse interdite, une faute) se propose, elle ne s’impose pas : note-la dans `docs/journal.md` et signale-la au point de validation suivant.
 - Seule exception : la forme. Fautes d’orthographe, typographie française et casse de phrase (« Vos projets, Votre Stratégie » devient « Vos projets, votre stratégie ») sont corrigées d’office dans le site, et la version d’origine est gardée dans `docs/journal.md` pour que Soufien puisse la rétablir.
 - Une information manque : écris « à fournir » à l’endroit voulu, ajoute la ligne dans `docs/a-fournir.md`, et continue. N’invente jamais pour boucher un trou.
@@ -30,6 +37,7 @@ Jamais de chiffre, d’avis, de témoignage, de note, de client, de logo de part
 - Une image générée n’est **jamais** présentée comme une photo du client, de son équipe, de ses locaux, de ses réalisations, de ses biens ou de ses clients. Ni faux portrait, ni fausse équipe, ni fausse réalisation.
 - Une image ou une vidéo générée qui montre de façon réaliste une personne, un lieu ou un bien existant porte la mention « image générée par IA » (AI Act, article 50).
 - Polices : licence vérifiée, fichiers auto-hébergés, aucun appel à Google Fonts. Détail : [references/medias.md](references/medias.md).
+- Les médias du dossier du CRM (`brief/medias/medias.json`) sont l’inventaire de départ : une photo sans droits confirmés (`droits: false`) ne part jamais en ligne.
 
 ## 5. Accessibilité (niveau AA, sans exception)
 
@@ -64,6 +72,10 @@ Quatre arrêts obligatoires, décrits dans [references/validations.md](reference
 - `.lugdia/projet.json` : étape et points de validation, tenus par le producteur seul.
 - Un commit par remise acceptée, en français, au format `<agent> : <ce qui est livré>` (voir « Commits » dans l’organisation du studio).
 
-## 12. Les outils de l’agence
+## 12. Singularité
+
+Un site Lugdia n’appartient qu’à son client : remplacé par le nom d’un concurrent, un titre ou une zone haute ne doit plus être vrai. Au moins 2 éléments propres au client (histoire, lieu, matières et gestes, ses mots, ses vraies photos, ses preuves) dans la zone haute de l’accueil, au moins 1 par page, aucune tournure toute faite (`node scripts/generique.mjs`). Verdict de `controleur-singularite` aux points V1 à V3. Détail : [references/singularite.md](references/singularite.md).
+
+## 13. Les outils de l’agence
 
 Quel skill ou quel MCP utiliser, et à quel moment : [references/outils.md](references/outils.md). En bref : taste-skill pour la direction artistique, 21st.dev pour s’inspirer de composants (jamais copiés tels quels), gsap-skills pour l’animation, Context7 avant d’utiliser l’API d’une bibliothèque, Playwright pour les captures, Chrome DevTools pour les mesures de performance, impeccable pour l’audit et la finition.

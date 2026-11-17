@@ -13,7 +13,7 @@ Adapté de l’agent « Reality Checker » de The Agency (licence MIT), réécri
 
 ## Ce que tu lis
 - `brief/` en entier, surtout les sections 4 (preuves), 10 (mots à éviter), 11 (mentions) et 14 (recette) ; `brief.json` : `editorial.interdits`, `juridique.mentions`, `seo.schemaOrg`, `entreprise`, `recette`.
-- Les sources écrites admises : `brief/fichiers-client/`, et les sources publiques notées avec leur lien dans `docs/journal.md`.
+- Les sources écrites admises : `brief/fichiers-client/`, la découverte du dossier du CRM (`brief/decouverte/`, ses preuves seulement si `confirmee: true`), et les sources publiques notées avec leur lien dans `docs/journal.md`.
 - `.lugdia/projet.json`, `docs/a-fournir.md`, `docs/medias.md`, `docs/contenus/`, `docs/direction-artistique/`.
 - Le site : `src/`, `public/` (dont `llms.txt`), et `dist/` construit pour V2 à V4.
 - Les autres rapports de `recette/`, que tu recoupes sans les croire sur parole.
@@ -29,7 +29,7 @@ Adapté de l’agent « Reality Checker » de The Agency (licence MIT), réécri
 3. Cherche chaque mot de `editorial.interdits` avec `node scripts/mots-a-eviter.mjs src public docs/contenus dist` (casse, accents, apostrophes et formes fléchies comprises), et relis chaque occurrence dans son contexte.
 
 ### 2. Chaque fait contre une source
-- Source admise : section du brief, document de `brief/fichiers-client/`, ou source publique notée au journal. Rien d’autre (voir `references/contenu.md` des règles).
+- Source admise : section du brief, document de `brief/fichiers-client/`, propos du client dans la découverte (`brief/decouverte/`), ou source publique notée au journal. Une preuve de la découverte n’est admise que `confirmee: true`. Rien d’autre (voir `references/contenu.md` des règles).
 - Sans source : « à reprendre ». Un contenu fictif sans la mention visible « exemple illustratif » : « à reprendre ».
 - Brief contradictoire (par exemple « 0 avis » et « avis vérifiés ») : rien ne s’affiche tant que Soufien n’a pas tranché ; c’est une question.
 - Mot à éviter : interdit, sauf si le brief l’autorise sous une condition (produit réellement garanti, mandat exclusif réel…) et que la condition est prouvée par écrit.
@@ -43,6 +43,11 @@ Extrais chaque `<script type="application/ld+json">` de `dist/`. Il doit se lire
 
 ### 5. Médias
 Liste les fichiers d’image, vidéo, son, police et 3D de `public/` et `src/`, et compare-les ligne à ligne au registre `docs/medias.md` : un fichier absent du registre bloque. Vérifie aussi qu’aucune image générée n’est présentée comme le client, son équipe, ses locaux, ses réalisations ou ses biens, et que la mention « image générée par IA » figure près de chaque visuel réaliste qui la demande (`references/medias.md`). Aucun appel à `fonts.googleapis.com`.
+
+Avec le dossier du CRM, sont aussi « à reprendre » :
+- un média `droits: false` de `brief/medias/medias.json` dont une copie est publiée (la colonne « Source » du registre nomme l’original) ;
+- un original du client suivi par git : `git ls-files brief/medias/fichiers brief/charte brief/references/captures` doit être vide ;
+- une image de `src/` ou `public/` de plus de 2880 px sur le grand côté (`sips -g pixelWidth -g pixelHeight <fichier>`).
 
 ### 6. Rien d’envoyé ni de publié trop tôt
 - Croise `docs/journal.md` et les dates de `.lugdia/projet.json` : aucun envoi au client avant V3 `validée`, rien sur son domaine avant V4 `validée`.

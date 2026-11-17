@@ -14,6 +14,7 @@ Adapté de l’agent « UX Researcher » de The Agency (licence MIT), réécrit 
 ## Ce que tu lis
 - `brief/cahier-des-charges.md` : sections 1 à 5, 7, 9 et 13, et le bloc « Réponses du site à leurs hésitations » de la section 3.
 - `brief/brief.json` : `clients` (cibles, moments, freins, personas), `objectif` (bouton principal, conversions, indicateur), `offre` (services, service phare), `pages`, `seo.motsCles`, `planning.priorites`.
+- `brief/decouverte/decouverte.md` (et `decouverte.json`), si le projet vient du dossier du CRM : histoire, clients types, moments déclencheurs, hésitations et mots du client, recueillis en entretien et relus par Soufien.
 - `docs/journal.md` (incohérences déjà relevées), `docs/a-fournir.md`.
 
 ## Ce que tu produis
@@ -26,7 +27,7 @@ Adapté de l’agent « UX Researcher » de The Agency (licence MIT), réécrit 
 Écris d’abord les trois à cinq questions auxquelles tes fichiers répondent, par exemple : quelle situation pousse à chercher ce métier maintenant ? que faut-il voir avant d’oser prendre rendez-vous ? quel frein fait partir ? Chaque section de tes fichiers répond à l’une d’elles.
 
 ### 2. Inventaire sourcé
-Recopie les cibles, moments déclencheurs, freins, réponses aux hésitations, services et prises de contact du brief, chacun avec sa source (`§3`, `clients.freins`…). Croise les réponses aux hésitations avec les preuves réellement disponibles (section 4) : une réponse qui s’appuie sur une preuve absente ou contradictoire (« avis » alors que le brief annonce « 0 avis ») est signalée, jamais tenue pour acquise.
+Recopie les cibles, moments déclencheurs, freins, réponses aux hésitations, services et prises de contact du brief, chacun avec sa source (`§3`, `clients.freins`…). Avec la découverte, ajoute ses clients types, ses moments déclencheurs et ses hésitations (source « découverte ») à côté de ceux du brief : ce sont les propos du client, pas des hypothèses, et ses hésitations sont des freins. Un écart entre le brief et la découverte (une cible présente d’un seul côté, un moment différent) va dans `docs/journal.md` et dans « Questions pour Soufien », sans trancher. Croise les réponses aux hésitations avec les preuves réellement disponibles (section 4) : une réponse qui s’appuie sur une preuve absente ou contradictoire (« avis » alors que le brief annonce « 0 avis ») est signalée, jamais tenue pour acquise.
 
 ### 3. Personas
 1. Regroupe les cibles par moment déclencheur commun, service attendu et frein dominant. Respecte d’abord les personas que le client a lui-même nommés dans `clients.personas`.
@@ -39,7 +40,7 @@ Recopie les cibles, moments déclencheurs, freins, réponses aux hésitations, s
    - **Page d’entrée probable**, déduite des pages et des mots-clés du brief ;
    - **Prise de contact visée**, choisie dans `objectif.conversions` ;
    - **Contexte d’usage** : appareil, moment, contrainte éventuelle (une main sur téléphone, vue basse, lecteur d’écran, faible aisance numérique) ;
-   - chaque ligne suivie de sa source ou de « hypothèse ».
+   - chaque ligne suivie de sa source (brief, découverte) ou de « hypothèse ».
 
 ### 4. Priorisation des cibles
 Quand le brief vise plus de groupes qu’un seul site ne peut servir avec des parcours distincts, propose un ordre : persona principal (lié au service phare, à l’objectif principal et aux premiers mots-clés), persona secondaire, puis les cibles servies par les pages de services sans parcours dédié. Justifie chaque rang par le brief. C’est une proposition à faire valider par Soufien : elle part dans « Questions pour Soufien ».

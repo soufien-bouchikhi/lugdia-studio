@@ -5,13 +5,13 @@ Projet client de l’agence Lugdia. Référence {{REF}}. Domaine prévu : {{DOMA
 ## À lire avant tout travail
 
 1. Le skill `lugdia-studio:regles-lugdia` : les règles de l’agence, sans exception.
-2. `brief/cahier-des-charges.md`, `brief/brief.json`, `brief/tokens.json`, `brief/identite.png` : la commande du client.
+2. `brief/cahier-des-charges.md`, `brief/brief.json`, `brief/tokens.json`, `brief/identite.png` : la commande du client. Si le projet vient du dossier du CRM : `brief/decouverte/decouverte.md`, `brief/references/references.json` et ses captures, `brief/medias/medias.json`.
 3. `.lugdia/projet.json` : parcours, étape, points de validation.
 4. `docs/journal.md` : les décisions déjà prises.
 
 ## Organisation
 
-- `brief/` : fichiers du client, en lecture seule. Ne jamais les modifier ; une correction se note dans `docs/journal.md`.
+- `brief/` : fichiers du client et dossier du CRM, en lecture seule. Ne jamais les modifier ; une correction se note dans `docs/journal.md`. Les originaux (`brief/medias/fichiers/`, `brief/charte/`, `brief/references/captures/`) sont hors de git : un nouveau dossier du CRM ou le même dossier les remet en place (`lugdia-studio:demarrer-projet`).
 - `docs/strategie.md` : cible, promesse, objectif, parcours, budget de performance.
 - `docs/direction-artistique/` : les pistes de V1 et la piste retenue.
 - `docs/contenus/` : les textes, page par page, avant leur intégration.

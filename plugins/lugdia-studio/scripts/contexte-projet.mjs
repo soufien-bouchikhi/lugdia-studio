@@ -43,9 +43,30 @@ const lignes = [
   brief.length
     ? 'Fichiers du brief manquants dans brief/ : ' + brief.join(', ') + '. Signale-le avant de produire quoi que ce soit.'
     : 'Le brief du client est dans brief/ : c’est la source de vérité, avant toute supposition.',
+  ...dossierDuCrm(),
   'Avant tout travail sur ce site, charge le skill lugdia-studio:regles-lugdia et respecte-le : rien d’inventé, AA, mouvement réduit, son coupé par défaut, budget de performance, aucun envoi au client sans validation.'
 ];
 sortir(lignes.join('\n'));
+
+// Projet démarré depuis le dossier du CRM (brief/dossier.json) : ce que le dossier apporte, ce qui reste à fournir,
+// et les originaux absents après un clone (ils sont hors de git).
+function dossierDuCrm() {
+  const fichier = join(racine, 'brief', 'dossier.json');
+  if (!existsSync(fichier)) return [];
+  let date = '(date illisible)';
+  try {
+    date = new Intl.DateTimeFormat('fr-FR', { timeZone: 'Europe/Paris', dateStyle: 'short', timeStyle: 'short' }).format(new Date(JSON.parse(readFileSync(fichier, 'utf8')).date));
+  } catch {}
+  const aFournir = join(racine, 'docs', 'a-fournir.md');
+  const n = existsSync(aFournir) ? readFileSync(aFournir, 'utf8').split('\n').filter((l) => l.startsWith('- [ ] ')).length : 0;
+  const lignes = ['Dossier du CRM du ' + date + ' : découverte, références et médias du client dans brief/ ; ' + n + ' éléments à fournir (docs/a-fournir.md).'];
+  let absents = 0;
+  try {
+    for (const m of JSON.parse(readFileSync(join(racine, 'brief', 'medias', 'medias.json'), 'utf8')).medias || []) if (!existsSync(join(racine, 'brief', m.fichier))) absents++;
+  } catch {}
+  if (absents) lignes.push('Originaux absents de brief/ (' + absents + ' fichiers, hors de git) : relance lugdia-studio:demarrer-projet avec le dossier du CRM du ' + date + ' pour les restaurer.');
+  return lignes;
+}
 
 function sortir(texte) {
   process.stdout.write(JSON.stringify({ hookSpecificOutput: { hookEventName: 'SessionStart', additionalContext: texte } }));

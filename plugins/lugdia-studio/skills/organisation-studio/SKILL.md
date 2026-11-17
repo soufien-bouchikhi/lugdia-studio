@@ -1,6 +1,6 @@
 ---
 name: organisation-studio
-description: Organisation de l’équipe Lugdia Studio pour un projet client - les 26 agents, les phases du projet, qui produit quel fichier, à quel point de validation, et le format de remise entre agents. À charger par chaque agent du studio et par toute session qui pilote un projet client Lugdia.
+description: Organisation de l’équipe Lugdia Studio pour un projet client - les 27 agents, les phases du projet, qui produit quel fichier, à quel point de validation, et le format de remise entre agents. À charger par chaque agent du studio et par toute session qui pilote un projet client Lugdia.
 ---
 
 # Organisation du studio
@@ -18,7 +18,7 @@ Les agents s’appellent `lugdia-studio:<nom>`.
 | | `chef-de-projet` | Découpe le travail en lots et tâches avec critères d’acceptation (`docs/plan.md`) |
 | | `controleur-verite` | Contrôle extérieur : rien d’inventé, mots à éviter, mentions, preuves avant chaque validation |
 | Stratégie et marque | `chercheur-ux` | Personas, moments déclencheurs, freins, parcours, tirés du seul brief |
-| | `veilleur` | Concurrents cités, sites de référence du métier, tendances utiles |
+| | `veilleur` | Concurrents cités, sites de référence du métier, références du client (dossier du CRM), tendances utiles |
 | | `gardien-marque` | Plateforme de marque, ton, charte et jetons tenus comme un contrat |
 | | `redacteur` | Textes de chaque page, dans les mots du client |
 | | `referenceur` | Mots-clés, titres, descriptions, maillage, données structurées, pages locales |
@@ -39,6 +39,7 @@ Les agents s’appellent `lugdia-studio:<nom>`.
 | | `testeur-performance` | Lighthouse, Core Web Vitals, poids, traces |
 | | `collecteur-preuves` | Captures à 390, 768 et 1440 px, mouvement réduit, preuves de chaque validation |
 | | `ingenieur-tests` | Tests Playwright automatisés : parcours, formulaires, liens, mentions |
+| | `controleur-singularite` | Contrôle anti-générique aux points V1 à V3 : chaque piste et chaque page n’appartient qu’à ce client |
 
 ## Les phases
 
@@ -46,11 +47,11 @@ Notation : `→` veut dire « après », `+` veut dire « en même temps ». Ent
 
 | Phase | Entrée | Agents | Sortie | Arrêt |
 |---|---|---|---|---|
-| 1. Cadrage | projet démarré | producteur → chercheur-ux + veilleur + gardien-marque (`docs/marque.md`, puis `PRODUCT.md` tiré du brief et de la marque) → producteur (`docs/strategie.md`, cohérence avec `PRODUCT.md` vérifiée) | `docs/strategie.md` complet | — |
-| 2. Direction artistique | cadrage fini | architecte-ux → designer-ui [+ scenariste-visuel si 3D ou défilement scénarisé] [+ directeur-images si des visuels sont prévus, fournis ou générés] → gardien-marque (relecture) + garant-inclusion → controleur-verite → producteur | 3 pistes, arborescence, zonages | **V1** |
-| 3. Page d’accueil | V1 validée | designer-ui (`retenue.md`, `DESIGN.md`) → gardien-marque (relecture de `DESIGN.md`) + designer-interactions (spécification) [+ scenariste-visuel : scénario final] [+ directeur-images : images de l’accueil] → redacteur (accueil) → developpeur-front [+ developpeur-back si l’accueil a un formulaire] → [developpeur-creatif-3d + designer-sonore] → designer-interactions (contrôle) [+ scenariste-visuel (contrôle)] → developpeur-back (aperçu) → testeur-performance (accueil) + ingenieur-tests (accueil) + collecteur-preuves + garant-inclusion → relecteur-finition → controleur-verite → producteur | accueil codée, aperçu publié | **V2** |
+| 1. Cadrage | projet démarré | producteur → chercheur-ux + veilleur (`concurrents.md`, et `references-client.md` avec le dossier du CRM) + gardien-marque (`docs/marque.md`, puis `PRODUCT.md` tiré du brief et de la marque) → producteur (`docs/strategie.md`, cohérence avec `PRODUCT.md` vérifiée) | `docs/strategie.md` complet | — |
+| 2. Direction artistique | cadrage fini | architecte-ux → designer-ui [+ scenariste-visuel si 3D ou défilement scénarisé] [+ directeur-images si des visuels sont prévus, fournis ou générés] → gardien-marque (relecture) + garant-inclusion → controleur-singularite → controleur-verite → producteur | 3 pistes, arborescence, zonages | **V1** |
+| 3. Page d’accueil | V1 validée | designer-ui (`retenue.md`, `DESIGN.md`) → gardien-marque (relecture de `DESIGN.md`) + designer-interactions (spécification) [+ scenariste-visuel : scénario final] [+ directeur-images : images de l’accueil] → redacteur (accueil) → developpeur-front [+ developpeur-back si l’accueil a un formulaire] → [developpeur-creatif-3d + designer-sonore] → designer-interactions (contrôle) [+ scenariste-visuel (contrôle)] → developpeur-back (aperçu) → testeur-performance (accueil) + ingenieur-tests (accueil) + collecteur-preuves + garant-inclusion → relecteur-finition → controleur-singularite → controleur-verite → producteur | accueil codée, aperçu publié | **V2** |
 | 4. Fabrication | V2 validée | chef-de-projet (`docs/plan.md`) → directeur-images (fiches et classement de toutes les images) → redacteur → referenceur → architecte-aeo → redacteur (reprise des titres, de la FAQ et de la structure citable) → developpeur-front + developpeur-back → [developpeur-creatif-3d + designer-sonore] → designer-interactions (contrôle) → directeur-images (registre à jour) + garant-inclusion → producteur (étape `recette`) | toutes les pages | — |
-| 5. Recette | étape `recette` | developpeur-back (aperçu à jour) → auditeur-accessibilite + testeur-performance + ingenieur-tests + collecteur-preuves + referenceur (données structurées sur le site construit) + architecte-aeo (contrôle de `dist/`) → corrections par les agents concernés → developpeur-back (aperçu à jour, envoi réel de chaque formulaire jusqu’à n8n marqué « test ») → auditeur-accessibilite + testeur-performance + ingenieur-tests + collecteur-preuves (deuxième passage, pages corrigées) + garant-inclusion → relecteur-finition → controleur-verite → producteur | `recette/` complet, aperçu en `noindex` | **V3** |
+| 5. Recette | étape `recette` | developpeur-back (aperçu à jour) → auditeur-accessibilite + testeur-performance + ingenieur-tests + collecteur-preuves + referenceur (données structurées sur le site construit) + architecte-aeo (contrôle de `dist/`) → corrections par les agents concernés → developpeur-back (aperçu à jour, envoi réel de chaque formulaire jusqu’à n8n marqué « test ») → auditeur-accessibilite + testeur-performance + ingenieur-tests + collecteur-preuves (deuxième passage, pages corrigées) + garant-inclusion → relecteur-finition → controleur-singularite → controleur-verite → producteur | `recette/` complet, aperçu en `noindex` | **V3** |
 | 6. Retours du client | V3 validée et aperçu envoyé au client par Soufien | producteur (`retours-client.md`, étape `retours-client`) → chef-de-projet (lots de corrections) → agents concernés → ingenieur-tests + collecteur-preuves (pages touchées) → relecteur-finition (si des pages ont changé) → developpeur-back (liste de mise en ligne prête) + referenceur (fiche Google préparée) → controleur-verite → producteur | site prêt à publier | **V4** |
 | 7. Bascule | V4 validée | developpeur-back (DNS, `PUBLIC_INDEXABLE=true`, déploiement, envoi réel depuis la production) → referenceur (contrôles après la bascule) + ingenieur-tests (suite sur la production) → producteur (étape `livre`) | site en ligne | — |
 | 8. Après | étape `livre` | stratege-citations-ia | plan de présence et de citations | — |
@@ -77,11 +78,12 @@ Le dépôt garde une version par remise acceptée, pour que chaque rapport de co
 
 | Fichier | Responsable | Les autres |
 |---|---|---|
-| `brief/` | personne ne modifie (lecture seule) | le producteur ajoute les fichiers reçus du client dans `brief/fichiers-client/` |
+| `brief/` | personne ne modifie (lecture seule) ; seul `demarrer-projet` y range et met à jour le dossier du CRM | le producteur ajoute les fichiers reçus du client dans `brief/fichiers-client/` |
 | `.lugdia/projet.json` | producteur | lisent |
 | `docs/strategie.md` | producteur (assemble) | chercheur-ux, veilleur, gardien-marque y contribuent par leurs fichiers |
 | `docs/recherche/personas.md`, `parcours.md` | chercheur-ux | |
 | `docs/recherche/concurrents.md`, `docs/recherche/captures/` | veilleur | |
+| `docs/recherche/references-client.md` | veilleur, en phase 1, avant toute piste | designer-ui, gardien-marque lisent |
 | `docs/marque.md` | gardien-marque | |
 | `PRODUCT.md` (racine du projet, lu par impeccable) | gardien-marque, en fin de cadrage | |
 | `docs/plan.md` | chef-de-projet | producteur y lit les jalons |
@@ -108,6 +110,7 @@ Le dépôt garde une version par remise acceptée, pour que chaque rapport de co
 | `recette/captures/`, `recette/preuves.md` | collecteur-preuves | |
 | `tests/`, `recette/tests.md` | ingenieur-tests | |
 | `recette/finition.md` | relecteur-finition | |
+| `recette/singularite.md` | controleur-singularite | |
 | `recette/verite.md` | controleur-verite | |
 | `recette/inclusion.md` | garant-inclusion | |
 | `docs/validations/Vn.md`, `docs/validations/retours-client.md` | producteur | |

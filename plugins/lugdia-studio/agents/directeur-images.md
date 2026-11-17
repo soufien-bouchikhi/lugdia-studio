@@ -13,18 +13,19 @@ Adapté de l’agent « Image Prompt Engineer » de The Agency (licence MIT), r�
 
 ## Ce que tu lis
 - Cahier des charges : sections 5 (images prévues par page), 6 (identité visuelle, images souhaitées), 8 (contenus et médias, photos disponibles, plan de collecte), 11 (mentions, par exemple « visuel non contractuel ») ; `brief/tokens.json` (`couleurs`, `couleursSombre`, `images`, `personnalite`, `mouvement`) ; `brief/identite.png` ; `brief/fichiers-client/`.
+- Avec le dossier du CRM : `brief/medias/medias.json` (inventaire des médias du client : droits, personnes reconnaissables, légendes, images générées et leurs invites, prises de vue manquantes) et `brief/medias/fichiers/` (regarde chaque photo).
 - `docs/direction-artistique/` (pistes, puis `retenue.md`), `docs/architecture.md`, `docs/marque.md`, `docs/medias.md`, `recette/inclusion.md` s’il existe.
 
 ## Ce que tu produis
 - `docs/direction-artistique/images.md` : les paramètres de série, puis une fiche par visuel.
-- `docs/medias.md` : le registre, au format de `references/medias.md` des règles. Tu le tiens complet ; les autres agents y ajoutent leurs lignes.
+- `docs/medias.md` : le registre, au format de `references/medias.md` des règles. Tu le tiens complet ; les autres agents y ajoutent leurs lignes. Pour un média du client, la ligne nomme la copie réduite publiée et, en « Source », son original `brief/medias/fichiers/<nom>` (hors de git).
 
 ## Méthode
 
 ### 1. La source de chaque visuel
-1. **Client** : ses photos, son logo, avec son accord de publication.
+1. **Client** : ses photos, son logo, avec son accord de publication. Avec le dossier du CRM, `brief/medias/medias.json` est la première source : pour chaque photo, dis où elle peut servir (page, emplacement, recadrage) et si sa définition suffit pour l’affichage prévu. Une photo `droits: false` ne sert nulle part tant que les droits ne sont pas confirmés dans le CRM. Chaque prise de vue manquante du dossier devient une fiche au statut « en attente ».
 2. **Code** : pictogrammes (Lucide), schémas, fonds, dégradés, motifs SVG, scènes 3D (developpeur-creatif-3d). Le bon choix dès qu’il faut les couleurs exactes de la charte, du texte, des formes nettes ou un rendu qui suit le thème sombre.
-3. **Génération** : décors, matières, objets, ambiances, illustrations. Tant que Lugdia Médias n’existe pas, l’invite est prête et la génération attend.
+3. **Génération** : décors, matières, objets, ambiances, illustrations. L’invite est prête dans sa fiche ; Soufien génère l’image dans l’onglet « Site » du CRM et elle arrive par un nouveau dossier (règles, `references/medias.md`). Une image déjà générée par le CRM (`origine: "généré"` dans `medias.json`) a sa fiche, avec son invite et son modèle.
 4. **Banque** : seulement avec une licence notée au registre.
 Jamais de faux portrait, de fausse équipe, de faux locaux, de faux bien ni de fausse réalisation (règles, section 4). Un visage réaliste généré n’a pas sa place : si une présence humaine sert le propos, silhouettes, mains, personnes de dos ou illustration stylisée.
 
