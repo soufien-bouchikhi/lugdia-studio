@@ -23,7 +23,7 @@ Ce dépôt est une place de marché Claude Code (`lugdia`) qui publie le plugin 
 - Tout en français, casse de phrase, typographie française, tutoiement de Soufien dans les messages des agents, vouvoiement des visiteurs dans les textes des sites.
 - Aucun secret dans le dépôt : les clés passent par `userConfig` (sensible) ou vivent dans n8n.
 - Le format du dossier du CRM (version 1) ne change pas sans l’accord de Soufien : c’est le seul contrat entre le CRM et le studio.
-- Une nouvelle version du plugin = `version` incrémentée dans `plugin.json` (sinon les installations ne se mettent pas à jour), puis `node scripts/verifier.mjs`, puis commit.
+- Une nouvelle version du plugin = `version` incrémentée dans `plugin.json` (sinon les installations ne se mettent pas à jour), puis `node scripts/verifier.mjs`, puis commit sur une branche et pull request fusionnée dans `main` : d’après l’aide de claude.ai, la copie du compte claude.ai se resynchronise à la fusion d’une pull request qui monte la version, pas sur un push direct dans `main`.
 - Un plugin tiers ne change de `sha` qu’après relecture de la nouvelle version (licence, hooks, scripts, téléchargements), notée dans `NOTICE.md`.
 - Les règles des sites clients vivent dans `skills/regles-lugdia/` : c’est la seule source. Un agent ou une commande y renvoie, il ne les recopie pas.
 - Un agent adapté de The Agency garde la mention de sa source dans `NOTICE.md`.
