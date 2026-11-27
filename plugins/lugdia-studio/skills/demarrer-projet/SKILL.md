@@ -15,7 +15,7 @@ Sans argument, demande-le. Le script reconnaît tout seul ce qu’on lui donne.
 
 ## Étapes
 
-1. **Vérifier le dossier courant.** Il doit être vide, ou être déjà le dépôt de ce client. S’il contient un autre projet (un `package.json`, un `.lugdia/projet.json` d’un autre client), arrête-toi et demande où créer le projet. S’il contient déjà le projet de ce client, voir « Nouveau dossier du CRM » plus bas. L’archive du dossier (`dossier-<client>-<n>.zip`) ou son dossier décompressé, posés dans le dossier courant, ne sont pas « un autre projet » : ce sont la source ; ils ne sont jamais commités (le `.gitignore` du modèle les exclut).
+1. **Vérifier le dossier courant.** Il doit être vide, ne contenir que le `README.md` du dépôt GitHub créé par le CRM (bouton « Créer le dépôt du site » de l’onglet « Site », cloné par Soufien), ou être déjà le dépôt de ce client. S’il contient un autre projet (un `package.json`, un `.lugdia/projet.json` d’un autre client), arrête-toi et demande où créer le projet. S’il contient déjà le projet de ce client, voir « Nouveau dossier du CRM » plus bas. L’archive du dossier (`dossier-<client>-<n>.zip`) ou son dossier décompressé, posés dans le dossier courant, ne sont pas « un autre projet » : ce sont la source ; ils ne sont jamais commités (le `.gitignore` du modèle les exclut).
 
 2. **Initialiser** avec le script, qui copie le modèle sans rien écraser et range le brief et le dossier :
 
@@ -28,7 +28,7 @@ Sans argument, demande-le. Le script reconnaît tout seul ce qu’on lui donne.
    - Sans dossier du CRM, si `manquants` n’est pas vide, dis exactement lesquels manquent et où les trouver (pièces jointes de l’e-mail interne, ou boutons de téléchargement de la page `/cdc` du client). Le projet peut continuer avec le seul cahier des charges, mais `brief.json` et `tokens.json` seront demandés avant le point V1.
    - Avec le dossier du CRM (`mode: "dossier"`), le brief est dans `brief/` comme d’habitude, et le dossier ajoute `brief/dossier.json`, `brief/decouverte/`, `brief/references/`, `brief/medias/` et `brief/charte/`. Ce qui manque (prises de vue, droits, preuves à confirmer, blocs incomplets) est déjà dans `docs/a-fournir.md`.
 
-3. **Git** : si le dossier n’est pas un dépôt, `git init -b main`, puis un premier commit : `Démarrage du projet <client> à partir du brief <référence>` (ou `… à partir du dossier du CRM du <date>`). Les originaux du client (`brief/medias/fichiers/`, `brief/charte/`, `brief/references/captures/`) restent hors de git : le CRM les garde.
+3. **Git** : si le dossier n’est pas un dépôt, `git init -b main`, puis un premier commit : `Démarrage du projet <client> à partir du brief <référence>` (ou `… à partir du dossier du CRM du <date>`). Les originaux du client (`brief/medias/fichiers/`, `brief/charte/`, `brief/references/captures/`) restent hors de git : le CRM les garde. Dans le dépôt créé par le CRM, le `README.md` reste tel quel et le premier commit s’ajoute au sien ; demande à Soufien avant de l’envoyer (`git push -u origin main`).
 
 4. **Charger les règles** : le skill `lugdia-studio:regles-lugdia`.
 
